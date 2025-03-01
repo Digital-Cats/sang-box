@@ -219,12 +219,12 @@ Rectangle {
 
                             RowLayout {
                                 Label { text: qsTr("App version:"); font.pixelSize: 16; Layout.leftMargin: 3 }
-                                Label { text: qsTr("0.1"); font.pixelSize: 16; color: "green"; Layout.leftMargin: 5 }
+                                Label { text: mainWindow.settings.appVersion; font.pixelSize: 16; color: "green"; Layout.leftMargin: 5 }
                             }
 
                             RowLayout {
                                 Label { text: qsTr("Core version:"); font.pixelSize: 16; Layout.leftMargin: 3 }
-                                Label { text: qsTr("1.10.0"); font.pixelSize: 16; color: "red"; Layout.leftMargin: 5 }
+                                Label { text: mainWindow.settings.coreVersion; font.pixelSize: 16; color: "red"; Layout.leftMargin: 5 }
                             }
                         }
 
