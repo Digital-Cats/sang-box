@@ -9,6 +9,7 @@ MainWindowNew::MainWindowNew(QObject *parent)
     : QObject{parent}
     , m_configManager(std::make_shared<ConfigManager>(this))
     , m_configListModel(std::make_shared<ConfigListModel>(m_configManager))
+    , m_settings(std::make_shared<SettingsNew>(this))
     , m_proxyManager(std::make_unique<ProxyManager>(this))
 {
     connect(m_configManager.get(), &ConfigManager::configChanged, this,
@@ -39,6 +40,11 @@ void MainWindowNew::stopProxy()
 ConfigListModel* MainWindowNew::configListModel() const
 {
     return m_configListModel.get();
+}
+
+SettingsNew* MainWindowNew::settings() const
+{
+    return m_settings.get();
 }
 
 QString MainWindowNew::proxyOutput() const
