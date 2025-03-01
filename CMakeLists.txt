@@ -25,6 +25,7 @@ set(qsing-box_sources
     src/tray_icon.cpp
     src/config_list_model.cpp
     src/main_window_new.cpp
+    src/settings_new.cpp
 )
 
 qt_add_executable(qsing-box
