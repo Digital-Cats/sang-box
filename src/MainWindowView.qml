@@ -54,105 +54,22 @@ Rectangle {
                 Layout.topMargin: root.margin
                 spacing: root.smallControlMenuSpacing
 
-                ControlMenu {
+                ProfilesView {
                     id: profilesMenu
+
+                    model: mainWindow.configListModel
+
                     color: root.controlMenuColor
+                    lineColor: root.lineColor
+
+                    fontColor: root.fontColor
+                    fontSize: root.fontSize
 
                     labelColor: root.fontColor
                     labelText: qsTr("Profiles")
                     labelLeftMargin: 23
 
-                    lineColor: root.lineColor
-
                     Layout.alignment: Qt.AlignLeft
-
-                    ScrollView {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        anchors.top: parent.label.bottom
-                        anchors.topMargin: 16
-                        anchors.right: parent.right
-                        anchors.rightMargin: 16
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: 16
-                        anchors.left: parent.left
-                        anchors.leftMargin: 16
-                        spacing: 15
-
-                        ListView {
-                            id: profilesList
-
-                            anchors.fill: parent
-                            model: mainWindow.configListModel
-
-                            delegate: RowLayout {
-                                width: parent.width
-
-                                MRadioButton {
-                                    accent: Theme.primary
-                                    implicitHeight: Size.pixel16
-                                    label.color: root.fontColor
-                                    text: model.name
-                                    label.font.pixelSize: root.fontSize;
-                                    checked: model.selected
-                                    onClicked: {
-                                        mainWindow.configListModel.switchConfig(index)
-                                    }
-                                }
-
-                                Item {
-                                    Layout.fillWidth: true
-                                }
-
-                                MButton {
-                                    accent: Theme.passive
-                                    type: MButton.Type.Text
-                                    text: ""
-                                    leftIcon.iconData: Icons.light.moreVert
-                                    leftIcon.size: Size.pixel20
-                                    implicitHeight: 40
-                                    implicitWidth: 40
-                                    radius: 100
-
-                                    onClicked: {
-                                        configMenu.popup()
-                                    }
-                                }
-
-                                Menu {
-                                    id: configMenu
-                                    implicitWidth: 120
-                                    implicitHeight: 120
-
-                                    MenuItem {
-                                        text: qsTr("Update")
-                                        font.pixelSize: root.fontSize;
-                                        iconData: Icons.light.download
-                                        icon.height: Size.pixel16
-                                        icon.width: Size.pixel16
-                                    }
-
-                                    MenuItem {
-                                        text: qsTr("Edit")
-                                        font.pixelSize: root.fontSize;
-                                        iconData: Icons.light.edit
-                                        icon.height: Size.pixel16
-                                        icon.width: Size.pixel16
-
-                                        onClicked: mainWindow.configListModel.editConfig(index)
-                                    }
-
-                                    MenuItem {
-                                        text: qsTr("Delete")
-                                        font.pixelSize: root.fontSize;
-                                        iconData: Icons.light.deleteElement
-                                        icon.height: Size.pixel16
-                                        icon.width: Size.pixel16
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
 
 
@@ -184,6 +101,7 @@ Rectangle {
                 verticalLineLeftMargin: 99.5
 
                 MSwitch {
+                    id: autoScrollSwitch
                     accent: Theme.primary
                     text: qsTr("Auto Scroll")
                     label.color: root.fontColor
@@ -196,6 +114,7 @@ Rectangle {
                 }
 
                 ScrollView {
+                    id: logView
                     anchors.top: parent.horizontalLine.bottom
                     anchors.bottom: parent.bottom
                     anchors.topMargin: 5
@@ -209,6 +128,11 @@ Rectangle {
                         text: mainWindow.proxyOutput
                         width: parent.width
                         wrapMode: Text.WordWrap
+
+                        onTextChanged: {
+                            if (autoScrollSwitch.checked)
+                                logView.ScrollBar.vertical.position = 1.0 - logView.ScrollBar.vertical.size
+                        }
                     }
                 }
             }
@@ -295,12 +219,12 @@ Rectangle {
 
                             RowLayout {
                                 Label { text: qsTr("App version:"); font.pixelSize: 16; Layout.leftMargin: 3 }
-                                Label { text: qsTr("0.1"); font.pixelSize: 16; color: "green"; Layout.leftMargin: 5 }
+                                Label { text: mainWindow.settings.appVersion; font.pixelSize: 16; color: "green"; Layout.leftMargin: 5 }
                             }
 
                             RowLayout {
                                 Label { text: qsTr("Core version:"); font.pixelSize: 16; Layout.leftMargin: 3 }
-                                Label { text: qsTr("1.10.0"); font.pixelSize: 16; color: "red"; Layout.leftMargin: 5 }
+                                Label { text: mainWindow.settings.coreVersion; font.pixelSize: 16; color: "red"; Layout.leftMargin: 5 }
                             }
                         }
 

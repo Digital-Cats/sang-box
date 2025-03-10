@@ -9,16 +9,19 @@
 #include "config_manager.h"
 #include "proxy_manager.h"
 #include "config_list_model.h"
+#include "settings_new.h"
 
 class MainWindowNew : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(ConfigListModel* configListModel READ configListModel NOTIFY configListModelChanged)
+    Q_PROPERTY(SettingsNew* settings READ settings NOTIFY settingsChanged)
     Q_PROPERTY(bool runnigState READ runnigState NOTIFY runningStateChanged)
     Q_PROPERTY(QString proxyOutput READ proxyOutput NOTIFY proxyOutputChanged)
 
     using ConfigManagerPtr = std::shared_ptr<ConfigManager>;
     using ConfigListModelPtr = std::shared_ptr<ConfigListModel>;
+    using SettingsPtr = std::shared_ptr<SettingsNew>;
     using ProxyManagerUPtr = std::unique_ptr<ProxyManager>;
 
 public:
@@ -32,11 +35,13 @@ public slots:
 
 signals:
     void configListModelChanged();
+    void settingsChanged();
     void runningStateChanged();
     void proxyOutputChanged();
 
 private:
     ConfigListModel* configListModel() const;
+    SettingsNew* settings() const;
     QString proxyOutput() const;
 
 private slots:
@@ -46,6 +51,7 @@ private slots:
 private:
     ConfigManagerPtr m_configManager;
     ConfigListModelPtr m_configListModel;
+    SettingsPtr m_settings;
     ProxyManagerUPtr m_proxyManager;
     QString m_proxyOutput;
 };

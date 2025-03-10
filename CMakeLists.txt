@@ -25,6 +25,7 @@ set(qsing-box_sources
     src/tray_icon.cpp
     src/config_list_model.cpp
     src/main_window_new.cpp
+    src/settings_new.cpp
 )
 
 qt_add_executable(qsing-box
@@ -40,6 +41,7 @@ qt_add_qml_module(qsing-box
         src/MainWindowView.qml
         src/MenuButton.qml
         src/ControlMenu.qml
+        src/ProfilesView.qml
         src/themes/DarkSangTheme.qml
 )
 
