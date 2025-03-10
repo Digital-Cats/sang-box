@@ -1,4 +1,4 @@
-pragma Singltone
+pragma Singleton
 
 import MMaterial
 
