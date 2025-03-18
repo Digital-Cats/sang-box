@@ -14,6 +14,8 @@ Rectangle {
     property color lineColor
     property int lineHeight: 30
     property int lineThickness: 1
+    property int fontWeight: 600
+    property int fontSize: 16
 
     property alias label: label
     property alias labelText: label.labelText
@@ -49,9 +51,10 @@ Rectangle {
     Label {
         id: label
         color: root.labelColor
-        property string labelText: qsTr("Profiles")
+        property string labelText
         text: labelText
-        font.pixelSize: 16;
+        font.pixelSize: root.fontSize;
+        font.weight: root.fontWeight
 
         anchors.top: parent.top
         anchors.left: parent.left
