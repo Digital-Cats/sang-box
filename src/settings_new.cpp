@@ -61,7 +61,7 @@ bool SettingsNew::isRunAsAdmin() const
 
 QString SettingsNew::appVersion() const
 {
-    return "0.1";
+    return QLatin1String(APP_VERSION);
 }
 
 QString SettingsNew::coreVersion() const

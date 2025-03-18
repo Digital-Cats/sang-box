@@ -33,6 +33,8 @@ qt_add_executable(qsing-box
     resources/app.rc
 )
 
+target_compile_definitions(qsing-box PRIVATE APP_VERSION="${PROJECT_VERSION}")
+
 qt_add_qml_module(qsing-box
     URI QSingBox
     VERSION 1.0
