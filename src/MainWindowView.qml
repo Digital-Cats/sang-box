@@ -3,9 +3,11 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import MMaterial
 
+import "themes"
+
 Rectangle {
     id: root
-    color: "#322A38"
+    color: "#2B2A22"
 
     enum TabState {
         Overview,
@@ -23,11 +25,11 @@ Rectangle {
     property int tabWidth: 804
     property int tabHeight: 705
     property int tabTopLeftRadius: 100
-    property string tabColor: "#493855"
+    property string tabColor: "#14140C"
 
-    property color controlMenuColor: "#B37F8C"
-    property color lineColor: "#401C03"
-    property color fontColor: "#401C03"
+    property color controlMenuColor: "#313128"
+    property color lineColor: "#E7E4BF"
+    property color fontColor: "#E7E4BF"
 
     property int smallControlMenuSpacing: 100
 
@@ -186,7 +188,7 @@ Rectangle {
                                 implicitWidth: Size.pixel22
                             }
 
-                            Label { text: qsTr("Start on boot"); font.pixelSize: 16; Layout.leftMargin: 12 }
+                            Label { text: qsTr("Start on boot"); font.pixelSize: 16; Layout.leftMargin: 12; color: root.fontColor; font.weight: 600 }
                         }
 
                         RowLayout {
@@ -198,7 +200,7 @@ Rectangle {
                                 implicitWidth: Size.pixel22
                             }
 
-                            Label { text: qsTr("Automatic updates"); font.pixelSize: 16; Layout.leftMargin: 12 }
+                            Label { text: qsTr("Automatic updates"); font.pixelSize: 16; Layout.leftMargin: 12; color: root.fontColor; font.weight: 600 }
                         }
 
                         RowLayout {
@@ -210,7 +212,7 @@ Rectangle {
                                 implicitWidth: Size.pixel22
                             }
 
-                            Label { text: qsTr("Pre-release"); font.pixelSize: 16; Layout.leftMargin: 12 }
+                            Label { text: qsTr("Pre-release"); font.pixelSize: 16; Layout.leftMargin: 12; color: root.fontColor; font.weight: 600 }
                         }
 
                         ColumnLayout {
@@ -218,13 +220,13 @@ Rectangle {
                             spacing: 5
 
                             RowLayout {
-                                Label { text: qsTr("App version:"); font.pixelSize: 16; Layout.leftMargin: 3 }
-                                Label { text: mainWindow.settings.appVersion; font.pixelSize: 16; color: "green"; Layout.leftMargin: 5 }
+                                Label { text: qsTr("App version:"); font.pixelSize: 16; Layout.leftMargin: 3; color: root.fontColor }
+                                Label { text: mainWindow.settings.appVersion; font.pixelSize: 16; color: "#00AC00"; Layout.leftMargin: 5 }
                             }
 
                             RowLayout {
-                                Label { text: qsTr("Core version:"); font.pixelSize: 16; Layout.leftMargin: 3 }
-                                Label { text: mainWindow.settings.coreVersion; font.pixelSize: 16; color: "red"; Layout.leftMargin: 5 }
+                                Label { text: qsTr("Core version:"); font.pixelSize: 16; Layout.leftMargin: 3; color: root.fontColor }
+                                Label { text: mainWindow.settings.coreVersion; font.pixelSize: 16; color: "#FFB4AB"; Layout.leftMargin: 5 }
                             }
                         }
 
