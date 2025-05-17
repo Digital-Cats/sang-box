@@ -8,9 +8,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Quick QuickControls2 LinguistTools)
 qt_standard_project_setup()
 
-set(QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/material_qt/" ${CMAKE_BINARY_DIR}/imports CACHE STRING "MMaterial imports" FORCE)
+set(QML_IMPORT_PATH ${CMAKE_BINARY_DIR}/qml_modules "${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/material_qt/" CACHE STRING "" FORCE)
 
 add_subdirectory(src/third_party/material_qt/MMaterial ./MMaterial)
+
+include(FetchContent)
+
+FetchContent_Declare(
+  qml_material
+  GIT_REPOSITORY https://github.com/Roker2/QmlMaterial.git
+  GIT_TAG win_support
+  EXCLUDE_FROM_ALL)
+FetchContent_MakeAvailable(qml_material)
 
 add_subdirectory(src)
 
@@ -55,12 +64,15 @@ target_link_libraries(qsing-box PRIVATE
     Qt6::Widgets
     Qt6::Quick
     Qt6::QuickControls2
+    qml_materialplugin
     MMaterialLibplugin
     config
     proxy
     settings
     utils
 )
+
+target_compile_definitions(qsing-box PRIVATE QML_STATIC)
 
 set_target_properties(qsing-box PROPERTIES
     WIN32_EXECUTABLE ON

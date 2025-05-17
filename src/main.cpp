@@ -17,6 +17,8 @@
 
 #include "privilege_manager.h"
 #include "settings_manager.h"
+#include <QtQml/QQmlExtensionPlugin>
+Q_IMPORT_QML_PLUGIN(Qcm_MaterialPlugin)
 
 int main(int argc, char *argv[])
 {
@@ -98,6 +100,7 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("mainWindow", mainWindow.get());
     engine.rootContext()->setContextProperty("trayIcon", trayIcon.get());
+    engine.addImportPath("qrc:/");
 
     engine.loadFromModule("QSingBox", "Main");
 #endif
