@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Controls.Material
 import MMaterial
 
+import Qcm.Material as MD
+
 Window {
     width: 1000
     height: 750
@@ -28,6 +30,13 @@ Window {
         function onRestoreActionTriggered() {
             show()
         }
+    }
+
+    Component.onCompleted: {
+        MD.Token.color.paletteType = 2
+        MD.Token.color.useSysColorSM = false;
+        MD.Token.themeMode = MD.Enum.Dark
+        MD.Token.color.accentColor = "#F6F4B7";
     }
 
     onClosing: function(close) {
