@@ -3,6 +3,8 @@ import QtQuick.Controls.Material
 import QtQuick.Layouts
 import MMaterial
 
+import Qcm.Material as MD
+
 import "themes"
 
 Rectangle {
@@ -25,11 +27,11 @@ Rectangle {
     property int tabWidth: 804
     property int tabHeight: 705
     property int tabTopLeftRadius: 100
-    property string tabColor: "#14140C"
+    property string tabColor: MD.Token.color.surface
 
-    property color controlMenuColor: "#313128"
-    property color lineColor: "#E7E4BF"
-    property color fontColor: "#E7E4BF"
+    property color controlMenuColor: MD.Token.color.inverse_on_surface
+    property color lineColor: MD.Token.color.on_secondary_container
+    property color fontColor: MD.Token.color.on_secondary_container
 
     property int smallControlMenuSpacing: 100
 
