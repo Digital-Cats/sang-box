@@ -9,7 +9,7 @@ import "themes"
 
 Rectangle {
     id: root
-    color: "#2B2A22"
+    color: MD.Token.color.neutral_10
 
     enum TabState {
         Overview,
