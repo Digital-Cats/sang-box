@@ -1,11 +1,6 @@
 import QtQuick
-import MMaterial
+import Qcm.Material as MD
 
-MFabButton {
-    accent: Theme.secondary
-    topLeftRadius: 0
-    bottomLeftRadius: 0
-    radius: 100
-
-    leftIcon.size: Size.pixel20
+MD.Button {
+    flat: true
 }

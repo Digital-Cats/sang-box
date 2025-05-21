@@ -300,10 +300,8 @@ Rectangle {
         MenuButton {
             Layout.preferredWidth: 175
             Layout.topMargin: 30
-            type: root.currentTabState === MainWindowView.TabState.Overview ?
-                      MButton.Type.Contained :
-                      MButton.Type.Text
-            leftIcon.iconData: Icons.light.accountCircle
+            checked: root.currentTabState === MainWindowView.TabState.Overview
+            icon.name: MD.Token.icon.account_circle_filled
             text: qsTr("Overview")
 
             onClicked: root.currentTabState = MainWindowView.TabState.Overview
@@ -312,11 +310,8 @@ Rectangle {
         MenuButton {
             Layout.preferredWidth: 175
             Layout.topMargin: 35
-            type: root.currentTabState === MainWindowView.TabState.Settings ?
-                      MButton.Type.Contained :
-                      MButton.Type.Text
-
-            leftIcon.iconData: Icons.light.accountCircle
+            checked: root.currentTabState === MainWindowView.TabState.Settings
+            icon.name: MD.Token.icon.settings
             text: qsTr("Settings")
 
             onClicked: root.currentTabState = MainWindowView.TabState.Settings
