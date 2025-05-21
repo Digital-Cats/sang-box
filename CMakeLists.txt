@@ -16,8 +16,8 @@ include(FetchContent)
 
 FetchContent_Declare(
   qml_material
-  GIT_REPOSITORY https://github.com/Roker2/QmlMaterial.git
-  GIT_TAG win_support
+  GIT_REPOSITORY https://github.com/hypengw/QmlMaterial.git
+  GIT_TAG main
   EXCLUDE_FROM_ALL)
 FetchContent_MakeAvailable(qml_material)
 
