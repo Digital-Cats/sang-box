@@ -104,17 +104,27 @@ Rectangle {
                 Layout.topMargin: 23
                 verticalLineLeftMargin: 99.5
 
-                MSwitch {
-                    id: autoScrollSwitch
-                    accent: Theme.primary
-                    text: qsTr("Auto Scroll")
-                    label.color: root.fontColor
-                    label.font.pixelSize: root.fontSize;
-                    size: Size.Grade.M
-                    anchors.top: parent.top
-                    anchors.topMargin: 5.5
+                RowLayout {
+                    id: switchLayout
+                    anchors.verticalCenter: parent.verticalLine.verticalCenter
                     anchors.left: parent.verticalLine.right
-                    anchors.leftMargin: 58.5 
+                    anchors.leftMargin: 58.5
+                    spacing: 16
+
+                    MSwitch {
+                        id: autoScrollSwitch
+
+                        Layout.alignment: Qt.AlignVCenter
+                        accent: Theme.primary
+                        size: Size.Grade.M
+                    }
+
+                    MD.Label {
+                        Layout.alignment: Qt.AlignVCenter
+                        text: qsTr("Auto Scroll")
+                        color: root.fontColor
+                        typescale: MD.Token.typescale.title_medium
+                    }
                 }
 
                 ScrollView {
