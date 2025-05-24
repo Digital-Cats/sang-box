@@ -13,7 +13,7 @@ ControlMenu {
     ScrollView {
         Layout.fillWidth: true
         Layout.fillHeight: true
-        anchors.top: parent.label.bottom
+        anchors.top: parent.horizontalLine.bottom
         anchors.topMargin: 16
         anchors.right: parent.right
         anchors.rightMargin: 16

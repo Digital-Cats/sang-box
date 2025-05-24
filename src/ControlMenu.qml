@@ -1,7 +1,8 @@
 import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import MMaterial
+
+import Qcm.Material as MD
 
 Rectangle {
     id: root
@@ -15,10 +16,10 @@ Rectangle {
     property int lineHeight: 30
     property int lineThickness: 1
     property int fontWeight: 600
-    property int fontSize: 16
+    property int fontSize: root.typescale.size
+    property MD.t_typescale typescale: MD.Token.typescale.title_medium
 
-    property alias label: label
-    property alias labelText: label.labelText
+    property alias labelText: label.text
     property alias labelLeftMargin: label.anchors.leftMargin
     property alias labelTopMargin: label.anchors.topMargin
     property alias verticalLineLeftMargin: verticalLine.anchors.leftMargin
@@ -48,16 +49,13 @@ Rectangle {
         anchors.leftMargin: 99.5
     }
 
-    Label {
+    MD.Label {
         id: label
-        color: root.labelColor
-        property string labelText
-        text: labelText
-        font.pixelSize: root.fontSize;
-        font.weight: root.fontWeight
 
-        anchors.top: parent.top
+        anchors.verticalCenter: root.verticalLine.verticalCenter
         anchors.left: parent.left
-        anchors.topMargin: 5
+
+        color: root.labelColor
+        typescale: root.typescale
     }
 }
