@@ -11,18 +11,13 @@ Rectangle {
     Layout.preferredWidth: 300
     Layout.preferredHeight: 300
 
-    property color labelColor
     property color lineColor
     property int lineHeight: 30
     property int lineThickness: 1
-    property int fontWeight: 600
-    property int fontSize: root.typescale.size
     property MD.t_typescale typescale: MD.Token.typescale.title_medium
 
+    property alias labelColor: label.color
     property alias labelText: label.text
-    property alias labelLeftMargin: label.anchors.leftMargin
-    property alias labelTopMargin: label.anchors.topMargin
-    property alias verticalLineLeftMargin: verticalLine.anchors.leftMargin
     property alias horizontalLine: horizontalLine
     property alias verticalLine: verticalLine
 
@@ -46,16 +41,15 @@ Rectangle {
 
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.leftMargin: 99.5
+        anchors.leftMargin: Math.max(99.5, label.width + 10 * 2)
     }
 
     MD.Label {
         id: label
 
         anchors.verticalCenter: root.verticalLine.verticalCenter
-        anchors.left: parent.left
+        x: Math.max((99.5 - width) / 2, 10)
 
-        color: root.labelColor
         typescale: root.typescale
     }
 }

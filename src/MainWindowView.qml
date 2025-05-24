@@ -71,7 +71,6 @@ Rectangle {
 
                     labelColor: root.fontColor
                     labelText: qsTr("Profiles")
-                    labelLeftMargin: 23
 
                     Layout.alignment: Qt.AlignLeft
                 }
@@ -82,7 +81,6 @@ Rectangle {
 
                     labelColor: root.fontColor
                     labelText: qsTr("Stats")
-                    labelLeftMargin: 31
 
                     lineColor: root.lineColor
 
@@ -95,14 +93,12 @@ Rectangle {
 
                 labelColor: root.fontColor
                 labelText: qsTr("Log")
-                labelLeftMargin: 36
 
                 lineColor: root.lineColor
 
                 Layout.fillWidth: true
                 Layout.leftMargin: root.margin
                 Layout.topMargin: 23
-                verticalLineLeftMargin: 99.5
 
                 RowLayout {
                     id: switchLayout
@@ -176,7 +172,6 @@ Rectangle {
 
                     labelColor: root.fontColor
                     labelText: qsTr("Settings")
-                    labelLeftMargin: 20
 
                     lineColor: root.lineColor
 
@@ -267,9 +262,6 @@ Rectangle {
 
                     lineColor: root.lineColor
 
-                    labelLeftMargin: 10
-                    verticalLineLeftMargin: 114.5
-
                     Layout.alignment: Qt.AlignRight
                 }
             }
@@ -279,14 +271,12 @@ Rectangle {
 
                 labelColor: root.fontColor
                 labelText: qsTr("Domain routing")
-                labelLeftMargin: 10
 
                 lineColor: root.lineColor
 
                 Layout.fillWidth: true
                 Layout.leftMargin: root.margin
                 Layout.topMargin: 23
-                verticalLineLeftMargin: 132.5
 
                 MSwitch {
                     accent: Theme.primary

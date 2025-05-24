@@ -8,7 +8,7 @@ ControlMenu {
 
     property var model
     property color fontColor
-    property int fontSize
+    property int fontSize: root.typescale.size
 
     ScrollView {
         Layout.fillWidth: true
