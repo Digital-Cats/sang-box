@@ -1,7 +1,9 @@
 import QtQuick
-import QtQuick.Controls.Material
+import QtQuick.Controls.Material as QMD
 import QtQuick.Layouts
 import MMaterial
+
+import Qcm.Material as MD
 
 ControlMenu {
     id: root
@@ -10,7 +12,7 @@ ControlMenu {
     property color fontColor
     property int fontSize: root.typescale.size
 
-    ScrollView {
+    QMD.ScrollView {
         Layout.fillWidth: true
         Layout.fillHeight: true
         anchors.top: parent.horizontalLine.bottom
@@ -32,17 +34,17 @@ ControlMenu {
             delegate: RowLayout {
                 width: parent.width
 
-                MRadioButton {
-                    accent: Theme.primary
-                    implicitHeight: Size.pixel16
-                    label.color: root.fontColor
-                    text: model.name
-                    label.font.pixelSize: root.fontSize;
+                MdRadioButton {
                     checked: model.selected
-                    customCheckImplementation: true
                     onClicked: {
-                        model.switchConfig(index)
+                        root.model.switchConfig(index)
                     }
+                }
+
+                MD.Label {
+                    text: model.name
+                    typescale: root.typescale
+                    color: root.fontColor
                 }
 
                 Item {
