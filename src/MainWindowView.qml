@@ -298,8 +298,9 @@ Rectangle {
         anchors.left: parent.left
 
         MenuButton {
-            Layout.preferredWidth: 175
+            Layout.preferredWidth: big_width
             Layout.topMargin: 30
+            big_width: 175
             checked: root.currentTabState === MainWindowView.TabState.Overview
             icon.name: MD.Token.icon.account_circle_filled
             text: qsTr("Overview")
@@ -308,8 +309,9 @@ Rectangle {
         }
 
         MenuButton {
-            Layout.preferredWidth: 175
+            Layout.preferredWidth: big_width
             Layout.topMargin: 35
+            big_width: 175
             checked: root.currentTabState === MainWindowView.TabState.Settings
             icon.name: MD.Token.icon.settings
             text: qsTr("Settings")

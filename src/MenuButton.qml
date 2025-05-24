@@ -1,6 +1,7 @@
 import QtQuick
 import Qcm.Material as MD
 
-MD.Button {
-    flat: true
+MD.RailItem {
+    expand: true
+
 }
