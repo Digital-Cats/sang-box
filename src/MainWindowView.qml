@@ -6,6 +6,7 @@ import MMaterial
 import Qcm.Material as MD
 
 import "themes"
+import "controls"
 
 Rectangle {
     id: root

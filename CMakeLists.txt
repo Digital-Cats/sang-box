@@ -50,12 +50,12 @@ qt_add_qml_module(qsing-box
     QML_FILES
         src/Main.qml
         src/MainWindowView.qml
-        src/MenuButton.qml
-        src/ControlMenu.qml
         src/ProfilesView.qml
-        src/StateMdRadioButton.qml
-        src/MdRadioButton.qml
         src/themes/DarkSangTheme.qml
+        src/controls/ControlMenu.qml
+        src/controls/MdRadioButton.qml
+        src/controls/MenuButton.qml
+        src/controls/StateMdRadioButton.qml
 )
 
 target_include_directories(qsing-box PRIVATE

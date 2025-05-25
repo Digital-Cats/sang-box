@@ -5,6 +5,8 @@ import MMaterial
 
 import Qcm.Material as MD
 
+import "controls"
+
 ControlMenu {
     id: root
 
