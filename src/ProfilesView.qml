@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls.Material as QMD
 import QtQuick.Layouts
-import MMaterial
 
 import Qcm.Material as MD
 
@@ -85,15 +84,9 @@ ControlMenu {
             }
         }
 
-        MButton {
+        AddNewProfileButton {
             y: profilesList.contentHeight
             width: parent.width
-            accent: Theme.passive
-            type: MButton.Type.Text
-            text: qsTr("Add new profile")
-            leftIcon.iconData: Icons.light.add
-            leftIcon.size: Size.pixel20
-            radius: 100
 
             onClicked: {
                 model.importConfig()

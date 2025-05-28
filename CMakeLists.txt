@@ -52,6 +52,7 @@ qt_add_qml_module(qsing-box
         src/MainWindowView.qml
         src/ProfilesView.qml
         src/themes/DarkSangTheme.qml
+        src/controls/AddNewProfileButton.qml
         src/controls/ControlMenu.qml
         src/controls/MdRadioButton.qml
         src/controls/MenuButton.qml
