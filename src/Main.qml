@@ -1,14 +1,12 @@
 import QtQuick
 import QtQuick.Controls.Material
-import MMaterial
 
 import Qcm.Material as MD
 
 Window {
     width: 1000
     height: 750
-	visible: true
-	color: Theme.background.main
+    visible: true
     title: qsTr("sang-box")
 
     minimumWidth: 1000
