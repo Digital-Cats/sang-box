@@ -320,20 +320,12 @@ Rectangle {
             onClicked: root.currentTabState = MainWindowView.TabState.Settings
         }
 
-        MFabButton {
-            accent: mainWindow.runnigState ?
-                        Theme.primary :
-                        Theme.secondary
-            radius: 28
+        PlayButton {
             Layout.preferredWidth: 96
             Layout.preferredHeight: 96
             Layout.topMargin: 209
             Layout.alignment: Qt.AlignHCenter
-
-            leftIcon.iconData: mainWindow.runnigState ?
-                                   Icons.light.pause :
-                                   Icons.light.playArrow
-            leftIcon.size: Size.pixel36
+            checked: mainWindow.runnigState
 
             onClicked: {
                 mainWindow.runnigState ?
