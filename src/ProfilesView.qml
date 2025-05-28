@@ -53,15 +53,8 @@ ControlMenu {
                     Layout.fillWidth: true
                 }
 
-                MButton {
-                    accent: Theme.passive
-                    type: MButton.Type.Text
-                    text: ""
-                    leftIcon.iconData: Icons.light.moreVert
-                    leftIcon.size: Size.pixel20
-                    implicitHeight: 40
-                    implicitWidth: 40
-                    radius: 100
+                MD.IconButton {
+                    icon.name: MD.Token.icon.more_vert
 
                     onClicked: {
                         configMenu.popup()
