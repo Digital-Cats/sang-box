@@ -57,41 +57,29 @@ ControlMenu {
                     icon.name: MD.Token.icon.more_vert
 
                     onClicked: {
-                        configMenu.popup()
+                        MD.Util.showPopup(configMenu, {}, this)
                     }
                 }
 
-                Menu {
+                Component {
                     id: configMenu
-                    implicitWidth: 120
-                    implicitHeight: 120
+                    MD.Menu {
+                        MD.Action {
+                            text: qsTr("Update")
+                            icon.name: MD.Token.icon.download
+                        }
 
-                    MenuItem {
-                        text: qsTr("Update")
-                        font.pixelSize: root.fontSize;
-                        iconData: Icons.light.download
-                        icon.height: Size.pixel16
-                        icon.width: Size.pixel16
-                    }
+                        MD.Action {
+                            text: qsTr("Edit")
+                            icon.name: MD.Token.icon.edit
+                            onTriggered: root.model.editConfig(index)
+                        }
 
-                    MenuItem {
-                        text: qsTr("Edit")
-                        font.pixelSize: root.fontSize;
-                        iconData: Icons.light.edit
-                        icon.height: Size.pixel16
-                        icon.width: Size.pixel16
-
-                        onClicked: model.editConfig(index)
-                    }
-
-                    MenuItem {
-                        text: qsTr("Delete")
-                        font.pixelSize: root.fontSize;
-                        iconData: Icons.light.deleteElement
-                        icon.height: Size.pixel16
-                        icon.width: Size.pixel16
-
-                        onClicked: model.deleteConfig(index)
+                        MD.Action {
+                            text: qsTr("Delete")
+                            icon.name: MD.Token.icon.delete
+                            onTriggered: root.model.deleteConfig(index)
+                        }
                     }
                 }
             }
