@@ -11,8 +11,8 @@
 class SettingsNew : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool isAutoRun READ isAutoRun NOTIFY isAutoRunChanged)
-    Q_PROPERTY(bool isRunAsAdmin READ isRunAsAdmin NOTIFY isRunAsAdminChanged)
+    Q_PROPERTY(bool isAutoRun READ isAutoRun WRITE setupAutoRun NOTIFY isAutoRunChanged)
+    Q_PROPERTY(bool isRunAsAdmin READ isRunAsAdmin WRITE setupRunAsAdmin NOTIFY isRunAsAdminChanged)
     Q_PROPERTY(QString appVersion READ appVersion CONSTANT)
     Q_PROPERTY(QString coreVersion READ coreVersion CONSTANT)
 

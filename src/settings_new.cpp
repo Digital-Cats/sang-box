@@ -24,6 +24,7 @@ void SettingsNew::setupAutoRun(bool enabled)
             m_settingsManager->setAutoRun(!enabled);
         }
     }
+    emit isAutoRunChanged();
 }
 
 void SettingsNew::setupRunAsAdmin(bool enabled)
@@ -47,6 +48,7 @@ void SettingsNew::setupRunAsAdmin(bool enabled)
             m_settingsManager->setRunAsAdmin(!enabled);
         }
     }
+    emit isRunAsAdminChanged();
 }
 
 bool SettingsNew::isAutoRun() const
