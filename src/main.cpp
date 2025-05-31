@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QApplication::setQuitOnLastWindowClosed(false);
-    QCoreApplication::setOrganizationName("NextIn");
-    QCoreApplication::setApplicationName("qsing-box");
+    QCoreApplication::setOrganizationName("R2 team");
+    QCoreApplication::setApplicationName("sang-box");
 
     QSharedMemory sharedMemory("qsing-box");
     if (!sharedMemory.create(1)) {
