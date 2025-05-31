@@ -87,6 +87,7 @@ int main(int argc, char *argv[])
                      trayIcon.get(), [&mainWindow, &trayIcon]()
                      {
                          trayIcon->setMenuEnabled(mainWindow->runnigState());
+                         trayIcon->setIconState(mainWindow->runnigState());
                      });
     trayIcon->show();
 

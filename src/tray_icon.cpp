@@ -42,6 +42,13 @@ void TrayIcon::setMenuEnabled(bool proxy_enabled)
     m_disableProxyAction->setEnabled(proxy_enabled);
 }
 
+void TrayIcon::setIconState(bool proxy_enabled)
+{
+    setIcon(proxy_enabled ?
+                QIcon(":/images/app_enable_proxy.ico") :
+                QIcon(":/images/app.ico"));
+}
+
 void TrayIcon::createAction()
 {
     m_restoreAction = new QAction(tr("&Restore"), this);

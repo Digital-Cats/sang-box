@@ -24,6 +24,7 @@ public slots:
     // According to the status of proxy,
     // uses to enable of disable the action of trayIconMenu
     void setMenuEnabled(bool proxy_enabled);
+    void setIconState(bool proxy_enabled);
 
 signals:
     // Notify the main window that the system tray menu was clicked,
