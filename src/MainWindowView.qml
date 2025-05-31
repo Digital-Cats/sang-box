@@ -192,9 +192,15 @@ Rectangle {
                             MCheckbox {
                                 id: startOnBootCheck
                                 accent: Theme.primary
+                                customCheckImplementation: true
+                                checked: mainWindow.settings.isAutoRun
 
                                 implicitHeight: Size.pixel22
                                 implicitWidth: Size.pixel22
+
+                                onClicked: {
+                                    mainWindow.settings.isAutoRun = !mainWindow.settings.isAutoRun
+                                }
                             }
 
                             Label { text: qsTr("Start on boot"); font.pixelSize: 16; Layout.leftMargin: 12; color: root.fontColor; font.weight: 600 }
