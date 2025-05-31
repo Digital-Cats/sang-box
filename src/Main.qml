@@ -7,7 +7,12 @@ Window {
     width: 1000
     height: 750
     visible: true
-    title: qsTr("sang-box")
+    title: {
+        var str = qsTr("sang-box")
+        if (mainWindow.settings.isRunAsAdmin)
+            str += " " + qsTr("(Administrator)")
+        return str
+    }
 
     minimumWidth: 1000
     minimumHeight: 750
