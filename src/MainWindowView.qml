@@ -139,6 +139,7 @@ Rectangle {
                         text: mainWindow.proxyOutput
                         width: parent.width
                         wrapMode: Text.WordWrap
+                        color: MD.Token.color.on_secondary_container
 
                         onTextChanged: {
                             if (autoScrollSwitch.checked)
