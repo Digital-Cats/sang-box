@@ -188,46 +188,30 @@ Rectangle {
 
                         spacing: 15
 
-                        RowLayout {
-                            MCheckbox {
-                                id: startOnBootCheck
-                                accent: Theme.primary
-                                customCheckImplementation: true
-                                checked: mainWindow.settings.isAutoRun
+                        LabeledCheckbox {
+                            id: startOnBootCheck
 
-                                implicitHeight: Size.pixel22
-                                implicitWidth: Size.pixel22
+                            labelText: qsTr("Start on boot")
+                            labelColor: root.fontColor
+                            checked: mainWindow.settings.isAutoRun
 
-                                onClicked: {
-                                    mainWindow.settings.isAutoRun = !mainWindow.settings.isAutoRun
-                                }
+                            onClicked: {
+                                mainWindow.settings.isAutoRun = !mainWindow.settings.isAutoRun
                             }
-
-                            Label { text: qsTr("Start on boot"); font.pixelSize: 16; Layout.leftMargin: 12; color: root.fontColor; font.weight: 600 }
                         }
 
-                        RowLayout {
-                            MCheckbox {
-                                id: autoUpdatesCheck
-                                accent: Theme.primary
+                        LabeledCheckbox {
+                            id: autoUpdatesCheck
 
-                                implicitHeight: Size.pixel22
-                                implicitWidth: Size.pixel22
-                            }
-
-                            Label { text: qsTr("Automatic updates"); font.pixelSize: 16; Layout.leftMargin: 12; color: root.fontColor; font.weight: 600 }
+                            labelText: qsTr("Automatic updates")
+                            labelColor: root.fontColor
                         }
 
-                        RowLayout {
-                            MCheckbox {
-                                id: preReleaseCheck
-                                accent: Theme.primary
+                        LabeledCheckbox {
+                            id: preReleaseCheck
 
-                                implicitHeight: Size.pixel22
-                                implicitWidth: Size.pixel22
-                            }
-
-                            Label { text: qsTr("Pre-release"); font.pixelSize: 16; Layout.leftMargin: 12; color: root.fontColor; font.weight: 600 }
+                            labelText: qsTr("Pre-release")
+                            labelColor: root.fontColor
                         }
 
                         ColumnLayout {
