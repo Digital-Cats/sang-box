@@ -1,11 +1,11 @@
-#include "main_window_new.h"
+#include "main_window.h"
 
 #include <QDebug>
 #include <QRegularExpression>
 
 #include "html_color_text.h"
 
-MainWindowNew::MainWindowNew(QObject *parent)
+MainWindow::MainWindow(QObject *parent)
     : QObject{parent}
     , m_configManager(std::make_shared<ConfigManager>(this))
     , m_configListModel(std::make_shared<ConfigListModel>(m_configManager))
@@ -13,46 +13,46 @@ MainWindowNew::MainWindowNew(QObject *parent)
     , m_proxyManager(std::make_unique<ProxyManager>(this))
 {
     connect(m_configManager.get(), &ConfigManager::configChanged, this,
-            &MainWindowNew::changeSelectedConfig);
+            &MainWindow::changeSelectedConfig);
     changeSelectedConfig();
 
     connect(m_proxyManager.get(), &ProxyManager::proxyProcessStateChanged,
-            this, &MainWindowNew::runningStateChanged);
+            this, &MainWindow::runningStateChanged);
     connect(m_proxyManager.get(), &ProxyManager::proxyProcessReadyReadStandardError,
-            this, &MainWindowNew::updateProxyOutput);
+            this, &MainWindow::updateProxyOutput);
 }
 
-bool MainWindowNew::runnigState() const
+bool MainWindow::runnigState() const
 {
     return m_proxyManager->proxyProcessState() == QProcess::Running;
 }
 
-void MainWindowNew::startProxy()
+void MainWindow::startProxy()
 {
     m_proxyManager->startProxy();
 }
 
-void MainWindowNew::stopProxy()
+void MainWindow::stopProxy()
 {
     m_proxyManager->stopProxy();
 }
 
-ConfigListModel* MainWindowNew::configListModel() const
+ConfigListModel* MainWindow::configListModel() const
 {
     return m_configListModel.get();
 }
 
-SettingsNew* MainWindowNew::settings() const
+SettingsNew* MainWindow::settings() const
 {
     return m_settings.get();
 }
 
-QString MainWindowNew::proxyOutput() const
+QString MainWindow::proxyOutput() const
 {
     return m_proxyOutput;
 }
 
-void MainWindowNew::changeSelectedConfig()
+void MainWindow::changeSelectedConfig()
 {
     if (m_configManager->configCount() == 0)
     {
@@ -72,7 +72,7 @@ void MainWindowNew::changeSelectedConfig()
     }
 }
 
-void MainWindowNew::updateProxyOutput()
+void MainWindow::updateProxyOutput()
 {
     QByteArray outputData = m_proxyManager->readProxyProcessAllStandardError();
     QString outputText = QString::fromUtf8(outputData);

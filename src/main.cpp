@@ -1,4 +1,4 @@
-#include "main_window_new.h"
+#include "main_window.h"
 #include "tray_icon.h"
 
 #include <QApplication>
@@ -64,16 +64,16 @@ int main(int argc, char *argv[])
     }
     app.installTranslator(&translator);
 
-    using MainWindowUPtr = std::unique_ptr<MainWindowNew>;
+    using MainWindowUPtr = std::unique_ptr<MainWindow>;
     using TrayIconUPtr = std::unique_ptr<TrayIcon>;
 
-    MainWindowUPtr mainWindow = std::make_unique<MainWindowNew>();
+    MainWindowUPtr mainWindow = std::make_unique<MainWindow>();
     TrayIconUPtr trayIcon = std::make_unique<TrayIcon>();
     QObject::connect(trayIcon.get(), &TrayIcon::enableProxyActionTriggered,
-                     mainWindow.get(), &MainWindowNew::startProxy);
+                     mainWindow.get(), &MainWindow::startProxy);
     QObject::connect(trayIcon.get(), &TrayIcon::disableProxyActionTriggered,
-                     mainWindow.get(), &MainWindowNew::stopProxy);
-    QObject::connect(mainWindow.get(), &MainWindowNew::runningStateChanged,
+                     mainWindow.get(), &MainWindow::stopProxy);
+    QObject::connect(mainWindow.get(), &MainWindow::runningStateChanged,
                      trayIcon.get(), [&mainWindow, &trayIcon]()
                      {
                          trayIcon->setMenuEnabled(mainWindow->runnigState());
@@ -103,7 +103,7 @@ int main(int argc, char *argv[])
         }
     }
     if (isAutorun) {
-        QTimer::singleShot(3000, mainWindow.get(), &MainWindowNew::startProxy);
+        QTimer::singleShot(3000, mainWindow.get(), &MainWindow::startProxy);
     } else {
         //mainWindow.show();
     }

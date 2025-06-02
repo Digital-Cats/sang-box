@@ -11,7 +11,7 @@
 #include "config_list_model.h"
 #include "settings_new.h"
 
-class MainWindowNew : public QObject
+class MainWindow : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(ConfigListModel* configListModel READ configListModel NOTIFY configListModelChanged)
@@ -25,7 +25,7 @@ class MainWindowNew : public QObject
     using ProxyManagerUPtr = std::unique_ptr<ProxyManager>;
 
 public:
-    explicit MainWindowNew(QObject *parent = nullptr);
+    explicit MainWindow(QObject *parent = nullptr);
 
     bool runnigState() const;
 

@@ -31,7 +31,7 @@ set(qsing-box_sources
     src/settings_dialog.ui
     src/tray_icon.cpp
     src/config_list_model.cpp
-    src/main_window_new.cpp
+    src/main_window.cpp
     src/settings_new.cpp
 )
 
