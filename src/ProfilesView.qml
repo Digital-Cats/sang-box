@@ -10,7 +10,6 @@ ControlMenu {
     id: root
 
     property var model
-    property color fontColor
     property int fontSize: root.typescale.size
 
     QMD.ScrollView {
@@ -45,7 +44,7 @@ ControlMenu {
                 MD.Label {
                     text: model.name
                     typescale: root.typescale
-                    color: root.fontColor
+                    color: root.labelColor
                 }
 
                 Item {

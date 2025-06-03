@@ -7,11 +7,12 @@ import Qcm.Material as MD
 Rectangle {
     id: root
     radius: 12
+    color: MD.Token.color.inverse_on_surface
 
     Layout.preferredWidth: 300
     Layout.preferredHeight: 300
 
-    property color lineColor
+    property color lineColor: MD.Token.color.on_secondary_container
     property int lineHeight: 30
     property int lineThickness: 1
     property MD.t_typescale typescale: MD.Token.typescale.title_medium
@@ -49,7 +50,7 @@ Rectangle {
 
         anchors.verticalCenter: root.verticalLine.verticalCenter
         x: Math.max((99.5 - width) / 2, 10)
-
+        color: MD.Token.color.on_secondary_container
         typescale: root.typescale
     }
 }

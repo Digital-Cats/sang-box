@@ -23,5 +23,12 @@ RowLayout {
         }
     }
 
-    Label { id: label; font.pixelSize: 16; Layout.leftMargin: 12; font.weight: 600 }
+    Label {
+        id: label
+
+        color: MD.Token.color.on_secondary_container
+        font.pixelSize: 16
+        Layout.leftMargin: 12
+        font.weight: 600
+    }
 }
