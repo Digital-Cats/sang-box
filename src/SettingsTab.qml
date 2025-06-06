@@ -71,20 +71,6 @@ BasicTab {
                                 Label { text: mainWindow.settings.coreVersion; font.pixelSize: 16; color: "#FFB4AB"; Layout.leftMargin: 5 }
                             }
                         }
-
-                        MFabButton {
-                            accent: Theme.primary
-                            radius: 100
-                            Layout.preferredWidth: 112
-                            Layout.preferredHeight: 40
-                            Layout.topMargin: 4
-                            Layout.alignment: Qt.AlignRight
-
-                            leftIcon.iconData: Icons.light.download
-                            leftIcon.size: Size.pixel20
-
-                            text: qsTr("Update")
-                        }
                     }
                 }
 
