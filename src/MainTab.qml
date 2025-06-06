@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material as QMD
 import QtQuick.Layouts
-import MMaterial
 
 import Qcm.Material as MD
 

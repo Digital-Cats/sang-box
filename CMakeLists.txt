@@ -8,9 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Quick QuickControls2 LinguistTools)
 qt_standard_project_setup()
 
-set(QML_IMPORT_PATH ${CMAKE_BINARY_DIR}/qml_modules "${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/material_qt/" CACHE STRING "" FORCE)
-
-add_subdirectory(src/third_party/material_qt/MMaterial ./MMaterial)
+set(QML_IMPORT_PATH ${CMAKE_BINARY_DIR}/qml_modules CACHE STRING "" FORCE)
 
 include(FetchContent)
 
@@ -51,7 +49,6 @@ qt_add_qml_module(qsing-box
         src/ProfilesView.qml
         src/MainTab.qml
         src/SettingsTab.qml
-        src/themes/DarkSangTheme.qml
         src/controls/AddNewProfileButton.qml
         src/controls/BasicTab.qml
         src/controls/ControlMenu.qml
@@ -71,7 +68,6 @@ target_link_libraries(qsing-box PRIVATE
     Qt6::Quick
     Qt6::QuickControls2
     qml_materialplugin
-    MMaterialLibplugin
     config
     proxy
     settings

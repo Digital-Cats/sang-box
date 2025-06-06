@@ -1,3 +1,0 @@
-[submodule "src/third_party/material_qt"]
-	path = src/third_party/material_qt
-	url = https://github.com/Roker2/Material-Qt

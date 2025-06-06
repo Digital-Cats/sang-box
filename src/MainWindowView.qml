@@ -1,11 +1,9 @@
 import QtQuick
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import MMaterial
 
 import Qcm.Material as MD
 
-import "themes"
 import "controls"
 
 Rectangle {
