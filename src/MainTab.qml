@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Material as QMD
 import QtQuick.Layouts
 import MMaterial
 
@@ -39,18 +40,17 @@ BasicTab {
                 labelText: qsTr("Log")
 
                 RowLayout {
-                    id: switchLayout
                     anchors.verticalCenter: parent.verticalLine.verticalCenter
                     anchors.left: parent.verticalLine.right
                     anchors.leftMargin: 58.5
                     spacing: 16
 
-                    MSwitch {
+                    QMD.Switch {
                         id: autoScrollSwitch
 
                         Layout.alignment: Qt.AlignVCenter
-                        accent: Theme.primary
-                        size: Size.Grade.M
+                        Layout.preferredHeight: 24
+                        Layout.preferredWidth: 39
                     }
 
                     MD.Label {

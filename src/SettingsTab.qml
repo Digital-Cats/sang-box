@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Material as QMD
 import QtQuick.Layouts
 import MMaterial
 
@@ -101,16 +102,24 @@ BasicTab {
                 Layout.fillWidth: true
                 Layout.topMargin: 23
 
-                MSwitch {
-                    accent: Theme.primary
-                    text: qsTr("Blacklist")
-                    label.color: root.fontColor
-                    label.font.pixelSize: parent.typescale.size;
-                    size: Size.Grade.M
+                RowLayout {
+                    anchors.verticalCenter: parent.verticalLine.verticalCenter
                     anchors.left: parent.verticalLine.right
-                    anchors.top: parent.top
                     anchors.leftMargin: 42.5
-                    anchors.topMargin: 5.5
+                    spacing: 16
+
+                    QMD.Switch {
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredHeight: 24
+                        Layout.preferredWidth: 39
+                    }
+
+                    MD.Label {
+                        Layout.alignment: Qt.AlignVCenter
+                        text: qsTr("Blacklist")
+                        color: MD.Token.color.on_secondary_container
+                        typescale: MD.Token.typescale.title_medium
+                    }
                 }
             }
         }
