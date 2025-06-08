@@ -25,8 +25,6 @@ set(qsing-box_sources
     src/about_dialog.cpp
     src/about_dialog.ui
     src/main.cpp
-    src/settings_dialog.cpp
-    src/settings_dialog.ui
     src/tray_icon.cpp
     src/config_list_model.cpp
     src/main_window.cpp
