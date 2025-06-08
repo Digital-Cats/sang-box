@@ -36,6 +36,7 @@ set(qsing-box_sources
 qt_add_executable(qsing-box
     ${qsing-box_sources}
     resources/app.rc
+    resources/sang-box.exe.manifest
 )
 
 target_compile_definitions(qsing-box PRIVATE APP_VERSION="${PROJECT_VERSION}")
