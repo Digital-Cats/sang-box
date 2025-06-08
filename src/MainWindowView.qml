@@ -41,9 +41,42 @@ Rectangle {
         width: 196
         anchors.left: parent.left
 
+        Item {
+            Layout.preferredHeight: 120
+            Layout.preferredWidth: 120
+            Layout.topMargin: 25
+            Layout.leftMargin: 38
+
+            Image {
+                id: sang_logo
+                anchors.leftMargin: 2
+                anchors.topMargin: 24
+                source: "qrc:/images/sang_logo.svg"
+                height: 55
+                width: 115
+                sourceSize.height: 55
+                sourceSize.width: 115
+            }
+
+            FontLoader {
+                id: lexendDeca
+                source: "qrc:/fonts/LexendDeca-Regular.ttf"
+            }
+
+            MD.Label {
+                anchors.top: sang_logo.bottom
+                anchors.leftMargin: 1
+                anchors.topMargin: 6
+                typescale: MD.Token.typescale.title_large
+                text: "sang-box"
+                color: MD.Token.color.on_surface
+                font: lexendDeca.font
+            }
+        }
+
         MenuButton {
             Layout.preferredWidth: big_width
-            Layout.topMargin: 30
+            Layout.topMargin: 39
             big_width: 175
             checked: root.currentTabState === MainWindowView.TabState.Overview
             icon.name: MD.Token.icon.account_circle_filled

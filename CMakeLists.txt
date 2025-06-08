@@ -81,6 +81,7 @@ set_target_properties(qsing-box PROPERTIES
 )
 
 set(qsing-box_resources
+    "resources/fonts/LexendDeca-Regular.ttf"
     "resources/images/app.ico"
     "resources/images/app_enable_proxy.ico"
     "resources/images/status_enabled.png"
@@ -96,6 +97,7 @@ set(qsing-box_resources
     "resources/images/stop.png"
     "resources/images/switch.png"
     "resources/images/qt_logo.png"
+    "resources/images/sang_logo.svg"
     "resources/texts/gpl-3.0.txt"
     "resources/xml/task.xml"
 )
