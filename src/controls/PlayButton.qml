@@ -19,8 +19,8 @@ MD.StandardIconButton {
                              MD.Token.color.primary_container :
                              MD.Token.color.surface_container_high
         textColor: control.checked ?
-                       MD.Token.color.primary_container :
-                       MD.Token.color.on_primary_container
+                       MD.Token.color.on_primary_container :
+                       MD.Token.color.primary
         item: control
     }
 }
