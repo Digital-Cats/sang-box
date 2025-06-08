@@ -8,7 +8,7 @@
 
 #include "settings/settings_manager.h"
 
-class SettingsNew : public QObject
+class SettingsViewModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool isAutoRun READ isAutoRun WRITE setupAutoRun NOTIFY isAutoRunChanged)
@@ -19,7 +19,7 @@ class SettingsNew : public QObject
     using SettingsManagerUPtr = std::unique_ptr<SettingsManager>;
 
 public:
-    explicit SettingsNew(QObject *parent = nullptr);
+    explicit SettingsViewModel(QObject *parent = nullptr);
 
 public slots:
     void setupAutoRun(bool enabled);

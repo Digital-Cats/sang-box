@@ -1,14 +1,14 @@
-#include "settings_new.h"
+#include "settings_view_model.h"
 
 #include "settings/privilege_manager.h"
 #include "task_scheduler.h"
 
-SettingsNew::SettingsNew(QObject *parent)
+SettingsViewModel::SettingsViewModel(QObject *parent)
     : QObject{parent}
     , m_settingsManager(std::make_unique<SettingsManager>(this))
 {}
 
-void SettingsNew::setupAutoRun(bool enabled)
+void SettingsViewModel::setupAutoRun(bool enabled)
 {
     TaskScheduler taskScheduler;
     PrivilegeManager privilegeManager;
@@ -27,7 +27,7 @@ void SettingsNew::setupAutoRun(bool enabled)
     emit isAutoRunChanged();
 }
 
-void SettingsNew::setupRunAsAdmin(bool enabled)
+void SettingsViewModel::setupRunAsAdmin(bool enabled)
 {
     TaskScheduler taskScheduler;
     PrivilegeManager privilegeManager;
@@ -51,22 +51,22 @@ void SettingsNew::setupRunAsAdmin(bool enabled)
     emit isRunAsAdminChanged();
 }
 
-bool SettingsNew::isAutoRun() const
+bool SettingsViewModel::isAutoRun() const
 {
     return m_settingsManager->autoRun();
 }
 
-bool SettingsNew::isRunAsAdmin() const
+bool SettingsViewModel::isRunAsAdmin() const
 {
     return m_settingsManager->runAsAdmin();
 }
 
-QString SettingsNew::appVersion() const
+QString SettingsViewModel::appVersion() const
 {
     return QLatin1String(APP_VERSION);
 }
 
-QString SettingsNew::coreVersion() const
+QString SettingsViewModel::coreVersion() const
 {
     return "1.10.0";
 }
