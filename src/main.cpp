@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
+    app.setStyle("fusion");
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setOrganizationName("R2 team");
     QCoreApplication::setApplicationName("sang-box");
