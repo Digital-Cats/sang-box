@@ -47,12 +47,14 @@ BasicTab {
                         LabeledCheckbox {
                             id: autoUpdatesCheck
 
+                            visible: false
                             labelText: qsTr("Automatic updates")
                         }
 
                         LabeledCheckbox {
                             id: preReleaseCheck
 
+                            visible: false
                             labelText: qsTr("Pre-release")
                         }
 
@@ -77,12 +79,14 @@ BasicTab {
                 ControlMenu {
                     Layout.alignment: Qt.AlignRight
 
+                    visible: false
                     labelText: qsTr("Proxied apps")
                 }
             }
 
             ControlMenu {
                 labelText: qsTr("Domain routing")
+                visible: false
 
                 Layout.fillWidth: true
                 Layout.topMargin: 23

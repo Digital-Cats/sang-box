@@ -28,12 +28,13 @@ BasicTab {
                 ControlMenu {
                     Layout.alignment: Qt.AlignRight
 
+                    visible: false
                     labelText: qsTr("Stats")
                 }
             }
 
             ControlMenu {
-                Layout.fillWidth: true
+                Layout.preferredWidth: 700
                 Layout.topMargin: 23
 
                 labelText: qsTr("Log")
