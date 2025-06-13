@@ -75,9 +75,9 @@ Rectangle {
         }
 
         MenuButton {
-            Layout.preferredWidth: big_width
+            Layout.preferredHeight: 52
+            Layout.preferredWidth: 170
             Layout.topMargin: 39
-            big_width: 175
             checked: root.currentTabState === MainWindowView.TabState.Overview
             icon.name: MD.Token.icon.account_circle_filled
             text: qsTr("Overview")
@@ -86,9 +86,9 @@ Rectangle {
         }
 
         MenuButton {
-            Layout.preferredWidth: big_width
+            Layout.preferredHeight: 52
+            Layout.preferredWidth: 170
             Layout.topMargin: 35
-            big_width: 175
             checked: root.currentTabState === MainWindowView.TabState.Settings
             icon.name: MD.Token.icon.settings
             text: qsTr("Settings")
