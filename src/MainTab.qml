@@ -42,15 +42,13 @@ BasicTab {
                 RowLayout {
                     anchors.verticalCenter: parent.verticalLine.verticalCenter
                     anchors.left: parent.verticalLine.right
-                    anchors.leftMargin: 58.5
-                    spacing: 16
+                    anchors.leftMargin: 47.5
+                    spacing: 7
 
-                    QMD.Switch {
+                    MDSwitch {
                         id: autoScrollSwitch
-
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredHeight: 24
-                        Layout.preferredWidth: 39
+                        targetWidth: 39
                     }
 
                     MD.Label {
