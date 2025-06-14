@@ -8,6 +8,9 @@ T.Button {
 
     property alias mdState: m_sh.state
 
+    icon.width: 18
+    icon.height: 18
+
     contentItem: Item {
         anchors.centerIn: parent
 
