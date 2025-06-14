@@ -16,6 +16,13 @@ MainWindow::MainWindow(QObject *parent)
             &MainWindow::changeSelectedConfig);
     changeSelectedConfig();
 
+    m_settings->setCoreVersion(m_proxyManager->getCoreVersion());
+
+    connect(m_proxyManager.get(), &ProxyManager::proxyProcessStateChanged,
+            m_settings.get(), [&](int)
+    {
+        m_settings->setCoreVersion(m_proxyManager->getCoreVersion());
+    });
     connect(m_proxyManager.get(), &ProxyManager::proxyProcessStateChanged,
             this, &MainWindow::runningStateChanged);
     connect(m_proxyManager.get(), &ProxyManager::proxyProcessReadyReadStandardError,

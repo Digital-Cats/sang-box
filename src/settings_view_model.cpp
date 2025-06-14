@@ -8,6 +8,12 @@ SettingsViewModel::SettingsViewModel(QObject *parent)
     , m_settingsManager(std::make_unique<SettingsManager>(this))
 {}
 
+void SettingsViewModel::setCoreVersion(QString version)
+{
+    m_coreVersion = version;
+    emit coreVersionChanged();
+}
+
 void SettingsViewModel::setupAutoRun(bool enabled)
 {
     TaskScheduler taskScheduler;
@@ -68,5 +74,5 @@ QString SettingsViewModel::appVersion() const
 
 QString SettingsViewModel::coreVersion() const
 {
-    return "1.10.0";
+    return m_coreVersion;
 }

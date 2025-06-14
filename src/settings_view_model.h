@@ -14,12 +14,14 @@ class SettingsViewModel : public QObject
     Q_PROPERTY(bool isAutoRun READ isAutoRun WRITE setupAutoRun NOTIFY isAutoRunChanged)
     Q_PROPERTY(bool isRunAsAdmin READ isRunAsAdmin WRITE setupRunAsAdmin NOTIFY isRunAsAdminChanged)
     Q_PROPERTY(QString appVersion READ appVersion CONSTANT)
-    Q_PROPERTY(QString coreVersion READ coreVersion CONSTANT)
+    Q_PROPERTY(QString coreVersion READ coreVersion NOTIFY coreVersionChanged)
 
     using SettingsManagerUPtr = std::unique_ptr<SettingsManager>;
 
 public:
     explicit SettingsViewModel(QObject *parent = nullptr);
+
+    void setCoreVersion(QString version);
 
 public slots:
     void setupAutoRun(bool enabled);
@@ -28,6 +30,7 @@ public slots:
 signals:
     void isAutoRunChanged();
     void isRunAsAdminChanged();
+    void coreVersionChanged();
 
 private:
     bool isAutoRun() const;
@@ -37,6 +40,7 @@ private:
 
 private:
     SettingsManagerUPtr m_settingsManager;
+    QString m_coreVersion;
 };
 
 #endif // SETTINGS_NEW_H
