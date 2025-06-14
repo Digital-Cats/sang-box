@@ -33,6 +33,8 @@ Rectangle {
 
     ColumnLayout {
         width: 196
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.left: parent.left
 
         Item {
@@ -90,10 +92,14 @@ Rectangle {
             onClicked: root.currentTabState = MainWindowView.TabState.Settings
         }
 
+        Item {
+            Layout.fillHeight: true
+        }
+
         PlayButton {
             Layout.preferredWidth: 96
             Layout.preferredHeight: 96
-            Layout.topMargin: 209
+            Layout.bottomMargin: 127
             Layout.alignment: Qt.AlignHCenter
             checked: mainWindow.runnigState
 
