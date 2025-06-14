@@ -26,10 +26,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("R2 team");
     QCoreApplication::setApplicationName("sang-box");
 
-    QSharedMemory sharedMemory("qsing-box");
+    QSharedMemory sharedMemory("sang-box");
     if (!sharedMemory.create(1)) {
         QMessageBox::warning(nullptr, QMessageBox::tr("Warning"),
-                             QMessageBox::tr("qsing-box is already running.")
+                             QMessageBox::tr("sang-box is already running.")
                              );
         return 1;
     }

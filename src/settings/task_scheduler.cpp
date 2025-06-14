@@ -30,7 +30,7 @@ bool TaskScheduler::createTask()
     xmlContent.replace("$PROGRAM_PATH$", appPath);
 
     QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation);
-    QFile outputFile(tempDir + "/qsing-box.xml");
+    QFile outputFile(tempDir + "/sang-box.xml");
     if (!outputFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Failed to open output file.";
         return false;
