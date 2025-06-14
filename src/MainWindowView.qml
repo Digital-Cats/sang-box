@@ -14,14 +14,8 @@ Rectangle {
         Overview,
         Settings
     }
-    
-    enum WorkState {
-        Start,
-        Stop
-    }
 
     property int currentTabState: MainWindowView.TabState.Overview
-    property int currentWorkState: MainWindowView.WorkState.Stop
 
     // Main tab Overview
     MainTab {
@@ -79,7 +73,7 @@ Rectangle {
             Layout.preferredWidth: 170
             Layout.topMargin: 39
             checked: root.currentTabState === MainWindowView.TabState.Overview
-            icon.name: MD.Token.icon.account_circle_filled
+            icon.name: MD.Token.icon.account_circle
             text: qsTr("Overview")
 
             onClicked: root.currentTabState = MainWindowView.TabState.Overview
