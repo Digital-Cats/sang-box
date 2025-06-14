@@ -1,25 +1,17 @@
-# qsing-box
+# sang-box
 
-[简体中文](docs/README.zh_CN.md)
+[Russian](docs/README.ru_RU.md)
 
 A Windows GUI client for [sing-box](https://github.com/SagerNet/sing-box).
-It is developed using Qt C++.
+It is developed using Qt C++ and QML with [QmlMaterial](https://github.com/hypengw/QmlMaterial) .
 
 ## Support operating systems
 
-- Windows 10 x64
-- Windows 11 x64
-
-## Features
-
-- [x] Configuration management.
-- [x] Auto run at boot.
-- [x] Run with administrator rights.
-- [ ] Selector outbound.
+- Windows 10/11 x64
 
 ## How to use
 
-1. Download the installer or compressed package file from [Release](https://github.com/nextincn/qsing-box/releases).
+1. Download compressed package file from [Release](https://github.com/Roker2/sang-box/releases).
 2. Install or unzip the program.
 3. Import the configuration file. 
 4. Start the proxy.
@@ -55,31 +47,19 @@ Set up a tun inbound. enable running with administrator privileges in the progra
 
 ## How to update sing-box core
 
-Replace `sing-box.exe` in the installation path. The default installation path is `C:\Users\<UserName>\AppData\Local\Programs\sing-box`.
+Replace `sing-box.exe` in the sang-box installation directory.
 
 ## Screenshot
 
-### Main window
+### Overview Tab
 
 <div align="center">
-  <img src="docs/images/en_US/main_window.png" alt="Main window" width="500">
+  <img src="docs/images/en_US/overview_tab.png" alt="Overview Tab" width="500">
 </div>
 
-### Running
+### Settings Tab
 
 <div align="center">
-  <img src="docs/images/en_US/running.png" alt="Running" width="500">
-</div>
-
-### Tray icon
-
-<div align="center">
-  <img src="docs/images/en_US/tray_icon.png" alt="Tray icon" width="150">
-</div>
-
-### Settings
-
-<div align="center">
-  <img src="docs/images/en_US/settings.png" alt="Settings" width="380">
+  <img src="docs/images/en_US/settings_tab.png" alt="Settings Tab" width="500">
 </div>
 
