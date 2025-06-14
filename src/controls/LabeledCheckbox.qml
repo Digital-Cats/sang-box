@@ -15,20 +15,24 @@ RowLayout {
     CheckBox {
         id: checkBox
 
-        implicitHeight: 22
-        implicitWidth: 22
+        implicitHeight: 24
+        implicitWidth: 24
+
+        Material.accent: MD.Token.color.primary_container
+        Material.foreground: MD.Token.color.outline
 
         onClicked: {
             root.clicked()
         }
     }
 
+
     Label {
         id: label
 
         color: MD.Token.color.on_secondary_container
         font.pixelSize: 16
-        Layout.leftMargin: 12
+        Layout.leftMargin: 5
         font.weight: 600
     }
 }
