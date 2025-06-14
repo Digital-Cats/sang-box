@@ -56,6 +56,7 @@ qt_add_qml_module(qsing-box
         src/controls/MenuButton.qml
         src/controls/PlayButton.qml
         src/controls/StateMdRadioButton.qml
+        src/controls/MDSwitch.qml
 )
 
 target_include_directories(qsing-box PRIVATE
