@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(qsing-box VERSION 1.0.1 LANGUAGES CXX)
+project(sang-box VERSION 1.0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,7 +21,7 @@ FetchContent_MakeAvailable(qml_material)
 
 add_subdirectory(src)
 
-set(qsing-box_sources
+set(sang-box_sources
     src/about_dialog.cpp
     src/about_dialog.ui
     src/main.cpp
@@ -31,15 +31,15 @@ set(qsing-box_sources
     src/settings_view_model.cpp
 )
 
-qt_add_executable(qsing-box
-    ${qsing-box_sources}
+qt_add_executable(sang-box
+    ${sang-box_sources}
     resources/app.rc
     resources/sang-box.exe.manifest
 )
 
-target_compile_definitions(qsing-box PRIVATE APP_VERSION="${PROJECT_VERSION}")
+target_compile_definitions(sang-box PRIVATE APP_VERSION="${PROJECT_VERSION}")
 
-qt_add_qml_module(qsing-box
+qt_add_qml_module(sang-box
     URI QSingBox
     VERSION 1.0
     QML_FILES
@@ -59,11 +59,11 @@ qt_add_qml_module(qsing-box
         src/controls/MDSwitch.qml
 )
 
-target_include_directories(qsing-box PRIVATE
+target_include_directories(sang-box PRIVATE
     include
 )
 
-target_link_libraries(qsing-box PRIVATE
+target_link_libraries(sang-box PRIVATE
     Qt6::Widgets
     Qt6::Quick
     Qt6::QuickControls2
@@ -74,13 +74,13 @@ target_link_libraries(qsing-box PRIVATE
     utils
 )
 
-target_compile_definitions(qsing-box PRIVATE QML_STATIC)
+target_compile_definitions(sang-box PRIVATE QML_STATIC)
 
-set_target_properties(qsing-box PROPERTIES
+set_target_properties(sang-box PROPERTIES
     WIN32_EXECUTABLE ON
 )
 
-set(qsing-box_resources
+set(sang-box_resources
     "resources/fonts/LexendDeca-Regular.ttf"
     "resources/images/app.ico"
     "resources/images/app_enable_proxy.ico"
@@ -102,17 +102,17 @@ set(qsing-box_resources
     "resources/xml/task.xml"
 )
 
-qt_add_resources(qsing-box res
+qt_add_resources(sang-box res
     PREFIX "/"
     BASE "resources"
     FILES
-        ${qsing-box_resources}
+        ${sang-box_resources}
 )
 
-qt_add_translations(qsing-box
+qt_add_translations(sang-box
     TS_FILES
-        languages/qsing-box_zh_CN.ts
-        languages/qsing-box_en_US.ts
+        languages/en_US.ts
+        languages/zh_CN.ts
     LUPDATE_OPTIONS
         -no-obsolete
 )
@@ -123,7 +123,7 @@ add_definitions(-DBUILD_TIME="${BUILD_TIME}")
 add_definitions(-DCOMPILER_ID="${CMAKE_CXX_COMPILER_ID}")
 add_definitions(-DCOMPILER_VERSION="${CMAKE_CXX_COMPILER_VERSION}")
 
-install(TARGETS qsing-box
+install(TARGETS sang-box
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

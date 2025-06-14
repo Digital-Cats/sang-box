@@ -81,7 +81,7 @@ void TrayIcon::createTrayIcon()
     m_trayIcon = new QSystemTrayIcon(this);
     QIcon icon(":/images/app.ico");
     m_trayIcon->setIcon(icon);
-    m_trayIcon->setToolTip("qsing-box");
+    m_trayIcon->setToolTip("sang-box");
     m_trayIcon->setContextMenu(m_trayIconMenu);
 }
 

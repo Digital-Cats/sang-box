@@ -14,7 +14,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     ui->imageLabel->setPixmap(QPixmap(":/images/qt_logo.png").scaledToWidth(72));
     ui->imageLabel->setAlignment(Qt::AlignHCenter);
 
-    ui->titleLabel->setText(QString("qsing-box v%1").arg(PROJECT_VERSION));
+    ui->titleLabel->setText(QString("sang-box v%1").arg(PROJECT_VERSION));
     ui->titleLabel->setFont(QFont("Arial", 14, QFont::Bold));
 
     ui->versionLabel->setText(tr("Based on Qt") + QString(" %1 %2 %3").arg( QT_VERSION_STR)
@@ -22,21 +22,21 @@ AboutDialog::AboutDialog(QWidget *parent)
 
     ui->buildLabel->setText(tr("Built on ") + BUILD_TIME);
 
-    ui->introduceLabel->setText(tr("qsing-box is a Windows GUI client for sing-box.\n"
+    ui->introduceLabel->setText(tr("sang-box is a Windows GUI client for sing-box.\n"
                                 "It is developed using Qt C++."));
     ui->introduceLabel->setWordWrap(true);
 
     QString link1 = QString("https://github.com/SagerNet/sing-box");
-    QString link2 = QString("https://github.com/nextincn/qsing-box");
+    QString link2 = QString("https://github.com/nextincn/sang-box");
     ui->projectLabel->setText("sing-box"
                               + QString(" &nbsp;&nbsp;<a href=\"%1\">%1</a><br>").arg(link1)
-                              + "qsing-box"
+                              + "sang-box"
                               + QString(" <a href=\"%1\">%1</a>").arg(link2)
                               );
     ui->projectLabel->setOpenExternalLinks(true);
     ui->projectLabel->setWordWrap(true);
 
-    ui->copyrightLabel->setText(tr("Copyright 2024 qsing-box. All rights reserved."));
+    ui->copyrightLabel->setText(tr("Copyright 2024 sang-box. All rights reserved."));
     ui->copyrightLabel->setWordWrap(true);
 
     QString Gplv3Link = QString("https://www.gnu.org/licenses/gpl-3.0.html");
