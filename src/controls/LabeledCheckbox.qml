@@ -18,6 +18,7 @@ RowLayout {
         implicitHeight: 24
         implicitWidth: 24
 
+        Material.theme: Material.Dark
         Material.accent: MD.Token.color.primary_container
         Material.foreground: MD.Token.color.outline
 
