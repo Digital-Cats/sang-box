@@ -46,6 +46,7 @@ BasicTab {
 
                         LabeledCheckbox {
                             id: autoUpdatesCheck
+                            visible: false
 
                             labelText: qsTr("Automatic updates")
                             checked: mainWindow.settings.isAutoUpdate
@@ -57,6 +58,7 @@ BasicTab {
 
                         LabeledCheckbox {
                             id: preReleaseCheck
+                            visible: false
 
                             labelText: qsTr("Pre-release")
                             checked: mainWindow.settings.isPreRelease
