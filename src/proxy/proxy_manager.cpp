@@ -3,20 +3,20 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QMessageBox>
+#include <QRegularExpression>
 
 #include "windows_proxy.h"
 
 ProxyManager::ProxyManager(QObject *parent)
     : QObject{parent}
+    , m_program(QCoreApplication::applicationDirPath() + "/sing-box.exe")
 {
     m_proxyProcess = new QProcess(this);
 }
 
 void ProxyManager::startProxy()
 {
-    QString program = QCoreApplication::applicationDirPath() + "/sing-box.exe";
-    QFile file(program);
-    if (!file.exists()) {
+    if (!programExist()) {
         QMessageBox::warning(nullptr, tr("Warning"),
                              tr("Can not find sing-box core!\n"
                                 "Please place \"sing-box.exe\" in\n") + QCoreApplication::applicationDirPath()
@@ -33,7 +33,7 @@ void ProxyManager::startProxy()
         } else {
             QStringList arguments;
             arguments << "run" << "-c" << m_configFilePath << "--disable-color" << "-D" << QCoreApplication::applicationDirPath();
-            m_proxyProcess->start(program, arguments);
+            m_proxyProcess->start(m_program, arguments);
             connect(m_proxyProcess, &QProcess::stateChanged, this,
                     &ProxyManager::proxyProcessStateChanged);
             connect(m_proxyProcess, &QProcess::readyReadStandardError, this,
@@ -75,4 +75,27 @@ int ProxyManager::proxyProcessState() const
 void ProxyManager::setConfigFilePath(const QString &filePath)
 {
     m_configFilePath = filePath;
+}
+
+QString ProxyManager::getCoreVersion() const
+{
+    if (programExist())
+    {
+        QStringList arguments;
+        arguments << "version";
+        QProcess proxyProcessVersion;
+        proxyProcessVersion.start(m_program, arguments);
+        proxyProcessVersion.waitForFinished();
+        QString versionLog = QString::fromUtf8(proxyProcessVersion.readAllStandardOutput());
+        if (!versionLog.isEmpty())
+        {
+            return versionLog.split(QRegularExpression("\\s+")).at(2);
+        }
+    }
+    return QString{};
+}
+
+bool ProxyManager::programExist() const
+{
+    return QFile::exists(m_program);
 }

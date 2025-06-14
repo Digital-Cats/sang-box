@@ -20,13 +20,19 @@ public:
 
     void setConfigFilePath(const QString &filePath);
 
+    QString getCoreVersion() const;
+
 signals:
     void proxyProcessStateChanged(int newState);
     void proxyProcessReadyReadStandardError();
 
 private:
+    bool programExist() const;
+
+private:
     QProcess *m_proxyProcess = nullptr;
     QString m_configFilePath;
+    QString m_program;
 };
 
 #endif // PROXY_MANAGER_H
