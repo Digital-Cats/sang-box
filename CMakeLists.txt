@@ -40,7 +40,7 @@ qt_add_executable(sang-box
 target_compile_definitions(sang-box PRIVATE APP_VERSION="${PROJECT_VERSION}")
 
 qt_add_qml_module(sang-box
-    URI QSingBox
+    URI SangBox
     VERSION 1.0
     QML_FILES
         src/Main.qml

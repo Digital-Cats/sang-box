@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("trayIcon", trayIcon.get());
     engine.addImportPath("qrc:/");
 
-    engine.loadFromModule("QSingBox", "Main");
+    engine.loadFromModule("SangBox", "Main");
 
     bool isAutorun = false;
     for (int i = 1; i < argc; ++i) {
