@@ -9,8 +9,6 @@ Control {
     property color backgroundColor: MD.Token.color.surface
     property int topLeftRadius: 100
 
-    width: 804
-    height: 705
     leftPadding: 52
     rightPadding: 52
     topPadding: 52

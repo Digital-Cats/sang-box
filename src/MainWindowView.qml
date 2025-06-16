@@ -19,19 +19,27 @@ Rectangle {
 
     // Main tab Overview
     MainTab {
+        anchors.top: parent.top
+        anchors.left: verticalMenu.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.topMargin: 45
         visible: root.currentTabState === MainWindowView.TabState.Overview
     }
 
     // Additional tab Settings
     SettingsTab {
+        anchors.top: parent.top
+        anchors.left: verticalMenu.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.topMargin: 45
         visible: root.currentTabState === MainWindowView.TabState.Settings
     }
 
     ColumnLayout {
+        id: verticalMenu
+
         width: 196
         anchors.top: parent.top
         anchors.bottom: parent.bottom
