@@ -10,18 +10,22 @@ import "controls"
 BasicTab {
     id: root
 
-    property int smallControlMenuSpacing: 100
     property color fontColor: MD.Token.color.on_secondary_container
 
     contentItem: Item {
         GridLayout {
+            id: gridLauout
             anchors.fill: parent
             columns: 2
             rows: 2
-            columnSpacing: smallControlMenuSpacing
             rowSpacing: 23
 
             ControlMenu {
+                id: settingsMenu
+
+                Layout.row: 0
+                Layout.column: 0
+
                 labelText: qsTr("Settings")
 
                 ColumnLayout {
@@ -86,16 +90,26 @@ BasicTab {
             }
 
             ControlMenu {
+                id: proxiedAppsMenu
+
                 visible: false
+                Layout.alignment: Qt.AlignRight
+                Layout.row: 0
+                Layout.column: 1
+
                 labelText: qsTr("Proxied apps")
             }
 
             ControlMenu {
-                visible: false
-                labelText: qsTr("Domain routing")
+                id: routingMenu
 
+                Layout.row: 1
+                Layout.column: 0
                 Layout.columnSpan: 2
                 Layout.fillWidth: true
+
+                visible: false
+                labelText: qsTr("Domain routing")
 
                 RowLayout {
                     anchors.verticalCenter: parent.verticalLine.verticalCenter
