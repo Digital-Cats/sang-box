@@ -20,18 +20,23 @@ static const QString colorfulLogLevelTemplate = "<font color=\"%2\">%1</font>";
 
 void HtmlColorText::appendHtmlColorText(QString &text)
 {
-    QRegularExpression re("(^\\w+)");
+    QRegularExpression re("(?:^|\\d{2}:\\d{2}:\\d{2}\\s+)([A-Z]+)");
     QRegularExpressionMatch match = re.match(text);
     if (match.hasMatch())
     {
         QString logLevel = match.captured(0);
+        if (logLevel.contains(' '))
+        {
+            logLevel = logLevel.split(' ').at(1);
+        }
         const auto it = logLevelMap.find(logLevel);
         if (it != logLevelMap.end())
         {
             const QString logColor = it->second.name();
             const QString colorfulLogLevel = colorfulLogLevelTemplate.arg(logLevel, logColor);
-            const auto endPos = logLevel.length();
-            text.replace(0, endPos, colorfulLogLevel);
+            const auto length = logLevel.length();
+            const auto startPos = match.capturedEnd() - length;
+            text.replace(startPos, length, colorfulLogLevel);
         }
     }
 }
