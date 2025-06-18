@@ -118,10 +118,10 @@ BasicTab {
                     anchors.leftMargin: 42.5
                     spacing: 16
 
-                    QMD.Switch {
+                    MDSwitch {
+                        id: blackListSwitch
                         Layout.alignment: Qt.AlignVCenter
-                        Layout.preferredHeight: 24
-                        Layout.preferredWidth: 39
+                        targetWidth: 39
                     }
 
                     MD.Label {
