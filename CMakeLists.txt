@@ -112,7 +112,6 @@ qt_add_resources(sang-box res
 qt_add_translations(sang-box
     TS_FILES
         languages/en_US.ts
-        languages/zh_CN.ts
     LUPDATE_OPTIONS
         -no-obsolete
 )
