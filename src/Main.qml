@@ -14,7 +14,7 @@ Window {
         return str
     }
 
-    minimumWidth: 1000
+    minimumWidth: 916
     minimumHeight: 750
     maximumWidth: 1000
     maximumHeight: 750

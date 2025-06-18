@@ -19,6 +19,7 @@ BasicTab {
             columns: 2
             rows: 2
             rowSpacing: 23
+            columnSpacing: 23
 
             ControlMenu {
                 id: settingsMenu
@@ -91,8 +92,8 @@ BasicTab {
 
             ControlMenu {
                 id: proxiedAppsMenu
-
                 visible: false
+
                 Layout.alignment: Qt.AlignRight
                 Layout.row: 0
                 Layout.column: 1
@@ -102,13 +103,13 @@ BasicTab {
 
             ControlMenu {
                 id: routingMenu
+                visible: false
 
                 Layout.row: 1
                 Layout.column: 0
                 Layout.columnSpan: 2
                 Layout.fillWidth: true
 
-                visible: false
                 labelText: qsTr("Domain routing")
 
                 RowLayout {
