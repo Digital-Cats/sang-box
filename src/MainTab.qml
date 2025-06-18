@@ -10,32 +10,43 @@ import "controls"
 BasicTab {
     id: root
 
-    property int smallControlMenuSpacing: 100
-
     contentItem: Item {
-        ColumnLayout {
-            RowLayout {
-                spacing: root.smallControlMenuSpacing
+        GridLayout {
+            id: gridLayout
+            anchors.fill: parent
+            columns: 2
+            rows: 2
+            rowSpacing: 23
+            columnSpacing: 23
 
-                ProfilesView {
-                    Layout.alignment: Qt.AlignLeft
+            ProfilesView {
+                id: profilesMenu
 
-                    model: mainWindow.configListModel
-                    labelText: qsTr("Profiles")
-                }
+                Layout.row: 0
+                Layout.column: 0
 
-
-                ControlMenu {
-                    Layout.alignment: Qt.AlignRight
-
-                    visible: false
-                    labelText: qsTr("Stats")
-                }
+                model: mainWindow.configListModel
+                labelText: qsTr("Profiles")
             }
 
             ControlMenu {
-                Layout.preferredWidth: 700
-                Layout.topMargin: 23
+                id: statsMenu
+                visible: false
+
+                Layout.alignment: Qt.AlignRight
+                Layout.row: 0
+                Layout.column: 1
+
+                labelText: qsTr("Stats")
+            }
+
+            ControlMenu {
+                id: logMenu
+
+                Layout.row: 1
+                Layout.column: 0
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
 
                 labelText: qsTr("Log")
 
