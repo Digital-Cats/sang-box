@@ -14,7 +14,7 @@ BasicTab {
 
     contentItem: Item {
         GridLayout {
-            id: gridLauout
+            id: gridLayout
             anchors.fill: parent
             columns: 2
             rows: 2
