@@ -24,7 +24,7 @@ bool SettingsViewModel::isAutoRun() const
 
 QString SettingsViewModel::appVersion() const
 {
-    return QLatin1String(APP_VERSION);
+    return QLatin1String(PROJECT_VERSION);
 }
 
 QString SettingsViewModel::coreVersion() const

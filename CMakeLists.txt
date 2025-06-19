@@ -37,8 +37,6 @@ qt_add_executable(sang-box
     resources/sang-box.exe.manifest
 )
 
-target_compile_definitions(sang-box PRIVATE APP_VERSION="${PROJECT_VERSION}")
-
 qt_add_qml_module(sang-box
     URI SangBox
     VERSION 1.0
