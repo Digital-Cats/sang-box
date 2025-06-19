@@ -19,7 +19,7 @@ const QString& ConfigIO::getConfigFilePath() const noexcept
 
 void ConfigIO::saveConfigFile(const QString &configContent)
 {
-    QString directory = QString(QCoreApplication::applicationDirPath() + "/config");
+    QString directory = getConfigsFolder();
     QDir dir;
     // If the directory does not exist, create the directory
     if (!dir.exists(directory)) {
