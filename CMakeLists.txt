@@ -99,7 +99,6 @@ set(sang-box_resources
     "resources/images/qt_logo.png"
     "resources/images/sang_logo.svg"
     "resources/texts/gpl-3.0.txt"
-    "resources/xml/task.xml"
 )
 
 qt_add_resources(sang-box res
