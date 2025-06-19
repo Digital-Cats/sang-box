@@ -106,9 +106,20 @@ qt_add_resources(sang-box res
         ${sang-box_resources}
 )
 
+set(sang-box_langs
+  languages/en_US.ts
+)
+
+file(GLOB_RECURSE TR_SOURCES "${CMAKE_SOURCE_DIR}/src/*")
+qt_add_lupdate(sang-box TS_FILES ${sang-box_langs} SOURCES ${TR_SOURCES})
+
+qt_add_lrelease(
+    TS_FILES ${sang-box_langs}
+)
+
 qt_add_translations(sang-box
     TS_FILES
-        languages/en_US.ts
+        ${sang-box_langs}
     LUPDATE_OPTIONS
         -no-obsolete
 )

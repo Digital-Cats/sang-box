@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="US" sourcelanguage="en">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -32,13 +32,13 @@
     </message>
     <message>
         <location filename="../src/about_dialog.cpp" line="25"/>
-        <source>qsing-box is a Windows GUI client for sing-box.
+        <source>sang-box is a Windows GUI client for sing-box.
 It is developed using Qt C++.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/about_dialog.cpp" line="39"/>
-        <source>Copyright 2024 qsing-box. All rights reserved.</source>
+        <source>Copyright 2024 sang-box. All rights reserved.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -48,10 +48,18 @@ It is developed using Qt C++.</source>
     </message>
 </context>
 <context>
+    <name>AddNewProfileButton</name>
+    <message>
+        <location filename="../src/controls/AddNewProfileButton.qml" line="9"/>
+        <source>Add new profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfigEditor</name>
     <message>
         <location filename="../src/config/config_editor.ui" line="20"/>
-        <source>Edit config - qsing-box</source>
+        <source>Edit config - sang-box</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -75,145 +83,107 @@ It is developed using Qt C++.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="45"/>
+        <location filename="../src/config/config_editor.cpp" line="43"/>
         <source>Select JSON file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="47"/>
+        <location filename="../src/config/config_editor.cpp" line="45"/>
         <source>JSON File (*.json)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="52"/>
-        <location filename="../src/config/config_editor.cpp" line="82"/>
+        <location filename="../src/config/config_editor.cpp" line="51"/>
+        <location filename="../src/config/config_editor.cpp" line="78"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="53"/>
+        <location filename="../src/config/config_editor.cpp" line="52"/>
         <source>Import config failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="76"/>
-        <location filename="../src/config/config_editor.cpp" line="138"/>
+        <location filename="../src/config/config_editor.cpp" line="71"/>
+        <location filename="../src/config/config_editor.cpp" line="119"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="77"/>
+        <location filename="../src/config/config_editor.cpp" line="72"/>
         <source>The configuration file does not exist or has been deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="83"/>
+        <location filename="../src/config/config_editor.cpp" line="79"/>
         <source>Open config failed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/config/config_editor.cpp" line="139"/>
+        <location filename="../src/config/config_editor.cpp" line="120"/>
         <source>The title can not be blank.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>MainWindow</name>
+    <name>Main</name>
     <message>
-        <location filename="../src/main_window.ui" line="37"/>
-        <source>qsing-box</source>
+        <location filename="../src/Main.qml" line="10"/>
+        <source>sang-box</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>MainTab</name>
     <message>
-        <location filename="../src/main_window.ui" line="46"/>
-        <source>Control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="57"/>
-        <source>status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="82"/>
-        <source>Start    </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="114"/>
-        <source>Stop   </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="134"/>
-        <source>Setting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="151"/>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="181"/>
+        <location filename="../src/MainTab.qml" line="29"/>
         <source>Profiles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.ui" line="193"/>
-        <source>Config for running:</source>
+        <location filename="../src/MainTab.qml" line="40"/>
+        <source>Stats</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.ui" line="206"/>
-        <location filename="../src/main_window.cpp" line="211"/>
-        <source>&lt;Empty config&gt;</source>
+        <location filename="../src/MainTab.qml" line="51"/>
+        <source>Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.ui" line="217"/>
-        <source>Switch</source>
+        <location filename="../src/MainTab.qml" line="67"/>
+        <source>Auto Scroll</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MainWindowView</name>
+    <message>
+        <location filename="../src/MainWindowView.qml" line="87"/>
+        <source>Overview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.ui" line="240"/>
-        <source>Import</source>
+        <location filename="../src/MainWindowView.qml" line="98"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProfilesView</name>
+    <message>
+        <location filename="../src/ProfilesView.qml" line="66"/>
+        <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.ui" line="269"/>
-        <location filename="../src/main_window.ui" line="393"/>
-        <source>New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="298"/>
+        <location filename="../src/ProfilesView.qml" line="71"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main_window.ui" line="321"/>
+        <location filename="../src/ProfilesView.qml" line="77"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="375"/>
-        <source>Logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.ui" line="396"/>
-        <source>Add new config file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="127"/>
-        <source>Confirm</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/main_window.cpp" line="128"/>
-        <source>Do you want to delete it?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -247,92 +217,83 @@ Please place &quot;sing-box.exe&quot; in
 <context>
     <name>QMessageBox</name>
     <message>
-        <location filename="../src/main.cpp" line="24"/>
+        <location filename="../src/main.cpp" line="29"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="25"/>
-        <source>qsing-box is already running.</source>
+        <location filename="../src/main.cpp" line="30"/>
+        <source>sang-box is already running.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>QObject</name>
+    <name>SettingsTab</name>
     <message>
-        <location filename="../src/main.cpp" line="63"/>
-        <source> (Administrator)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SettingsDialog</name>
-    <message>
-        <location filename="../src/settings_dialog.ui" line="14"/>
+        <location filename="../src/SettingsTab.qml" line="30"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings_dialog.ui" line="22"/>
-        <source>Auto run</source>
+        <location filename="../src/SettingsTab.qml" line="44"/>
+        <source>Start on boot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings_dialog.ui" line="29"/>
-        <source>Run as administrator</source>
+        <location filename="../src/SettingsTab.qml" line="56"/>
+        <source>Automatic updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings_dialog.ui" line="40"/>
-        <source>Clear data</source>
+        <location filename="../src/SettingsTab.qml" line="68"/>
+        <source>Pre-release</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings_dialog.cpp" line="33"/>
-        <source>Warning</source>
+        <location filename="../src/SettingsTab.qml" line="81"/>
+        <source>App version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings_dialog.cpp" line="34"/>
-        <source>All configuration files will be cleared.
-Do you want to continue?</source>
+        <location filename="../src/SettingsTab.qml" line="86"/>
+        <source>Core version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings_dialog.cpp" line="56"/>
-        <location filename="../src/settings_dialog.cpp" line="81"/>
-        <location filename="../src/settings_dialog.cpp" line="93"/>
-        <source>Information</source>
+        <location filename="../src/SettingsTab.qml" line="101"/>
+        <source>Proxied apps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings_dialog.cpp" line="57"/>
-        <location filename="../src/settings_dialog.cpp" line="82"/>
-        <location filename="../src/settings_dialog.cpp" line="94"/>
-        <source>Need to restart the program.
-Do you want to restart the program?</source>
+        <location filename="../src/SettingsTab.qml" line="113"/>
+        <source>Domain routing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/SettingsTab.qml" line="129"/>
+        <source>Blacklist</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TrayIcon</name>
     <message>
-        <location filename="../src/tray_icon.cpp" line="47"/>
+        <location filename="../src/tray_icon.cpp" line="54"/>
         <source>&amp;Restore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tray_icon.cpp" line="51"/>
+        <location filename="../src/tray_icon.cpp" line="58"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tray_icon.cpp" line="55"/>
-        <source>Enble proxy</source>
+        <location filename="../src/tray_icon.cpp" line="62"/>
+        <source>Enable proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/tray_icon.cpp" line="59"/>
+        <location filename="../src/tray_icon.cpp" line="66"/>
         <source>Disable proxy</source>
         <translation type="unfinished"></translation>
     </message>
