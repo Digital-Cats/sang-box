@@ -4,6 +4,11 @@
 #include <QDir>
 #include <QSettings>
 
+namespace
+{
+static const QString autoRunReg = "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run";
+}
+
 SettingsManager::SettingsManager(QObject *parent)
     : QObject{parent}
 {}
@@ -34,40 +39,21 @@ void SettingsManager::setConfigIndex(int index)
 
 bool SettingsManager::autoRun() const
 {
-    QSettings settings;
-    return settings.value("autoRun", false).toBool();
+    QSettings settings(autoRunReg, QSettings::NativeFormat);
+    return settings.contains(QCoreApplication::applicationName());
 }
 
-void SettingsManager::setAutoRun(bool checked)
-{
-    QSettings settings;
-    settings.setValue("autoRun", checked);
-}
-
-void SettingsManager::setAppAutoRun(bool enabled)
+void SettingsManager::setAutoRun(bool enabled)
 {
     QString appName = QCoreApplication::applicationName();
     QString appPath = QCoreApplication::applicationFilePath();
-    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
-                       QSettings::NativeFormat);
+    QSettings settings(autoRunReg, QSettings::NativeFormat);
 
-    if (enabled == true) {
+    if (enabled) {
         settings.setValue(appName, "\"" + QDir::toNativeSeparators(appPath) + "\" /autorun");
     } else {
         settings.remove(appName);
     }
-}
-
-bool SettingsManager::runAsAdmin() const
-{
-    QSettings settings;
-    return settings.value("runAsAdmin", false).toBool();
-}
-
-void SettingsManager::setRunAsAdmin(bool checked)
-{
-    QSettings settings;
-    settings.setValue("runAsAdmin", checked);
 }
 
 void SettingsManager::removeConfig()

@@ -12,8 +12,6 @@
 
 #include <Windows.h>
 
-#include "privilege_manager.h"
-#include "settings_manager.h"
 #include <QtQml/QQmlExtensionPlugin>
 Q_IMPORT_QML_PLUGIN(Qcm_MaterialPlugin)
 
@@ -32,26 +30,6 @@ int main(int argc, char *argv[])
                              QMessageBox::tr("sang-box is already running.")
                              );
         return 1;
-    }
-
-    PrivilegeManager privilegeManager;
-    SettingsManager settingsManager;
-    if (settingsManager.runAsAdmin() && !privilegeManager.isRunningAsAdmin()) {
-        QString appPath = QCoreApplication::applicationFilePath();
-
-        if (!privilegeManager.runAsAdmin(appPath)) {
-            if (privilegeManager.getLastError() == ERROR_CANCELLED) {
-                // Rejected UAC prompt
-                qDebug() << "Administrator permissions were denied.\n";
-            } else {
-                // Other errors cause privilege elevation to fail
-                qDebug() << "Failed to launch as administrator.\n";
-            }
-        } else {
-            // Successfully started administrator mode
-            // and exited the current instance
-            return 0;
-        }
     }
 
     QTranslator translator;

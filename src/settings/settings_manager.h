@@ -16,11 +16,7 @@ public:
     void setConfigIndex(int index);
 
     bool autoRun() const;
-    void setAutoRun(bool checked);
-    void setAppAutoRun(bool enabled);
-
-    bool runAsAdmin() const;
-    void setRunAsAdmin(bool checked);
+    void setAutoRun(bool enabled);
 
     void removeConfig();
     void clearAllSettings();

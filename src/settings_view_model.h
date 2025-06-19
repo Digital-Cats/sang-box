@@ -12,7 +12,6 @@ class SettingsViewModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool isAutoRun READ isAutoRun WRITE setupAutoRun NOTIFY isAutoRunChanged)
-    Q_PROPERTY(bool isRunAsAdmin READ isRunAsAdmin WRITE setupRunAsAdmin NOTIFY isRunAsAdminChanged)
     Q_PROPERTY(QString appVersion READ appVersion CONSTANT)
     Q_PROPERTY(QString coreVersion READ coreVersion NOTIFY coreVersionChanged)
 
@@ -25,16 +24,13 @@ public:
 
 public slots:
     void setupAutoRun(bool enabled);
-    void setupRunAsAdmin(bool enabled);
 
 signals:
     void isAutoRunChanged();
-    void isRunAsAdminChanged();
     void coreVersionChanged();
 
 private:
     bool isAutoRun() const;
-    bool isRunAsAdmin() const;
     QString appVersion() const;
     QString coreVersion() const;
 
