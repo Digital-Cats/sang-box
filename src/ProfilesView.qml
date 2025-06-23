@@ -34,7 +34,7 @@ ControlMenu {
             delegate: RowLayout {
                 width: parent.width
 
-                MdRadioButton {
+                MD.RadioButton {
                     checked: model.selected
                     onClicked: {
                         root.model.switchConfig(index)
