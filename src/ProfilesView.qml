@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Controls.Material as QMD
 import QtQuick.Layouts
 
@@ -78,8 +79,22 @@ ControlMenu {
                         MD.Action {
                             text: qsTr("Delete")
                             icon.name: MD.Token.icon.delete
-                            onTriggered: root.model.deleteConfig(index)
+                            onTriggered: {
+                                deleteDialog.open()
+                            }
                         }
+                    }
+                }
+
+                DeleteProfileDialog {
+                    id: deleteDialog
+
+                    anchors.centerIn: parent
+                    parent: Overlay.overlay
+                    profileName: model.name
+
+                    onAccepted: {
+                        root.model.deleteConfig(index)
                     }
                 }
             }
