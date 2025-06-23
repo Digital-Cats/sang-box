@@ -26,7 +26,6 @@ BasicTab {
                 Layout.column: 0
 
                 model: mainWindow.configListModel
-                labelText: qsTr("Profiles")
             }
 
             ControlMenu {

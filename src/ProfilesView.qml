@@ -12,6 +12,8 @@ ControlMenu {
     property var model
     property int fontSize: root.typescale.size
 
+    labelText: qsTr("Profiles")
+
     QMD.ScrollView {
         Layout.fillWidth: true
         Layout.fillHeight: true
