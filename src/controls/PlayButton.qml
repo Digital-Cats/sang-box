@@ -13,6 +13,7 @@ MD.StandardIconButton {
                    MD.Token.icon.play_arrow
     icon.width: 36
     icon.height: 36
+    iconFill: true
 
     mdState: MD.StateStandardIconButton {
         backgroundColor: control.checked ?
