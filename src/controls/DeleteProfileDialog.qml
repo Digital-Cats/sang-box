@@ -35,7 +35,7 @@ MD.Dialog {
     }
 
     footer: MD.DialogButtonBox {
-        bottomPadding: 24
+        bottomPadding: 16
 
         MD.Button {
             text: qsTr("Cancel")
