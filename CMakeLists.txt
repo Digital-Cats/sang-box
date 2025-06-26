@@ -53,7 +53,6 @@ qt_add_qml_module(sang-box
         src/controls/LabeledCheckbox.qml
         src/controls/MenuButton.qml
         src/controls/PlayButton.qml
-        src/controls/StateMdRadioButton.qml
         src/controls/MDSwitch.qml
 )
 
