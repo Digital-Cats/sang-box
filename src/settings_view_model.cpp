@@ -7,7 +7,10 @@ SettingsViewModel::SettingsViewModel(QObject *parent)
 
 void SettingsViewModel::setCoreVersion(QString version)
 {
-    m_coreVersion = version;
+    if (version.isEmpty())
+        m_coreVersion = QObject::tr("Not installed");
+    else
+        m_coreVersion = version;
     emit coreVersionChanged();
 }
 
