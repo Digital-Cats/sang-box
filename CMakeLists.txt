@@ -51,6 +51,7 @@ qt_add_qml_module(sang-box
         src/controls/ControlMenu.qml
         src/controls/DeleteProfileDialog.qml
         src/controls/LabeledCheckbox.qml
+        src/controls/LinedHeader.qml
         src/controls/MenuButton.qml
         src/controls/PlayButton.qml
         src/controls/MDSwitch.qml

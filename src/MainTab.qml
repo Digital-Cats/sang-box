@@ -49,46 +49,47 @@ BasicTab {
 
                 labelText: qsTr("Log")
 
-                RowLayout {
-                    anchors.verticalCenter: parent.verticalLine.verticalCenter
-                    anchors.left: parent.verticalLine.right
-                    anchors.leftMargin: 47.5
-                    spacing: 7
+                header.contentItem: Item {
+                    RowLayout {
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 7
 
-                    MDSwitch {
-                        id: autoScrollSwitch
-                        Layout.alignment: Qt.AlignVCenter
-                        targetWidth: 39
-                    }
+                        MDSwitch {
+                            id: autoScrollSwitch
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 47
+                            targetWidth: 39
+                        }
 
-                    MD.Label {
-                        Layout.alignment: Qt.AlignVCenter
-                        text: qsTr("Auto Scroll")
-                        color: MD.Token.color.on_secondary_container
-                        typescale: MD.Token.typescale.title_medium
+                        MD.Label {
+                            Layout.alignment: Qt.AlignVCenter
+                            text: qsTr("Auto Scroll")
+                            color: MD.Token.color.on_secondary_container
+                            typescale: MD.Token.typescale.title_medium
+                        }
                     }
                 }
 
-                ScrollView {
-                    id: logView
-                    anchors.top: parent.horizontalLine.bottom
-                    anchors.bottom: parent.bottom
-                    anchors.topMargin: 5
-                    anchors.left: parent.left
-                    anchors.leftMargin: 15
+                contentItem: Item {
+                    QMD.ScrollView {
+                        id: logView
 
-                    width: parent.width - 15
-                    contentWidth: width
+                        anchors.fill: parent
+                        anchors.topMargin: 5
+                        anchors.leftMargin: 15
 
-                    Text {
-                        text: mainWindow.proxyOutput
-                        width: parent.width
-                        wrapMode: Text.WordWrap
-                        color: MD.Token.color.on_secondary_container
+                        contentWidth: parent.width - 15
 
-                        onTextChanged: {
-                            if (autoScrollSwitch.checked)
-                                logView.ScrollBar.vertical.position = 1.0 - logView.ScrollBar.vertical.size
+                        Text {
+                            text: mainWindow.proxyOutput
+                            width: parent.width
+                            wrapMode: Text.WordWrap
+                            color: MD.Token.color.on_secondary_container
+
+                            onTextChanged: {
+                                if (autoScrollSwitch.checked)
+                                    logView.ScrollBar.vertical.position = 1.0 - logView.ScrollBar.vertical.size
+                            }
                         }
                     }
                 }

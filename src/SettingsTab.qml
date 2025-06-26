@@ -29,62 +29,61 @@ BasicTab {
 
                 labelText: qsTr("Settings")
 
-                ColumnLayout {
-                    anchors.top: parent.horizontalLine.bottom
-                    anchors.right: parent.right
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    anchors.margins: 16
-
-                    spacing: 15
-
-                    LabeledCheckbox {
-                        id: startOnBootCheck
-
-                        labelText: qsTr("Start on boot")
-                        checked: mainWindow.settings.isAutoRun
-
-                        onClicked: {
-                            mainWindow.settings.isAutoRun = !mainWindow.settings.isAutoRun
-                        }
-                    }
-
-                    LabeledCheckbox {
-                        id: autoUpdatesCheck
-                        visible: false
-
-                        labelText: qsTr("Automatic updates")
-                        checked: mainWindow.settings.isAutoUpdate
-
-                        onClicked: {
-                            mainWindow.settings.isAutoUpdate = !mainWindow.settings.isAutoUpdate
-                        }
-                    }
-
-                    LabeledCheckbox {
-                        id: preReleaseCheck
-                        visible: false
-
-                        labelText: qsTr("Pre-release")
-                        checked: mainWindow.settings.isPreRelease
-
-                        onClicked: {
-                            mainWindow.settings.isPreRelease = !mainWindow.settings.isPreRelease
-                        }
-                    }
-
+                contentItem: Item {
                     ColumnLayout {
-                        Layout.topMargin: 10
-                        spacing: 5
+                        anchors.fill: parent
+                        anchors.margins: 16
 
-                        RowLayout {
-                            Label { text: qsTr("App version:"); font.pixelSize: 16; Layout.leftMargin: 3; color: root.fontColor }
-                            Label { text: mainWindow.settings.appVersion; font.pixelSize: 16; color: "#00AC00"; Layout.leftMargin: 5 }
+                        spacing: 15
+
+                        LabeledCheckbox {
+                            id: startOnBootCheck
+
+                            labelText: qsTr("Start on boot")
+                            checked: mainWindow.settings.isAutoRun
+
+                            onClicked: {
+                                mainWindow.settings.isAutoRun = !mainWindow.settings.isAutoRun
+                            }
                         }
 
-                        RowLayout {
-                            Label { text: qsTr("Core version:"); font.pixelSize: 16; Layout.leftMargin: 3; color: root.fontColor }
-                            Label { text: mainWindow.settings.coreVersion; font.pixelSize: 16; color: "#FFB4AB"; Layout.leftMargin: 5 }
+                        LabeledCheckbox {
+                            id: autoUpdatesCheck
+                            visible: false
+
+                            labelText: qsTr("Automatic updates")
+                            checked: mainWindow.settings.isAutoUpdate
+
+                            onClicked: {
+                                mainWindow.settings.isAutoUpdate = !mainWindow.settings.isAutoUpdate
+                            }
+                        }
+
+                        LabeledCheckbox {
+                            id: preReleaseCheck
+                            visible: false
+
+                            labelText: qsTr("Pre-release")
+                            checked: mainWindow.settings.isPreRelease
+
+                            onClicked: {
+                                mainWindow.settings.isPreRelease = !mainWindow.settings.isPreRelease
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.topMargin: 10
+                            spacing: 5
+
+                            RowLayout {
+                                Label { text: qsTr("App version:"); font.pixelSize: 16; Layout.leftMargin: 3; color: root.fontColor }
+                                Label { text: mainWindow.settings.appVersion; font.pixelSize: 16; color: "#00AC00"; Layout.leftMargin: 5 }
+                            }
+
+                            RowLayout {
+                                Label { text: qsTr("Core version:"); font.pixelSize: 16; Layout.leftMargin: 3; color: root.fontColor }
+                                Label { text: mainWindow.settings.coreVersion; font.pixelSize: 16; color: "#FFB4AB"; Layout.leftMargin: 5 }
+                            }
                         }
                     }
                 }
@@ -112,23 +111,24 @@ BasicTab {
 
                 labelText: qsTr("Domain routing")
 
-                RowLayout {
-                    anchors.verticalCenter: parent.verticalLine.verticalCenter
-                    anchors.left: parent.verticalLine.right
-                    anchors.leftMargin: 42.5
-                    spacing: 16
+                header.contentItem: Item {
+                    RowLayout {
+                        anchors.verticalCenter: parent.verticalCenter
+                        spacing: 16
 
-                    MDSwitch {
-                        id: blackListSwitch
-                        Layout.alignment: Qt.AlignVCenter
-                        targetWidth: 39
-                    }
+                        MDSwitch {
+                            id: blackListSwitch
+                            Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 42
+                            targetWidth: 39
+                        }
 
-                    MD.Label {
-                        Layout.alignment: Qt.AlignVCenter
-                        text: qsTr("Blacklist")
-                        color: MD.Token.color.on_secondary_container
-                        typescale: MD.Token.typescale.title_medium
+                        MD.Label {
+                            Layout.alignment: Qt.AlignVCenter
+                            text: qsTr("Blacklist")
+                            color: MD.Token.color.on_secondary_container
+                            typescale: MD.Token.typescale.title_medium
+                        }
                     }
                 }
             }

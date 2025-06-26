@@ -11,14 +11,13 @@ ControlMenu {
     id: root
 
     property var model
-    property int fontSize: root.typescale.size
 
     labelText: qsTr("Profiles")
 
-    QMD.ScrollView {
+    contentItem: QMD.ScrollView {
         Layout.fillWidth: true
         Layout.fillHeight: true
-        anchors.top: parent.horizontalLine.bottom
+        anchors.top: parent.header.bottom
         anchors.topMargin: 16
         anchors.right: parent.right
         anchors.rightMargin: 16
