@@ -54,6 +54,19 @@ T.Button {
         topRightRadius: 100
         bottomRightRadius: 100
         color: control.mdState.backgroundColor
+
+        MD.Ripple2 {
+            anchors.fill: parent
+
+            readonly property point p: control.mapToItem(this, control.pressX, control.pressY)
+
+            corners: MD.Util.corners(0, height / 2, 0, height / 2)
+            pressX: p.x
+            pressY: p.y
+            pressed: control.pressed
+            stateOpacity: control.mdState.stateLayerOpacity
+            color: control.mdState.stateLayerColor
+        }
     }
 
     MD.StateHolder {
