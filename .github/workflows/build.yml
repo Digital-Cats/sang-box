@@ -1,0 +1,57 @@
+name: Windows QT Build
+
+# on:
+#  push:
+#    tags:
+#      - 'v*'
+on:
+  push:
+    branches: [ "cicd-pipeline" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Cache Qt
+      uses: actions/cache@v4
+      with:
+        path: ${{ runner.temp }}/Qt
+        key: qt-6.8.3-qtshadertools${{ runner.os }}
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        aqtversion: '==3.1.*'
+        version: '6.8.3'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_mingw'
+        modules: 'qtshadertools'
+        dir: ${{ runner.temp }}/Qt
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+    
+    - name: Build
+      run: |
+        cd build
+        mingw32-make
+    
+    - name: Deploy
+      run: |
+        cd build
+        windeployqt sang-box.exe
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          build/sang-box.exe
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
