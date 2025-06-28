@@ -1,24 +1,24 @@
-name: Windows QT Build
+name: Windows QT Build & Release
 
-# on:
-#  push:
-#    tags:
-#      - 'v*'
 on:
-  push:
-    branches: [ "cicd-pipeline" ]
+ push:
+   tags:
+     - "v*.*.*"
 
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Clone repository
+      uses: actions/checkout@v4
 
     - name: Install pkg-config
       run: choco install pkgconfiglite
 
-    - name: Install Qt
+    - name: Install Qt and build tools
       uses: jurplel/install-qt-action@v4
       with:
         aqtversion: '==3.1.*'
@@ -41,13 +41,14 @@ jobs:
         cd build
         mingw32-make
     
-    - name: Deploy
+    - name: Create Windows executable
       run: |
         cd build
         windeployqt sang-box.exe
     
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
+      if: github.ref_type == 'tag'
       with:
         files: |
           build/sang-box.exe
