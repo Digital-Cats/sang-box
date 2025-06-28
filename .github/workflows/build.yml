@@ -41,16 +41,21 @@ jobs:
         cd build
         mingw32-make
     
-    - name: Create Windows executable
+    - name: Run windeployqt
       run: |
-        cd build
-        windeployqt sang-box.exe
+        mkdir rel
+        cp build/sang-box.exe rel/sang-box.exe
+        cd rel
+        windeployqt sang-box.exe --qmldir ..
+    
+    - name: Create sang-box.zip
+      run: zip -r sang-box.zip rel
     
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       if: github.ref_type == 'tag'
       with:
         files: |
-          build/sang-box.exe
+          sang-box.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
