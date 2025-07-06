@@ -3,7 +3,7 @@ import QtQuick.Controls.Material
 
 import Qcm.Material as MD
 
-Window {
+ApplicationWindow {
     width: 1000
     height: 750
     visible: true
@@ -13,6 +13,13 @@ Window {
     minimumHeight: 750
     maximumWidth: 1000
     maximumHeight: 750
+
+    FontLoader {
+        id: roboto
+        source: "qrc:/fonts/NotoSans-VariableFont_wdth,wght.ttf"
+    }
+
+    font.family: roboto.name
 
 	MainWindowView {
 		anchors.fill: parent
