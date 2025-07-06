@@ -55,6 +55,7 @@ qt_add_qml_module(sang-box
         src/controls/MenuButton.qml
         src/controls/PlayButton.qml
         src/controls/MDSwitch.qml
+        QML_FILES src/controls/AddProfileDialog.qml
 )
 
 target_include_directories(sang-box PRIVATE
@@ -81,6 +82,7 @@ set_target_properties(sang-box PROPERTIES
 set(sang-box_resources
     "resources/fonts/LexendDeca-Regular.ttf"
     "resources/fonts/Roboto-VariableFont.ttf"
+    "resources/fonts/NotoSans-VariableFont_wdth,wght.ttf"
     "resources/images/app.ico"
     "resources/images/app_enable_proxy.ico"
     "resources/images/status_enabled.png"
