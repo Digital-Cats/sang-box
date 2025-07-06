@@ -8,7 +8,7 @@ import "controls"
 
 Rectangle {
     id: root
-    color: MD.Token.color.neutral_10
+    color: MD.Token.color.surface_container
 
     enum TabState {
         Overview,
