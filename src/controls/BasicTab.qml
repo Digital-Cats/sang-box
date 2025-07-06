@@ -7,7 +7,7 @@ Control {
     id: root
 
     property color backgroundColor: MD.Token.color.surface
-    property int topLeftRadius: 100
+    property int topLeftRadius: 28
 
     leftPadding: 52
     rightPadding: 52
