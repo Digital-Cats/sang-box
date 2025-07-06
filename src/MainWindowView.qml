@@ -11,20 +11,20 @@ Rectangle {
     color: MD.Token.color.surface_container
 
     enum TabState {
-        Overview,
+        Dashboard,
         Settings
     }
 
-    property int currentTabState: MainWindowView.TabState.Overview
+    property int currentTabState: MainWindowView.TabState.Dashboard
 
-    // Main tab Overview
+    // Main tab Dashboard
     MainTab {
         anchors.top: parent.top
         anchors.left: verticalMenu.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         anchors.topMargin: 45
-        visible: root.currentTabState === MainWindowView.TabState.Overview
+        visible: root.currentTabState === MainWindowView.TabState.Dashboard
     }
 
     // Additional tab Settings
@@ -46,20 +46,22 @@ Rectangle {
         anchors.left: parent.left
 
         Item {
-            Layout.preferredHeight: 120
-            Layout.preferredWidth: 120
-            Layout.topMargin: 25
-            Layout.leftMargin: 38
+            Layout.preferredHeight: 128
+            Layout.preferredWidth: 128
+            Layout.topMargin: 30
+            Layout.leftMargin: 26
 
             Image {
                 id: sang_logo
-                anchors.leftMargin: 2
-                anchors.topMargin: 24
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.topMargin: 19
+                anchors.leftMargin: 15
                 source: "qrc:/images/sang_logo.svg"
                 height: 55
-                width: 115
-                sourceSize.height: 55
-                sourceSize.width: 115
+                width: 101
+                sourceSize.height: 67
+                sourceSize.width: 127
             }
 
             FontLoader {
@@ -69,8 +71,9 @@ Rectangle {
 
             MD.Label {
                 anchors.top: sang_logo.bottom
-                anchors.leftMargin: 1
+                anchors.left: parent.left
                 anchors.topMargin: 6
+                anchors.leftMargin: 13
                 typescale: MD.Token.typescale.title_large
                 text: "sang-box"
                 color: MD.Token.color.on_surface
@@ -82,11 +85,11 @@ Rectangle {
             Layout.preferredHeight: 52
             Layout.preferredWidth: 170
             Layout.topMargin: 39
-            checked: root.currentTabState === MainWindowView.TabState.Overview
-            icon.name: MD.Token.icon.account_circle
-            text: qsTr("Overview")
+            checked: root.currentTabState === MainWindowView.TabState.Dashboard
+            icon.name: MD.Token.icon.dashboard
+            text: qsTr("Dashboard")
 
-            onClicked: root.currentTabState = MainWindowView.TabState.Overview
+            onClicked: root.currentTabState = MainWindowView.TabState.Dashboard
         }
 
         MenuButton {
