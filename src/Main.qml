@@ -15,11 +15,11 @@ ApplicationWindow {
     maximumHeight: 750
 
     FontLoader {
-        id: roboto
+        id: notoSans
         source: "qrc:/fonts/NotoSans-VariableFont_wdth,wght.ttf"
     }
 
-    font.family: roboto.name
+    font.family: notoSans.name
 
 	MainWindowView {
 		anchors.fill: parent
