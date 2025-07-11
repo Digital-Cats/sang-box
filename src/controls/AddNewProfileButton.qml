@@ -1,6 +1,7 @@
 import QtQuick
 
 import Qcm.Material as MD
+import QtQuick.Controls
 
 MD.Button {
     id: control
@@ -11,5 +12,20 @@ MD.Button {
             item: control
             backgroundColor: "transparent"
             textColor: MD.Token.color.on_secondary_container
+    }
+
+    AddProfileDialog {
+        id: addProfileDialog
+
+        anchors.centerIn: Overlay.overlay
+        parent: Overlay.overlay
+
+        onAccepted: {
+            console.log("Profile added:")
+        }
+    }
+
+    onClicked: {
+        addProfileDialog.open()
     }
 }
