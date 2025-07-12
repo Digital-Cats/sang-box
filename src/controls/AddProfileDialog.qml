@@ -30,7 +30,6 @@ MD.Dialog {
     contentItem: Item {
         ColumnLayout {
             anchors.fill: parent
-            anchors.top: header.bottom
             spacing: 15
 
             MD.TextField {
