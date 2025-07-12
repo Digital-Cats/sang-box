@@ -8,6 +8,8 @@ MD.Dialog {
     id: root
 
     mdState.backgroundColor: MD.Token.color.secondary_container
+    implicitWidth: 300
+    implicitHeight: 300
 
     header: Item {
         height: 40
@@ -29,23 +31,78 @@ MD.Dialog {
         ColumnLayout {
             anchors.fill: parent
             anchors.top: header.bottom
-            spacing: 13
+            spacing: 15
 
             MD.TextField {
                 Layout.fillWidth: true
-                type: MD.Enum.TextFieldFilled
+                implicitHeight: 35
+                type: MD.Enum.TextFieldOutlined
                 placeholderText: 'Name'
             }
 
             MD.ComboBox {
+                id: profileTypeComboBox
                 Layout.fillWidth: true
+                implicitHeight: 35
                 model: ["Local", "Remote"]
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                visible: profileTypeComboBox.currentIndex === 0
+
+                MD.TextField {
+                    Layout.fillWidth: true
+                    implicitHeight: 35
+                    type: MD.Enum.TextFieldOutlined
+                    placeholderText: 'Location'
+                }
+
+                MD.IconButton {
+                    type: MD.Enum.BtOutlined
+                    icon.name: MD.Token.icon.library_add
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            ColumnLayout {
+                Layout.fillWidth: true
+                spacing: 15
+                visible: profileTypeComboBox.currentIndex === 1
+
+                MD.TextField {
+                    Layout.fillWidth: true
+                    implicitHeight: 35
+                    type: MD.Enum.TextFieldOutlined
+                    placeholderText: 'URL'
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 15
+
+                    MD.TextField {
+                        Layout.fillWidth: true
+                        implicitHeight: 35
+                        type: MD.Enum.TextFieldOutlined
+                        placeholderText: 'Refresh (min)'
+                        text: "60"
+                        enabled: isRefreshEnable.checked
+                    }
+
+                    MDSwitch {
+                        id: isRefreshEnable
+                        text: qsTr("Enable")
+                        Layout.alignment: Qt.AlignVCenter
+                        checked: true
+                        targetWidth: 39
+                    }
+                }
             }
         }
     }
 
     footer: MD.DialogButtonBox {
-        topPadding: 120
         bottomPadding: 16
 
         MD.Button {
