@@ -9,6 +9,12 @@ MD.Dialog {
 
     mdState.backgroundColor: MD.Token.color.secondary_container
 
+    // TODO: Move it to C++
+    enum ConfigType {
+        Local,
+        Remote
+    }
+
     header: Item {
         height: 40
 
@@ -40,13 +46,18 @@ MD.Dialog {
             MD.ComboBox {
                 id: profileTypeComboBox
                 Layout.fillWidth: true
+                textRole: "text"
+                valueRole: "value"
                 implicitHeight: 35
-                model: ["Local", "Remote"]
+                model: [
+                    { value: AddProfileDialog.ConfigType.Local, text: qsTr("Local") },
+                    { value: AddProfileDialog.ConfigType.Remote, text: qsTr("Remote") }
+                ]
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                visible: profileTypeComboBox.currentIndex === 0
+                visible: profileTypeComboBox.currentValue === AddProfileDialog.ConfigType.Local
 
                 MD.TextField {
                     Layout.fillWidth: true
@@ -65,7 +76,7 @@ MD.Dialog {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 15
-                visible: profileTypeComboBox.currentIndex === 1
+                visible: profileTypeComboBox.currentValue === AddProfileDialog.ConfigType.Remote
 
                 MD.TextField {
                     Layout.fillWidth: true
