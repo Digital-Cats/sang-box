@@ -81,7 +81,6 @@ set_target_properties(sang-box PROPERTIES
 
 set(sang-box_resources
     "resources/fonts/LexendDeca-Regular.ttf"
-    "resources/fonts/Roboto-VariableFont.ttf"
     "resources/fonts/NotoSans-VariableFont_wdth,wght.ttf"
     "resources/images/app.ico"
     "resources/images/app_enable_proxy.ico"
