@@ -40,7 +40,7 @@ MD.Dialog {
                 Layout.fillWidth: true
                 implicitHeight: 35
                 type: MD.Enum.TextFieldOutlined
-                placeholderText: 'Name'
+                placeholderText: qsTr("Name")
             }
 
             MD.ComboBox {
@@ -63,7 +63,7 @@ MD.Dialog {
                     Layout.fillWidth: true
                     implicitHeight: 35
                     type: MD.Enum.TextFieldOutlined
-                    placeholderText: 'Location'
+                    placeholderText: qsTr("Location")
                 }
 
                 MD.IconButton {
@@ -82,7 +82,7 @@ MD.Dialog {
                     Layout.fillWidth: true
                     implicitHeight: 35
                     type: MD.Enum.TextFieldOutlined
-                    placeholderText: 'URL'
+                    placeholderText: qsTr("URL")
                 }
 
                 RowLayout {
@@ -93,7 +93,7 @@ MD.Dialog {
                         Layout.fillWidth: true
                         implicitHeight: 35
                         type: MD.Enum.TextFieldOutlined
-                        placeholderText: 'Refresh (min)'
+                        placeholderText: qsTr("Refresh (min)")
                         text: "60"
                         enabled: isRefreshEnable.checked
                     }
