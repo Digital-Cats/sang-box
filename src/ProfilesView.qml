@@ -99,12 +99,23 @@ ControlMenu {
             }
         }
 
+        AddProfileDialog {
+            id: addProfileDialog
+
+            anchors.centerIn: Overlay.overlay
+            parent: Overlay.overlay
+
+            onAccepted: {
+                console.log("Profile added:")
+            }
+        }
+
         AddNewProfileButton {
             y: profilesList.contentHeight
             width: parent.width
 
             onClicked: {
-                model.importConfig()
+                addProfileDialog.open()
             }
         }
     }
