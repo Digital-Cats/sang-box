@@ -56,6 +56,7 @@ qt_add_qml_module(sang-box
         src/controls/PlayButton.qml
         src/controls/MDSwitch.qml
         src/controls/AddProfileDialog.qml
+        src/controls/DialogButton.qml
 )
 
 target_include_directories(sang-box PRIVATE

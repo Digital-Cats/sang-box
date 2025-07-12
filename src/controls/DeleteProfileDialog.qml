@@ -37,17 +37,13 @@ MD.Dialog {
     footer: MD.DialogButtonBox {
         bottomPadding: 16
 
-        MD.Button {
+        DialogButton {
             text: qsTr("Cancel")
-            type: MD.Enum.BtText
-            mdState.textColor: MD.Token.color.on_secondary_container
             DialogButtonBox.buttonRole: DialogButtonBox.RejectRole
         }
 
-        MD.Button {
+        DialogButton {
             text: qsTr("Delete")
-            type: MD.Enum.BtText
-            mdState.textColor: MD.Token.color.on_secondary_container
             DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
         }
     }
