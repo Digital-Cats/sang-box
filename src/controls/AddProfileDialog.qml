@@ -8,8 +8,6 @@ MD.Dialog {
     id: root
 
     mdState.backgroundColor: MD.Token.color.secondary_container
-    implicitWidth: 300
-    implicitHeight: 300
 
     header: Item {
         height: 40
@@ -99,6 +97,15 @@ MD.Dialog {
                 }
             }
         }
+    }
+
+    background: MD.ElevationRectangle {
+        implicitWidth: 300
+        implicitHeight: 300
+
+        radius: MD.Token.shape.corner.medium
+        color: mdState.backgroundColor
+        elevation: mdState.elevation
     }
 
     footer: MD.DialogButtonBox {
