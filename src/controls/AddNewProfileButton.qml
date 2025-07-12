@@ -13,19 +13,4 @@ MD.Button {
             backgroundColor: "transparent"
             textColor: MD.Token.color.on_secondary_container
     }
-
-    AddProfileDialog {
-        id: addProfileDialog
-
-        anchors.centerIn: Overlay.overlay
-        parent: Overlay.overlay
-
-        onAccepted: {
-            console.log("Profile added:")
-        }
-    }
-
-    onClicked: {
-        addProfileDialog.open()
-    }
 }
