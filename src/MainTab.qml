@@ -63,6 +63,7 @@ BasicTab {
 
                         MD.Label {
                             Layout.alignment: Qt.AlignVCenter
+                            Layout.leftMargin: 8
                             text: qsTr("Auto Scroll")
                             color: MD.Token.color.on_secondary_container
                             typescale: MD.Token.typescale.title_medium

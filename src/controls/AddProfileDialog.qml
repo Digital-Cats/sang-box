@@ -10,6 +10,7 @@ MD.Dialog {
     property alias currentConfigType: profileTypeComboBox.currentValue
 
     mdState.backgroundColor: MD.Token.color.secondary_container
+    horizontalPadding: 17
 
     // TODO: Move it to C++
     enum ConfigType {
@@ -57,21 +58,24 @@ MD.Dialog {
                 ]
             }
 
-            RowLayout {
+            ColumnLayout {
                 Layout.fillWidth: true
+                spacing: 15
                 visible: root.currentConfigType === AddProfileDialog.ConfigType.Local
 
-                MD.TextField {
-                    Layout.fillWidth: true
-                    implicitHeight: 35
-                    type: MD.Enum.TextFieldOutlined
-                    placeholderText: qsTr("Location")
-                }
+                RowLayout {
+                    MD.TextField {
+                        Layout.fillWidth: true
+                        implicitHeight: 35
+                        type: MD.Enum.TextFieldOutlined
+                        placeholderText: qsTr("Location")
+                    }
 
-                MD.IconButton {
-                    type: MD.Enum.BtOutlined
-                    icon.name: MD.Token.icon.library_add
-                    Layout.alignment: Qt.AlignVCenter
+                    MD.IconButton {
+                        type: MD.Enum.BtOutlined
+                        icon.name: MD.Token.icon.library_add
+                        Layout.alignment: Qt.AlignVCenter
+                    }
                 }
             }
 
@@ -89,23 +93,48 @@ MD.Dialog {
 
                 RowLayout {
                     Layout.fillWidth: true
-                    spacing: 15
+                    spacing: 0
 
                     MD.TextField {
-                        Layout.fillWidth: true
                         implicitHeight: 35
+                        implicitWidth: 129
                         type: MD.Enum.TextFieldOutlined
-                        placeholderText: qsTr("Refresh (min)")
+                        placeholderText: qsTr("Update (min)")
                         text: "60"
                         enabled: isRefreshEnable.checked
+                        // typescale: MD.Token.typescale.body_small
+
+                        onTextChanged: {
+                            if (text.length === 0) {
+                                text = "0";
+                            }
+                        }
+
+                        validator: IntValidator {
+                            bottom: 0
+                            top: 100
+                        }
                     }
 
                     MDSwitch {
                         id: isRefreshEnable
-                        text: qsTr("Enable")
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 11
                         checked: true
                         targetWidth: 39
+                    }
+
+                    MD.Label {
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 14
+                        text: qsTr("Enable")
+                        typescale: MD.Token.typescale.title_medium
+                        color: MD.Token.color.on_secondary_container
+                    }
+
+                    Item {
+                        Layout.preferredWidth: 24
+                        Layout.fillWidth: false
                     }
                 }
             }

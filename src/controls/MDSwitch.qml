@@ -5,7 +5,10 @@ import Qcm.Material as MD
 MD.Switch {
     id: root
     property int targetWidth: root.implicitWidth
-    readonly property real scaleFactor: root.implicitWidth > 0 ? root.targetWidth / root.implicitWidth : 1.0
+    readonly property real scaleFactor: root.targetWidth / 52.0
+
+    implicitWidth: targetWidth
+    implicitHeight: Math.round(32 * scaleFactor)
 
     transform: Scale {
         origin.x: root.width / 2
