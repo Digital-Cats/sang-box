@@ -7,6 +7,8 @@ import Qcm.Material as MD
 MD.Dialog {
     id: root
 
+    property alias currentConfigType: profileTypeComboBox.currentValue
+
     mdState.backgroundColor: MD.Token.color.secondary_container
 
     // TODO: Move it to C++
@@ -57,7 +59,7 @@ MD.Dialog {
 
             RowLayout {
                 Layout.fillWidth: true
-                visible: profileTypeComboBox.currentValue === AddProfileDialog.ConfigType.Local
+                visible: root.currentConfigType === AddProfileDialog.ConfigType.Local
 
                 MD.TextField {
                     Layout.fillWidth: true
@@ -76,7 +78,7 @@ MD.Dialog {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 15
-                visible: profileTypeComboBox.currentValue === AddProfileDialog.ConfigType.Remote
+                visible: root.currentConfigType === AddProfileDialog.ConfigType.Remote
 
                 MD.TextField {
                     Layout.fillWidth: true
