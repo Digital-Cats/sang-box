@@ -3,12 +3,15 @@
 
 #include <QObject>
 
-#include "config.h"
 #include "config_editor.h"
+
+class Config;
 
 class ConfigManager : public QObject
 {
     Q_OBJECT
+
+    using ConfigPtr = std::shared_ptr<Config>;
 public:
     explicit ConfigManager(QObject *parent = nullptr);
     ~ConfigManager();
@@ -34,6 +37,7 @@ signals:
     void configRenamed(int index);
     void beginAddConfig();
     void endAddConfig();
+    void configLoadError();
 
 private slots:
     void appendConfigList(const QString &filePath, const QString &name);
@@ -46,7 +50,7 @@ private:
     void saveConfigToSettings();
 
     int m_configIndex;
-    QList<Config> m_configList;
+    QList<ConfigPtr> m_configList;
     ConfigEditor *m_configEditor;
 };
 

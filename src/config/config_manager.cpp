@@ -7,6 +7,8 @@
 #include <QSettings>
 #include <QStandardPaths>
 
+#include "config.h"
+#include "config_data_handler.h"
 #include "settings_manager.h"
 
 ConfigManager::ConfigManager(QObject *parent)
@@ -45,8 +47,8 @@ void ConfigManager::importConfig()
 void ConfigManager::editConfig(int index)
 {
     if (index >= 0 && index < m_configList.size()) {
-        QString filePath = m_configList.at(index).filePath();
-        QString name = m_configList.at(index).name();
+        QString filePath = m_configList.at(index)->filePath();
+        QString name = m_configList.at(index)->name();
         m_configEditor->openFile(index, filePath, name);
     }
 }
@@ -54,7 +56,7 @@ void ConfigManager::editConfig(int index)
 void ConfigManager::removeConfig(int index)
 {
     if (index >= 0 && index < m_configList.size()) {
-        QString filePath = m_configList.at(index).filePath();
+        QString filePath = m_configList.at(index)->filePath();
         QFile(filePath).remove();
         m_configList.remove(index);
         saveConfigToSettings();
@@ -105,7 +107,7 @@ QStringList ConfigManager::configNames() const
 {
     QStringList names;
     for (const auto &config : m_configList) {
-        names.append(config.name());
+        names.append(config->name());
     }
     return names;
 }
@@ -113,7 +115,7 @@ QStringList ConfigManager::configNames() const
 QString ConfigManager::configFilePath() const
 {
     if (!m_configList.isEmpty()){
-        return m_configList.at(m_configIndex).filePath();
+        return m_configList.at(m_configIndex)->filePath();
     } else {
         return QString();
     }
@@ -123,13 +125,13 @@ QString ConfigManager::configName(int index) const
 {
     if (index < 0 || index > m_configList.length())
         return QString();
-    return m_configList.at(index).name();
+    return m_configList.at(index)->name();
 }
 
 QString ConfigManager::configName() const
 {
     if (!m_configList.isEmpty()){
-        return m_configList.at(m_configIndex).name();
+        return m_configList.at(m_configIndex)->name();
     } else {
         return QString();
     }
@@ -151,8 +153,7 @@ void ConfigManager::deleteAllConfig()
     m_configIndex = 0;
 
     QString localPath = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-    QString directory = QString("%1/%2/config").arg(localPath)
-                            .arg(QCoreApplication::applicationName());
+    QString directory = QString("%1/%2/config").arg(localPath, QCoreApplication::applicationName());
     QDir dir(directory);
     if (dir.exists()) {
         dir.removeRecursively();
@@ -170,7 +171,7 @@ void ConfigManager::deleteAllConfig()
 void ConfigManager::appendConfigList(const QString &filePath, const QString &name)
 {
     emit beginAddConfig();
-    m_configList.append(Config{filePath, name});
+    m_configList.append(std::make_shared<Config>(filePath, name));
     saveConfigToSettings();
     emit endAddConfig();
 }
@@ -178,7 +179,7 @@ void ConfigManager::appendConfigList(const QString &filePath, const QString &nam
 void ConfigManager::updateConfigList(int index, const QString &filePath, const QString &name)
 {
     if (index >= 0 && index < m_configList.size()) {
-        m_configList[index] = Config{filePath, name};
+        m_configList[index] = std::make_shared<Config>(filePath, name);
     }
     saveConfigToSettings();
     emit configRenamed(index);
@@ -191,9 +192,12 @@ void ConfigManager::getConfigFromSettings()
     int size = settings.beginReadArray("Config");
     for (int i = 0; i < size; ++i) {
         settings.setArrayIndex(i);
-        QString filePath = settings.value("filePath").toString();
-        QString name = settings.value("name").toString();
-        m_configList.append(Config{filePath, name});
+        auto config = ConfigDataHandler::loadConfig(settings);
+        if (config) {
+            m_configList.append(config);
+        } else {
+            emit configLoadError();
+        }
     }
     settings.endArray();
 
@@ -207,8 +211,7 @@ void ConfigManager::saveConfigToSettings()
     settings.remove("");
     for (int i = 0; i < m_configList.size(); ++i) {
         settings.setArrayIndex(i);
-        settings.setValue("filePath", m_configList.at(i).filePath());
-        settings.setValue("name", m_configList.at(i).name());
+        ConfigDataHandler::saveConfig(settings, m_configList.at(i));
     }
     settings.endArray();
 }
