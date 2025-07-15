@@ -11,6 +11,7 @@ MD.Dialog {
     id: root
 
     property alias currentConfigType: profileTypeComboBox.currentValue
+    property alias filePath: locationField.text
 
     mdState.backgroundColor: MD.Token.color.secondary_container
     horizontalPadding: 17
@@ -186,13 +187,7 @@ MD.Dialog {
             // remove prefixed "file:///"
             path = path.replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"");
             // unescape html codes like '%23' for '#'
-            _private.filePath = decodeURIComponent(path);
+            root.filePath = decodeURIComponent(path);
         }
-    }
-
-    QtObject {
-        id: _private
-
-        property alias filePath: locationField.text
     }
 }
