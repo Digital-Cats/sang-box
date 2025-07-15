@@ -6,6 +6,7 @@ qt_add_library(config STATIC
     config_io.cpp
     config_type.h
     config_data_handler.cpp
+    remote_config.cpp
 )
 target_link_libraries(config PRIVATE
     Qt6::Widgets

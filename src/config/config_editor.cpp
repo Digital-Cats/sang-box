@@ -44,6 +44,7 @@ void ConfigEditor::openFile()
                                                     lastOpenedFilePath,
                                                     tr("JSON File (*.json)")
                                                     );
+    qDebug() << filePath;
     m_configIO = std::make_unique<ConfigIO>(filePath);
     if (!filePath.isEmpty()) {
         QString fileContent = m_configIO->openConfigFile();

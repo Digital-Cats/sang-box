@@ -1,6 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs
+
+import QtCore
 
 import Qcm.Material as MD
 
@@ -65,6 +68,8 @@ MD.Dialog {
 
                 RowLayout {
                     MD.TextField {
+                        id: locationField
+
                         Layout.fillWidth: true
                         implicitHeight: 35
                         type: MD.Enum.TextFieldOutlined
@@ -75,6 +80,9 @@ MD.Dialog {
                         type: MD.Enum.BtOutlined
                         icon.name: MD.Token.icon.library_add
                         Layout.alignment: Qt.AlignVCenter
+                        onClicked: {
+                            fileDialog.open()
+                        }
                     }
                 }
             }
@@ -162,5 +170,29 @@ MD.Dialog {
             text: qsTr("Save")
             DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
         }
+    }
+
+    FileDialog {
+        id: fileDialog
+
+        fileMode: FileDialog.OpenFile
+        options: FileDialog.ReadOnly
+        nameFilters: qsTr("JSON File (*.json)")
+        currentFolder: StandardPaths.standardLocations(StandardPaths.DownloadLocation)[0]
+
+        onAccepted: {
+            // https://stackoverflow.com/a/26868237
+            var path = selectedFile.toString();
+            // remove prefixed "file:///"
+            path = path.replace(/^(file:\/{3})|(qrc:\/{2})|(http:\/{2})/,"");
+            // unescape html codes like '%23' for '#'
+            _private.filePath = decodeURIComponent(path);
+        }
+    }
+
+    QtObject {
+        id: _private
+
+        property alias filePath: locationField.text
     }
 }

@@ -1,5 +1,7 @@
 #include "config_data_handler.h"
 
+#include "config.h"
+#include "remote_config.h"
 #include "config_type.h"
 
 ConfigDataHandler::ConfigPtr ConfigDataHandler::loadConfig(QSettings &settings)
@@ -16,6 +18,13 @@ ConfigDataHandler::ConfigPtr ConfigDataHandler::loadConfig(QSettings &settings)
     case ConfigType::Local:
         result = std::make_shared<Config>(filePath, name);
         break;
+    case ConfigType::Remote: {
+        QString url = settings.value("url").toString();
+        bool isUpdatable = settings.value("isUpdatable").toBool();
+        int updateInterval = settings.value("updateInterval").toInt();
+        result = std::make_shared<RemoteConfig>(filePath, name, isUpdatable, updateInterval, url);
+        break;
+    }
     default:
         break;
     }
@@ -30,9 +39,13 @@ void ConfigDataHandler::saveConfig(QSettings &settings, ConfigPtr config)
     settings.setValue("name", config->name());
 
     switch (config->getType()) {
-    case ConfigType::Remote:
-
+    case ConfigType::Remote: {
+        auto remoteConfig = std::dynamic_pointer_cast<RemoteConfig>(config);
+        settings.setValue("url", remoteConfig->url());
+        settings.setValue("isUpdatable", remoteConfig->isUpdatable());
+        settings.setValue("updateInterval", remoteConfig->updateInterval());
         break;
+    }
     default:
         break;
     }
