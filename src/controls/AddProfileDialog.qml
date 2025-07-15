@@ -12,6 +12,7 @@ MD.Dialog {
 
     property alias currentConfigType: profileTypeComboBox.currentValue
     property alias filePath: locationField.text
+    property alias profileName: profileNameField.text
 
     mdState.backgroundColor: MD.Token.color.secondary_container
     horizontalPadding: 17
@@ -44,6 +45,7 @@ MD.Dialog {
             spacing: 15
 
             MD.TextField {
+                id: profileNameField
                 Layout.fillWidth: true
                 implicitHeight: 35
                 type: MD.Enum.TextFieldOutlined
