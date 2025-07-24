@@ -11,8 +11,11 @@ MD.Dialog {
     id: root
 
     property alias currentConfigType: profileTypeComboBox.currentValue
-    property alias filePath: locationField.text
     property alias profileName: profileNameField.text
+
+    property alias filePath: locationField.text
+
+    property alias urlPath: urlTextField.text
 
     mdState.backgroundColor: MD.Token.color.secondary_container
     horizontalPadding: 17
@@ -96,6 +99,8 @@ MD.Dialog {
                 visible: root.currentConfigType === AddProfileDialog.ConfigType.Remote
 
                 MD.TextField {
+                    id: urlTextField
+
                     Layout.fillWidth: true
                     implicitHeight: 35
                     type: MD.Enum.TextFieldOutlined
