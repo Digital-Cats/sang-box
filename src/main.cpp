@@ -1,5 +1,6 @@
 #include "main_window.h"
 #include "tray_icon.h"
+#include "config/config.h"
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -71,6 +72,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("mainWindow", mainWindow.get());
     engine.rootContext()->setContextProperty("trayIcon", trayIcon.get());
     engine.addImportPath("qrc:/");
+
+    qmlRegisterUncreatableMetaObject(config::staticMetaObject, "modules.config", 1, 0, "Config", "Config module");
 
     engine.loadFromModule("SangBox", "Main");
 
