@@ -45,7 +45,7 @@ void ConfigEditor::openFile()
                                                     tr("JSON File (*.json)")
                                                     );
     qDebug() << filePath;
-    m_configIO = std::make_unique<ConfigIO>(filePath);
+    m_configIO = std::make_unique<config::ConfigIO>(filePath);
     if (!filePath.isEmpty()) {
         QString fileContent = m_configIO->openConfigFile();
         if (fileContent.isEmpty()) {
@@ -66,7 +66,7 @@ void ConfigEditor::openFile(int index, const QString &filePath, const QString &t
 {
     m_editMode = EditMode::EditConfig;
     m_configFileIndex = index;
-    m_configIO = std::make_unique<ConfigIO>(filePath);
+    m_configIO = std::make_unique<config::ConfigIO>(filePath);
     if (!filePath.isEmpty()) {
         if (!m_configIO->fileConfigExists()) {
             QMessageBox::warning(this, tr("Warning"),
@@ -92,7 +92,7 @@ void ConfigEditor::saveConfigFile(const QString &configContent)
     switch (m_editMode) {
     case EditMode::AddNewConfig:
     case EditMode::ImportConfig:
-        m_configIO = std::make_unique<ConfigIO>();
+        m_configIO = std::make_unique<config::ConfigIO>();
         break;
     default:
         break;

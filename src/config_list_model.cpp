@@ -4,13 +4,13 @@ ConfigListModel::ConfigListModel(ConfigManagerPtr configManager)
     : QAbstractItemModel()
     , m_configManager(configManager)
 {
-    QObject::connect(m_configManager.get(), &ConfigManager::configRenamed,
+    QObject::connect(m_configManager.get(), &config::ConfigManager::configRenamed,
                      this, &ConfigListModel::processChanges);
-    QObject::connect(m_configManager.get(), &ConfigManager::configChanged,
+    QObject::connect(m_configManager.get(), &config::ConfigManager::configChanged,
                      this, &ConfigListModel::updateCurrentConfigData);
-    QObject::connect(m_configManager.get(), &ConfigManager::beginAddConfig,
+    QObject::connect(m_configManager.get(), &config::ConfigManager::beginAddConfig,
                      this, &ConfigListModel::onBeginAddConfig);
-    QObject::connect(m_configManager.get(), &ConfigManager::endAddConfig,
+    QObject::connect(m_configManager.get(), &config::ConfigManager::endAddConfig,
                      this, &ConfigListModel::onEndAddConfig);
 }
 

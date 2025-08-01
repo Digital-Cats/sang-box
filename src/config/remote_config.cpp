@@ -1,5 +1,7 @@
 #include "remote_config.h"
 
+namespace config {
+
 RemoteConfig::RemoteConfig(const QString &path, const QString &name,
     bool isUpdatable, int updateInterval, const QString &url)
     : Config(path, name)
@@ -38,4 +40,6 @@ void RemoteConfig::setIsUpdatable(bool isUpdatable)
 void RemoteConfig::setUpdateInterval(int updateInterval)
 {
     m_updateInterval = updateInterval;
+}
+
 }

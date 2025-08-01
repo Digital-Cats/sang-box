@@ -1,5 +1,7 @@
 #include "config.h"
 
+namespace config {
+
 Config::Config(const QString &path, const QString &name)
     : m_filePath{path}, m_name{name}
 {}
@@ -22,4 +24,6 @@ void Config::setFilePath(const QString &path)
 void Config::setName(const QString &name)
 {
     m_name = name;
+}
+
 }

@@ -3,6 +3,8 @@
 
 #include <QString>
 
+namespace config {
+
 class ConfigIO
 {
 public:
@@ -21,5 +23,7 @@ private:
 
     const QString m_configFilePath;
 };
+
+}
 
 #endif // CONFIG_IO_H

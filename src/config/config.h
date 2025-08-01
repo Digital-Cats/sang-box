@@ -6,6 +6,8 @@
 #include <QString>
 #include <QSettings>
 
+namespace config {
+
 class Config
 {
     using ConfigPtr = std::shared_ptr<Config>;
@@ -26,5 +28,7 @@ private:
     QString m_filePath;
     QString m_name;
 };
+
+}
 
 #endif // CONFIG_H

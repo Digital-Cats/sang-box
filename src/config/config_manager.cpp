@@ -11,6 +11,8 @@
 #include "config_data_handler.h"
 #include "settings_manager.h"
 
+namespace config {
+
 ConfigManager::ConfigManager(QObject *parent)
     : QObject{parent}
 {
@@ -214,4 +216,6 @@ void ConfigManager::saveConfigToSettings()
         ConfigDataHandler::saveConfig(settings, m_configList.at(i));
     }
     settings.endArray();
+}
+
 }

@@ -4,11 +4,13 @@
 #include "remote_config.h"
 #include "config_type.h"
 
+namespace config {
+
 ConfigDataHandler::ConfigPtr ConfigDataHandler::loadConfig(QSettings &settings)
 {
     ConfigType type =
         static_cast<ConfigType>(settings.value("type", static_cast<int>(ConfigType::Local))
-                                                  .toInt());
+                                    .toInt());
 
     ConfigPtr result = nullptr;
     QString filePath = settings.value("filePath").toString();
@@ -49,4 +51,6 @@ void ConfigDataHandler::saveConfig(QSettings &settings, ConfigPtr config)
     default:
         break;
     }
+}
+
 }

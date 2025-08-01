@@ -9,7 +9,7 @@ class ConfigListModel : public QAbstractItemModel
 {
     Q_OBJECT
 
-    using ConfigManagerPtr = std::shared_ptr<ConfigManager>;
+    using ConfigManagerPtr = std::shared_ptr<config::ConfigManager>;
 
     enum ConfigRoles {
         NameRole = Qt::UserRole + 1,

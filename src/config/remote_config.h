@@ -3,6 +3,8 @@
 
 #include "config.h"
 
+namespace config {
+
 class RemoteConfig : public Config
 {
 public:
@@ -25,5 +27,7 @@ private:
     bool m_isUpdatable;
     int m_updateInterval;
 };
+
+}
 
 #endif // REMOTE_CONFIG_H

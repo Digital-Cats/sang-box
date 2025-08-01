@@ -3,6 +3,8 @@
 
 #include <QSettings>
 
+namespace config {
+
 class Config;
 class RemoteConfig;
 
@@ -18,5 +20,7 @@ public:
 protected:
     ConfigDataHandler() = default;
 };
+
+}
 
 #endif // CONFIG_DATA_HANDLER_H

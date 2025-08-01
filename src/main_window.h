@@ -19,7 +19,7 @@ class MainWindow : public QObject
     Q_PROPERTY(bool runnigState READ runnigState NOTIFY runningStateChanged)
     Q_PROPERTY(QString proxyOutput READ proxyOutput NOTIFY proxyOutputChanged)
 
-    using ConfigManagerPtr = std::shared_ptr<ConfigManager>;
+    using ConfigManagerPtr = std::shared_ptr<config::ConfigManager>;
     using ConfigListModelPtr = std::shared_ptr<ConfigListModel>;
     using SettingsPtr = std::shared_ptr<SettingsViewModel>;
     using ProxyManagerUPtr = std::unique_ptr<ProxyManager>;

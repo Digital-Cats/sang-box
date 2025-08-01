@@ -16,7 +16,7 @@ class ConfigEditor : public QDialog
 {
     Q_OBJECT
 
-    using ConfigIOUPtr = std::unique_ptr<ConfigIO>;
+    using ConfigIOUPtr = std::unique_ptr<config::ConfigIO>;
 
 public:
     explicit ConfigEditor(QWidget *parent = nullptr);

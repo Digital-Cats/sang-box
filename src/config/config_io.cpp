@@ -4,6 +4,8 @@
 #include <QDateTime>
 #include <QDir>
 
+namespace config {
+
 ConfigIO::ConfigIO()
     : m_configFilePath(getConfigsFolder() + "/" + generateFileName())
 {}
@@ -64,4 +66,6 @@ QString ConfigIO::generateFileName() const
 QString ConfigIO::getConfigsFolder() const
 {
     return QString(QCoreApplication::applicationDirPath() + "/config");
+}
+
 }

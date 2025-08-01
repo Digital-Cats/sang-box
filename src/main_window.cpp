@@ -7,12 +7,12 @@
 
 MainWindow::MainWindow(QObject *parent)
     : QObject{parent}
-    , m_configManager(std::make_shared<ConfigManager>(this))
+    , m_configManager(std::make_shared<config::ConfigManager>(this))
     , m_configListModel(std::make_shared<ConfigListModel>(m_configManager))
     , m_settings(std::make_shared<SettingsViewModel>(this))
     , m_proxyManager(std::make_unique<ProxyManager>(this))
 {
-    connect(m_configManager.get(), &ConfigManager::configChanged, this,
+    connect(m_configManager.get(), &config::ConfigManager::configChanged, this,
             &MainWindow::changeSelectedConfig);
     changeSelectedConfig();
 

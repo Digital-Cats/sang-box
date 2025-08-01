@@ -5,6 +5,8 @@
 
 #include "config_editor.h"
 
+namespace config {
+
 class Config;
 
 class ConfigManager : public QObject
@@ -53,5 +55,7 @@ private:
     QList<ConfigPtr> m_configList;
     ConfigEditor *m_configEditor;
 };
+
+}
 
 #endif // CONFIG_MANAGER_H
