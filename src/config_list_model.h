@@ -3,6 +3,7 @@
 
 #include <QAbstractItemModel>
 
+#include "config/config_type.h"
 #include "config_manager.h"
 
 class ConfigListModel : public QAbstractItemModel
@@ -30,6 +31,7 @@ public slots:
     void deleteConfig(int index);
     void editConfig(int index);
     void importConfig();
+    void importConfigData(config::ConfigType type, const QVariantMap &map);
 
 private slots:
     void processChanges(int index);

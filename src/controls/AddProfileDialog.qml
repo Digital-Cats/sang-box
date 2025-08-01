@@ -7,6 +7,8 @@ import QtCore
 
 import Qcm.Material as MD
 
+import modules.config
+
 MD.Dialog {
     id: root
 
@@ -17,14 +19,18 @@ MD.Dialog {
 
     property alias urlPath: urlTextField.text
 
+    function generateDataForCurrentType()
+    {
+        if (currentConfigType === Config.Local)
+            return { "profileName": root.profileName, "filePath": root.filePath }
+        else if (currentConfigType === Config.Remote)
+            return { "profileName": root.profileName, "urlPath": root.urlPath }
+        else
+            return {}
+    }
+
     mdState.backgroundColor: MD.Token.color.secondary_container
     horizontalPadding: 17
-
-    // TODO: Move it to C++
-    enum ConfigType {
-        Local,
-        Remote
-    }
 
     header: Item {
         height: 40
@@ -62,15 +68,15 @@ MD.Dialog {
                 valueRole: "value"
                 implicitHeight: 35
                 model: [
-                    { value: AddProfileDialog.ConfigType.Local, text: qsTr("Local") },
-                    { value: AddProfileDialog.ConfigType.Remote, text: qsTr("Remote") }
+                    { value: Config.Local, text: qsTr("Local") },
+                    { value: Config.Remote, text: qsTr("Remote") }
                 ]
             }
 
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 15
-                visible: root.currentConfigType === AddProfileDialog.ConfigType.Local
+                visible: root.currentConfigType === Config.Local
 
                 RowLayout {
                     MD.TextField {
@@ -96,7 +102,7 @@ MD.Dialog {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 15
-                visible: root.currentConfigType === AddProfileDialog.ConfigType.Remote
+                visible: root.currentConfigType === Config.Remote
 
                 MD.TextField {
                     id: urlTextField

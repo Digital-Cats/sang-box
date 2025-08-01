@@ -107,6 +107,7 @@ ControlMenu {
 
             onAccepted: {
                 console.log("Profile added:")
+                root.model.importConfigData(currentConfigType, generateDataForCurrentType())
             }
         }
 

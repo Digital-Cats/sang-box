@@ -91,6 +91,20 @@ void ConfigListModel::importConfig()
     m_configManager->importConfig();
 }
 
+void ConfigListModel::importConfigData(config::ConfigType type, const QVariantMap &map)
+{
+    switch (type) {
+    case config::ConfigType::Local:
+        qDebug() << "Local";
+        break;
+    case config::ConfigType::Remote:
+        qDebug() << "Remote";
+        break;
+    default:
+        break;
+    }
+}
+
 void ConfigListModel::processChanges(int index)
 {
     const QModelIndex modelIndex = this->index(index, 0);
