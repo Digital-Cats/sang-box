@@ -1,6 +1,8 @@
 #ifndef REMOTE_CONFIG_H
 #define REMOTE_CONFIG_H
 
+#include <QUrl>
+
 #include "config.h"
 
 namespace config {
@@ -9,10 +11,10 @@ class RemoteConfig : public Config
 {
 public:
     explicit RemoteConfig(const QString &path, const QString &name,
-                          bool isUpdatable, int updateInterval, const QString &url);
+                          bool isUpdatable, int updateInterval, const QUrl &url);
     ~RemoteConfig() = default;
 
-    QString url() const;
+    QUrl url() const;
     bool isUpdatable() const;
     int updateInterval() const;
 
@@ -23,7 +25,7 @@ public:
     virtual ConfigType getType() const override { return ConfigType::Remote; };
 
 private:
-    QString m_url;
+    QUrl m_url;
     bool m_isUpdatable;
     int m_updateInterval;
 };

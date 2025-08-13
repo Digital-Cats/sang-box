@@ -3,7 +3,7 @@
 namespace config {
 
 RemoteConfig::RemoteConfig(const QString &path, const QString &name,
-    bool isUpdatable, int updateInterval, const QString &url)
+    bool isUpdatable, int updateInterval, const QUrl &url)
     : Config(path, name)
     , m_url(url)
     , m_isUpdatable(isUpdatable)
@@ -12,7 +12,7 @@ RemoteConfig::RemoteConfig(const QString &path, const QString &name,
 
 }
 
-QString RemoteConfig::url() const
+QUrl RemoteConfig::url() const
 {
     return m_url;
 }
