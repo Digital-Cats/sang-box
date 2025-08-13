@@ -7,9 +7,11 @@ qt_add_library(config STATIC
     config_type.h
     config_data_handler.cpp
     remote_config.cpp
+    config_downloader.cpp
 )
 target_link_libraries(config PRIVATE
     Qt6::Widgets
+    Qt6::Network
     settings
 )
 target_include_directories(config INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
