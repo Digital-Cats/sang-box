@@ -1,5 +1,9 @@
 #include "config_list_model.h"
 
+#include "config/config_downloader.h"
+
+#include <QCoreApplication>
+
 ConfigListModel::ConfigListModel(ConfigManagerPtr configManager)
     : QAbstractItemModel()
     , m_configManager(configManager)
@@ -95,11 +99,35 @@ void ConfigListModel::importConfigData(config::ConfigType type, const QVariantMa
 {
     switch (type) {
     case config::ConfigType::Local:
-        qDebug() << "Local";
+    {
+        auto configIO = std::make_unique<config::ConfigIO>(map.value("filePath").toString());
+        auto content = configIO->openConfigFile();
+        configIO = std::make_unique<config::ConfigIO>();
+        configIO->saveConfigFile(content);
+        m_configManager->appendConfigList(configIO->getConfigFilePath(), map.value("profileName").toString());
         break;
+    }
     case config::ConfigType::Remote:
-        qDebug() << "Remote";
+    {
+        auto url = map.value("urlPath").toUrl();
+        auto configDownloader = std::make_unique<config::ConfigDownloader>(url);
+
+        // TODO: Improve it please
+        while (configDownloader->isRunning())
+        {
+            QCoreApplication::instance()->processEvents(QEventLoop::WaitForMoreEvents, 500);
+        }
+        auto content = configDownloader->getConfig();
+        if (content.length() == 0)
+        {
+            qDebug() << "empty content";
+            break;
+        }
+        auto configIO = std::make_unique<config::ConfigIO>();
+        configIO->saveConfigFile(content);
+        m_configManager->appendConfigListRemote(configIO->getConfigFilePath(), url, map.value("profileName").toString());
         break;
+    }
     default:
         break;
     }
