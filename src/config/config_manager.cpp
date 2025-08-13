@@ -8,6 +8,7 @@
 #include <QStandardPaths>
 
 #include "config.h"
+#include "remote_config.h"
 #include "config_data_handler.h"
 #include "settings_manager.h"
 
@@ -174,6 +175,16 @@ void ConfigManager::appendConfigList(const QString &filePath, const QString &nam
 {
     emit beginAddConfig();
     m_configList.append(std::make_shared<Config>(filePath, name));
+    saveConfigToSettings();
+    emit endAddConfig();
+}
+
+void ConfigManager::appendConfigListRemote(const QString &filePath, const QUrl &url, const QString &name)
+{
+    emit beginAddConfig();
+    auto remoteConfig = std::make_shared<RemoteConfig>(filePath, name, false, 0, url);
+    auto config = std::static_pointer_cast<Config>(remoteConfig);
+    m_configList.append(config);
     saveConfigToSettings();
     emit endAddConfig();
 }

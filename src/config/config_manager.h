@@ -41,8 +41,9 @@ signals:
     void endAddConfig();
     void configLoadError();
 
-private slots:
+public slots:
     void appendConfigList(const QString &filePath, const QString &name);
+    void appendConfigListRemote(const QString &filePath, const QUrl &url, const QString &name);
     void updateConfigList(int index, const QString &filePath, const QString &name);
 
 private:
