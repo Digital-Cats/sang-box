@@ -49,8 +49,6 @@ T.Button {
     background: Rectangle {
         anchors.fill: parent
 
-        border.width: 1
-        border.color: control.checked ? MD.Token.color.outline : "transparent"
         topRightRadius: 100
         bottomRightRadius: 100
         color: control.mdState.backgroundColor
