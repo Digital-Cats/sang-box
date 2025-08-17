@@ -32,6 +32,6 @@ Control {
     background: Rectangle {
         anchors.fill: parent
         radius: 12
-        color: MD.Token.color.inverse_on_surface
+        color: MD.Token.color.secondary_container
     }
 }

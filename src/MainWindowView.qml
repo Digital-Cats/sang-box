@@ -8,7 +8,7 @@ import "controls"
 
 Rectangle {
     id: root
-    color: MD.Token.color.surface_container
+    color: MD.Token.color.surface_container_low
 
     enum TabState {
         Dashboard,
@@ -51,7 +51,7 @@ Rectangle {
             Layout.topMargin: 30
             Layout.leftMargin: 26
 
-            Image {
+            MD.IconSvg {
                 id: sang_logo
                 anchors.top: parent.top
                 anchors.left: parent.left
@@ -60,8 +60,8 @@ Rectangle {
                 source: "qrc:/images/sang_logo.svg"
                 height: 55
                 width: 101
-                sourceSize.height: 67
-                sourceSize.width: 127
+                sourceSize.height: height
+                sourceSize.width: width
             }
 
             FontLoader {

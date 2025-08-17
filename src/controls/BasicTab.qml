@@ -6,8 +6,8 @@ import Qcm.Material as MD
 Control {
     id: root
 
-    property color backgroundColor: MD.Token.color.surface
-    property int topLeftRadius: 28
+    property color backgroundColor: MD.Token.color.surface_container
+    property int topLeftRadius: 32
 
     leftPadding: 52
     rightPadding: 52
