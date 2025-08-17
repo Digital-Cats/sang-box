@@ -1,6 +1,7 @@
 #include "main_window.h"
 #include "tray_icon.h"
 #include "config/config.h"
+#include "underhood.h"
 
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -61,21 +62,27 @@ int main(int argc, char *argv[])
                      });
     trayIcon->show();
 
-    QQmlApplicationEngine engine;
-    QObject::connect(
-        &engine,
-        &QQmlApplicationEngine::objectCreationFailed,
-        &app,
-        []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
+    Underhood underhood(app);
 
-    engine.rootContext()->setContextProperty("mainWindow", mainWindow.get());
-    engine.rootContext()->setContextProperty("trayIcon", trayIcon.get());
-    engine.addImportPath("qrc:/");
+    auto postEngineInit = [&](){
+        auto engine = underhood.getEngine();
+        engine->rootContext()->setContextProperty("mainWindow", mainWindow.get());
+        engine->rootContext()->setContextProperty("trayIcon", trayIcon.get());
+        engine->rootContext()->setContextProperty("underhood", &underhood);
+        engine->addImportPath("qrc:/");
+    };
+
+    QObject::connect(&underhood, &Underhood::engineIsLoaded,
+                     &underhood, postEngineInit);
 
     qmlRegisterUncreatableMetaObject(config::staticMetaObject, "modules.config", 1, 0, "Config", "Config module");
 
-    engine.loadFromModule("SangBox", "Main");
+    postEngineInit();
+#ifndef NDEBUG
+    underhood.loadSrcQml();
+#else
+    underhood.loadMainQml();
+#endif
 
     bool isAutorun = false;
     for (int i = 1; i < argc; ++i) {

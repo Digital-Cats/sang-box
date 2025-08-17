@@ -4,6 +4,10 @@ import QtQuick.Controls.Material
 import Qcm.Material as MD
 
 ApplicationWindow {
+    id: root
+
+    property bool allowToClose: false
+
     width: 1000
     height: 750
     visible: true
@@ -25,6 +29,16 @@ ApplicationWindow {
 		anchors.fill: parent
 	}
 
+    Shortcut {
+        enabled: underhood.isDebug
+        sequence: "F5"
+        onActivated: {
+            root.allowToClose = true
+            root.close()
+            underhood.invokedReloadSrcQml()
+        }
+    }
+
     Connections {
         target: trayIcon
 
@@ -45,7 +59,9 @@ ApplicationWindow {
     }
 
     onClosing: function(close) {
-        close.accepted = false
-        hide()
+        if (!root.allowToClose) {
+            close.accepted = false
+            hide()
+        }
     }
 }

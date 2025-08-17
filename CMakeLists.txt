@@ -29,6 +29,7 @@ set(sang-box_sources
     src/config_list_model.cpp
     src/main_window.cpp
     src/settings_view_model.cpp
+    src/underhood.cpp
 )
 
 qt_add_executable(sang-box
@@ -132,6 +133,7 @@ add_definitions(-DPROJECT_VERSION="${PROJECT_VERSION}")
 add_definitions(-DBUILD_TIME="${BUILD_TIME}")
 add_definitions(-DCOMPILER_ID="${CMAKE_CXX_COMPILER_ID}")
 add_definitions(-DCOMPILER_VERSION="${CMAKE_CXX_COMPILER_VERSION}")
+add_definitions(-DSOURCE_ROOT="${CMAKE_SOURCE_DIR}")
 
 install(TARGETS sang-box
     BUNDLE DESTINATION .
