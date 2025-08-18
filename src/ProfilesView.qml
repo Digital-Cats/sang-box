@@ -72,7 +72,6 @@ ControlMenu {
                         MD.Action {
                             text: qsTr("Edit")
                             icon.name: MD.Token.icon.edit
-                            onTriggered: root.model.editConfig(index)
                         }
 
                         MD.Action {
@@ -106,7 +105,6 @@ ControlMenu {
             parent: Overlay.overlay
 
             onAccepted: {
-                console.log("Profile added:")
                 root.model.importConfigData(currentConfigType, generateDataForCurrentType())
             }
         }

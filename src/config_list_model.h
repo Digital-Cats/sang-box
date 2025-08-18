@@ -29,8 +29,6 @@ public:
 public slots:
     void switchConfig(int index);
     void deleteConfig(int index);
-    void editConfig(int index);
-    void importConfig();
     void importConfigData(config::ConfigType type, const QVariantMap &map);
 
 private slots:
