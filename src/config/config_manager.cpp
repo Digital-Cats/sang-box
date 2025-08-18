@@ -2,8 +2,7 @@
 
 #include <QCoreApplication>
 #include <QFile>
-#include <QFileDialog>
-#include <QListWidget>
+#include <QDir>
 #include <QSettings>
 #include <QStandardPaths>
 
@@ -17,43 +16,12 @@ namespace config {
 ConfigManager::ConfigManager(QObject *parent)
     : QObject{parent}
 {
-    m_configEditor = new ConfigEditor();
-    connect(m_configEditor, &ConfigEditor::configFileSaved, this, &ConfigManager::appendConfigList);
-    connect(m_configEditor, &ConfigEditor::editedConfigFileSaved, this, &ConfigManager::updateConfigList);
     getConfigFromSettings();
 
     connect(this, &ConfigManager::endAddConfig, this, &ConfigManager::configUpdated);
 
     SettingsManager settingsManager;
     m_configIndex = settingsManager.configIndex();
-}
-
-ConfigManager::~ConfigManager()
-{
-    delete m_configEditor;
-}
-
-void ConfigManager::addConfig()
-{
-    m_configEditor->addFile();
-    if (m_configList.count() == 1)
-        emit configChanged();
-}
-
-void ConfigManager::importConfig()
-{
-    m_configEditor->openFile();
-    if (m_configList.count() == 1)
-        emit configChanged();
-}
-
-void ConfigManager::editConfig(int index)
-{
-    if (index >= 0 && index < m_configList.size()) {
-        QString filePath = m_configList.at(index)->filePath();
-        QString name = m_configList.at(index)->name();
-        m_configEditor->openFile(index, filePath, name);
-    }
 }
 
 void ConfigManager::removeConfig(int index)
@@ -187,16 +155,6 @@ void ConfigManager::appendConfigListRemote(const QString &filePath, const QUrl &
     m_configList.append(config);
     saveConfigToSettings();
     emit endAddConfig();
-}
-
-void ConfigManager::updateConfigList(int index, const QString &filePath, const QString &name)
-{
-    if (index >= 0 && index < m_configList.size()) {
-        m_configList[index] = std::make_shared<Config>(filePath, name);
-    }
-    saveConfigToSettings();
-    emit configRenamed(index);
-    emit configUpdated();
 }
 
 void ConfigManager::getConfigFromSettings()

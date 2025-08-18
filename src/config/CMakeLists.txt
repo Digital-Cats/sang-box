@@ -1,7 +1,5 @@
 qt_add_library(config STATIC
     config.cpp
-    config_editor.cpp
-    config_editor.ui
     config_manager.cpp
     config_io.cpp
     config_type.h
@@ -10,7 +8,7 @@ qt_add_library(config STATIC
     config_downloader.cpp
 )
 target_link_libraries(config PRIVATE
-    Qt6::Widgets
+    Qt6::Core
     Qt6::Network
     settings
 )

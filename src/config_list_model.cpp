@@ -1,5 +1,6 @@
 #include "config_list_model.h"
 
+#include "config/config_io.h"
 #include "config/config_downloader.h"
 
 #include <QCoreApplication>
