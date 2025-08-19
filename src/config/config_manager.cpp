@@ -7,6 +7,8 @@
 #include <QStandardPaths>
 
 #include "config.h"
+#include "config_io.h"
+#include "config_downloader.h"
 #include "remote_config.h"
 #include "config_data_handler.h"
 #include "settings_manager.h"
@@ -22,6 +24,44 @@ ConfigManager::ConfigManager(QObject *parent)
 
     SettingsManager settingsManager;
     m_configIndex = settingsManager.configIndex();
+}
+
+void ConfigManager::addConfig(ConfigType type, const QVariantMap &map)
+{
+    switch (type) {
+    case config::ConfigType::Local:
+    {
+        auto configIO = std::make_unique<config::ConfigIO>(map.value("filePath").toString());
+        auto content = configIO->openConfigFile();
+        configIO = std::make_unique<config::ConfigIO>();
+        configIO->saveConfigFile(content);
+        addLocalConfig(configIO->getConfigFilePath(), map.value("profileName").toString());
+        break;
+    }
+    case config::ConfigType::Remote:
+    {
+        auto url = map.value("urlPath").toUrl();
+        auto configDownloader = std::make_unique<config::ConfigDownloader>(url);
+
+        // TODO: Improve it please
+        while (configDownloader->isRunning())
+        {
+            QCoreApplication::instance()->processEvents(QEventLoop::WaitForMoreEvents, 500);
+        }
+        auto content = configDownloader->getConfig();
+        if (content.length() == 0)
+        {
+            qDebug() << "empty content";
+            break;
+        }
+        auto configIO = std::make_unique<config::ConfigIO>();
+        configIO->saveConfigFile(content);
+        addRemoteConfig(configIO->getConfigFilePath(), url, map.value("profileName").toString());
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 void ConfigManager::removeConfig(int index)
@@ -147,7 +187,31 @@ void ConfigManager::deleteAllConfig()
 
 }
 
-void ConfigManager::appendConfigList(const QString &filePath, const QString &name)
+void ConfigManager::updateRemoteConfig(int index)
+{
+    if (index >= 0 && index < m_configList.size()) {
+        auto config = m_configList.at(index);
+        if (auto remoteConfig = std::dynamic_pointer_cast<RemoteConfig>(config);
+            config->getType() == ConfigType::Remote && remoteConfig != nullptr) {
+            auto configDownloader = std::make_unique<config::ConfigDownloader>(remoteConfig->url());
+            // TODO: Improve it please x2
+            while (configDownloader->isRunning())
+            {
+                QCoreApplication::instance()->processEvents(QEventLoop::WaitForMoreEvents, 500);
+            }
+            auto content = configDownloader->getConfig();
+            if (content.length() == 0)
+            {
+                qDebug() << "empty content";
+                return;
+            }
+            auto configIO = std::make_unique<config::ConfigIO>(remoteConfig->filePath());
+            configIO->saveConfigFile(content);
+        }
+    }
+}
+
+void ConfigManager::addLocalConfig(const QString &filePath, const QString &name)
 {
     emit beginAddConfig();
     m_configList.append(std::make_shared<Config>(filePath, name));
@@ -155,7 +219,7 @@ void ConfigManager::appendConfigList(const QString &filePath, const QString &nam
     emit endAddConfig();
 }
 
-void ConfigManager::appendConfigListRemote(const QString &filePath, const QUrl &url, const QString &name)
+void ConfigManager::addRemoteConfig(const QString &filePath, const QUrl &url, const QString &name)
 {
     emit beginAddConfig();
     auto remoteConfig = std::make_shared<RemoteConfig>(filePath, name, false, 0, url);

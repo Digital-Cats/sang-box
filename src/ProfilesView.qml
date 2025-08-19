@@ -70,6 +70,9 @@ ControlMenu {
                 ProfileContextMenu {
                     id: configMenu
 
+                    onUpdateConfig: {
+                        root.model.updateRemoteConfig(index)
+                    }
                     onDeleteConfig: deleteDialog.open()
                 }
 

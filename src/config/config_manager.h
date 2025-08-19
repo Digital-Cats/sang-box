@@ -17,6 +17,7 @@ public:
     explicit ConfigManager(QObject *parent = nullptr);
     ~ConfigManager() = default;
 
+    void addConfig(ConfigType type, const QVariantMap &map);
     void removeConfig(int index);
     void switchConfig(int index);
 
@@ -29,6 +30,7 @@ public:
     int configCount() const;
 
     void deleteAllConfig();
+    void updateRemoteConfig(int index);
 
 signals:
     void configUpdated();
@@ -38,9 +40,9 @@ signals:
     void endAddConfig();
     void configLoadError();
 
-public slots:
-    void appendConfigList(const QString &filePath, const QString &name);
-    void appendConfigListRemote(const QString &filePath, const QUrl &url, const QString &name);
+private:
+    void addLocalConfig(const QString &filePath, const QString &name);
+    void addRemoteConfig(const QString &filePath, const QUrl &url, const QString &name);
 
 private:
     // Read config list from registry

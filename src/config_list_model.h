@@ -31,6 +31,7 @@ public slots:
     void switchConfig(int index);
     void deleteConfig(int index);
     void importConfigData(config::ConfigType type, const QVariantMap &map);
+    void updateRemoteConfig(int index);
 
 private slots:
     void processChanges(int index);
