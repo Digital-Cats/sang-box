@@ -44,6 +44,8 @@ QVariant ConfigListModel::data(const QModelIndex &index, int role) const
     case SelectedRole:
         return m_configManager->configIndex() == index.row();
         break;
+    case TypeRole:
+        return static_cast<int>(m_configManager->configType(index.row()));
     default:
         return QVariant();
         break;
@@ -147,5 +149,6 @@ QHash<int, QByteArray> ConfigListModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[NameRole] = "name";
     roles[SelectedRole] = "selected";
+    roles[TypeRole] = "type";
     return roles;
 }

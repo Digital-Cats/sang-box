@@ -108,6 +108,14 @@ QString ConfigManager::configName() const
     }
 }
 
+ConfigType ConfigManager::configType(int index) const
+{
+    if (index < 0 || index > m_configList.length())
+    //TODO: Should be None?
+        return ConfigType::Local;
+    return m_configList.at(index)->getType();
+}
+
 int ConfigManager::configIndex() const
 {
     return m_configIndex;

@@ -15,6 +15,7 @@ class ConfigListModel : public QAbstractItemModel
     enum ConfigRoles {
         NameRole = Qt::UserRole + 1,
         SelectedRole,
+        TypeRole,
     };
 
 public:

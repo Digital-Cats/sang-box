@@ -2,6 +2,7 @@
 #define CONFIG_MANAGER_H
 
 #include <QObject>
+#include "config_type.h"
 
 namespace config {
 
@@ -23,6 +24,7 @@ public:
     QString configFilePath() const;
     QString configName(int index) const;
     QString configName() const;
+    ConfigType configType(int index) const;
     int configIndex() const;
     int configCount() const;
 
