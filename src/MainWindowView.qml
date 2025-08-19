@@ -12,7 +12,8 @@ Rectangle {
 
     enum TabState {
         Dashboard,
-        Settings
+        Settings,
+        About
     }
 
     property int currentTabState: MainWindowView.TabState.Dashboard
@@ -84,7 +85,7 @@ Rectangle {
         MenuButton {
             Layout.preferredHeight: 52
             Layout.preferredWidth: 170
-            Layout.topMargin: 39
+            Layout.topMargin: 46
             checked: root.currentTabState === MainWindowView.TabState.Dashboard
             icon.name: MD.Token.icon.dashboard
             text: qsTr("Dashboard")
@@ -95,12 +96,23 @@ Rectangle {
         MenuButton {
             Layout.preferredHeight: 52
             Layout.preferredWidth: 170
-            Layout.topMargin: 35
+            Layout.topMargin: 20
             checked: root.currentTabState === MainWindowView.TabState.Settings
             icon.name: MD.Token.icon.settings
             text: qsTr("Settings")
 
             onClicked: root.currentTabState = MainWindowView.TabState.Settings
+        }
+
+        MenuButton {
+            Layout.preferredHeight: 52
+            Layout.preferredWidth: 170
+            Layout.topMargin: 20
+            checked: root.currentTabState === MainWindowView.TabState.About
+            icon.name: MD.Token.icon.waving_hand
+            text: qsTr("About")
+
+            onClicked: root.currentTabState = MainWindowView.TabState.About
         }
 
         Item {
@@ -110,7 +122,7 @@ Rectangle {
         PlayButton {
             Layout.preferredWidth: 96
             Layout.preferredHeight: 96
-            Layout.bottomMargin: 127
+            Layout.bottomMargin: 131
             Layout.alignment: Qt.AlignHCenter
             checked: mainWindow.runnigState
 

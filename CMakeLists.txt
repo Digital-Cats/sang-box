@@ -57,6 +57,7 @@ qt_add_qml_module(sang-box
         src/controls/AddProfileDialog.qml
         src/controls/DialogButton.qml
         src/controls/ProfileContextMenu.qml
+        QML_FILES src/controls/WelcomeDialog.qml
 )
 
 target_include_directories(sang-box PRIVATE
