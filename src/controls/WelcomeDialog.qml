@@ -89,7 +89,6 @@ MD.Dialog {
 
         DialogButton {
             type: MD.Enum.BtElevated
-            color: MD.Token.color.on_primary
             icon.name: MD.Token.icon.download
             text: qsTr("Download")
         }
