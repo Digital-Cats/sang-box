@@ -96,6 +96,10 @@ MD.Dialog {
                             fileDialog.open()
                         }
                     }
+
+                    Item {
+                        Layout.fillHeight: true
+                    }
                 }
             }
 
@@ -155,8 +159,7 @@ MD.Dialog {
                     }
 
                     Item {
-                        Layout.preferredWidth: 24
-                        Layout.fillWidth: false
+                        Layout.fillWidth: true
                     }
                 }
             }
