@@ -22,8 +22,6 @@ FetchContent_MakeAvailable(qml_material)
 add_subdirectory(src)
 
 set(sang-box_sources
-    src/about_dialog.cpp
-    src/about_dialog.ui
     src/main.cpp
     src/tray_icon.cpp
     src/config_list_model.cpp
