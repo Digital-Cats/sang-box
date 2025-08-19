@@ -5,6 +5,8 @@ import QtQuick.Layouts
 
 import Qcm.Material as MD
 
+import modules.config
+
 import "controls"
 
 ControlMenu {
@@ -34,6 +36,8 @@ ControlMenu {
             model: root.model
 
             delegate: RowLayout {
+                id: profileDelegate
+
                 width: parent.width
 
                 MD.RadioButton {
@@ -57,31 +61,16 @@ ControlMenu {
                     icon.name: MD.Token.icon.more_vert
 
                     onClicked: {
-                        MD.Util.showPopup(configMenu, {}, this)
+                        //Roker2: It's strange, but it works via this way
+                        configMenu.configType = model.type
+                        configMenu.popup()
                     }
                 }
 
-                Component {
+                ProfileContextMenu {
                     id: configMenu
-                    MD.Menu {
-                        MD.Action {
-                            text: qsTr("Update")
-                            icon.name: MD.Token.icon.download
-                        }
 
-                        MD.Action {
-                            text: qsTr("Edit")
-                            icon.name: MD.Token.icon.edit
-                        }
-
-                        MD.Action {
-                            text: qsTr("Delete")
-                            icon.name: MD.Token.icon.delete
-                            onTriggered: {
-                                deleteDialog.open()
-                            }
-                        }
-                    }
+                    onDeleteConfig: deleteDialog.open()
                 }
 
                 DeleteProfileDialog {
