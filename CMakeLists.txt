@@ -86,21 +86,8 @@ set(sang-box_resources
     "resources/fonts/NotoSans-VariableFont_wdth,wght.ttf"
     "resources/images/app.ico"
     "resources/images/app_enable_proxy.ico"
-    "resources/images/status_enabled.png"
-    "resources/images/status_disabled.png"
-    "resources/images/about.png"
-    "resources/images/add-new.png"
-    "resources/images/delete.png"
-    "resources/images/edit.png"
-    "resources/images/import.png"
-    "resources/images/save.png"
-    "resources/images/setting.png"
-    "resources/images/start.png"
-    "resources/images/stop.png"
-    "resources/images/switch.png"
     "resources/images/qt_logo.png"
     "resources/images/sang_logo.svg"
-    "resources/texts/gpl-3.0.txt"
 )
 
 qt_add_resources(sang-box res
