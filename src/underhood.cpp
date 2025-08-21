@@ -37,6 +37,12 @@ void Underhood::reloadSrcQml()
     loadEngine();
     loadSrcQml();
 }
+#else
+void Underhood::invokedReloadSrcQml()
+{}
+
+void Underhood::reloadSrcQml()
+{}
 #endif
 
 void Underhood::loadEngine()
