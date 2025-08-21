@@ -57,7 +57,7 @@ bool ConfigIO::fileConfigExists() const
 
 QString ConfigIO::getConfigsFolder()
 {
-    return QString(QCoreApplication::applicationDirPath() + "/config");
+    return QString("./config");
 }
 
 QString ConfigIO::generateFileName() const
