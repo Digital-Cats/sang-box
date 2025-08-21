@@ -184,7 +184,8 @@ void ConfigManager::deleteAllConfig()
 
     SettingsManager settingsManager;
     settingsManager.setConfigIndex(m_configIndex);
-    settingsManager.removeConfig();
+    QSettings settings(iniFile, QSettings::IniFormat);
+    settings.clear();
 
     emit configUpdated();
     emit configChanged();

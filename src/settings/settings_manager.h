@@ -2,6 +2,7 @@
 #define SETTINGS_MANAGER_H
 
 #include <QObject>
+#include <QSettings>
 
 class SettingsManager : public QObject
 {
@@ -18,8 +19,9 @@ public:
     bool autoRun() const;
     void setAutoRun(bool enabled);
 
-    void removeConfig();
-    void clearAllSettings();
+private:
+    QSettings m_iniSettings;
+    QSettings m_nativeSettings;
 };
 
 #endif // SETTINGS_MANAGER_H
