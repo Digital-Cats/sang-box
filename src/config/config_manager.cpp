@@ -13,6 +13,10 @@
 #include "config_data_handler.h"
 #include "settings_manager.h"
 
+namespace {
+const QString iniFile = config::ConfigIO::getConfigsFolder() + "/configList.ini";
+}
+
 namespace config {
 
 ConfigManager::ConfigManager(QObject *parent)
@@ -231,7 +235,7 @@ void ConfigManager::addRemoteConfig(const QString &filePath, const QUrl &url, co
 
 void ConfigManager::getConfigFromSettings()
 {
-    QSettings settings;
+    QSettings settings(iniFile, QSettings::IniFormat);
     int size = settings.beginReadArray("Config");
     for (int i = 0; i < size; ++i) {
         settings.setArrayIndex(i);
@@ -249,7 +253,7 @@ void ConfigManager::getConfigFromSettings()
 
 void ConfigManager::saveConfigToSettings()
 {
-    QSettings settings;
+    QSettings settings(iniFile, QSettings::IniFormat);
     settings.beginWriteArray("Config");
     settings.remove("");
     for (int i = 0; i < m_configList.size(); ++i) {
