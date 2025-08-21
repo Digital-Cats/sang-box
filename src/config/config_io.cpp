@@ -55,17 +55,17 @@ bool ConfigIO::fileConfigExists() const
     return QFile::exists(m_configFilePath);
 }
 
+QString ConfigIO::getConfigsFolder()
+{
+    return QString(QCoreApplication::applicationDirPath() + "/config");
+}
+
 QString ConfigIO::generateFileName() const
 {
     QDateTime currentDateTime = QDateTime::currentDateTime();
     QString timestamp = QString::number(currentDateTime.toMSecsSinceEpoch());
     QString fileName = "config_" + timestamp + ".json";
     return fileName;
-}
-
-QString ConfigIO::getConfigsFolder() const
-{
-    return QString(QCoreApplication::applicationDirPath() + "/config");
 }
 
 }
