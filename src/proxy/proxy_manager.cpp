@@ -17,19 +17,15 @@ ProxyManager::ProxyManager(QObject *parent)
 void ProxyManager::startProxy()
 {
     if (!programExist()) {
-        QMessageBox::warning(nullptr, tr("Warning"),
-                             tr("Can not find sing-box core!\n"
-                                "Please place \"sing-box.exe\" in\n") + QCoreApplication::applicationDirPath()
-                             );
+        emit errorOccured(tr("Can not find sing-box core! Please place \"sing-box.exe\" in %1").arg(QCoreApplication::applicationDirPath()));
+        return;
     } else {
         if (m_configFilePath.isEmpty()) {
-            QMessageBox::warning(nullptr, tr("Warning"),
-                                 tr("The current configuration is empty!")
-                                 );
+            emit errorOccured(tr("The current configuration is empty!"));
+            return;
         } else if (!QFile(m_configFilePath).exists()) {
-            QMessageBox::warning(nullptr, tr("Warning"),
-                                 tr("The current configuration is missing!")
-                                 );
+            emit errorOccured(tr("The current configuration is missing!"));
+            return;
         } else {
             QStringList arguments;
             arguments << "run" << "-c" << m_configFilePath << "--disable-color" << "-D" << QCoreApplication::applicationDirPath();

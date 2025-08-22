@@ -20,6 +20,7 @@ void CoreUpdater::checkLatestVersion()
 
     connect(m_reply, &QNetworkReply::finished, this, &CoreUpdater::finished);
     connect(m_reply, &QNetworkReply::errorOccurred, this, &CoreUpdater::errorOccurred);
+    connect(m_reply, &QNetworkReply::errorOccurred, this, &CoreUpdater::onErrorOccurred);
 }
 
 bool CoreUpdater::isFinished() const
@@ -58,4 +59,9 @@ QString CoreUpdater::getLatestVersion() const
     }
 
     return version;
+}
+
+void CoreUpdater::onErrorOccurred(QNetworkReply::NetworkError)
+{
+    emit errorOccurredText(m_reply->errorString());
 }

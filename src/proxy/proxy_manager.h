@@ -25,6 +25,7 @@ public:
 signals:
     void proxyProcessStateChanged(int newState);
     void proxyProcessReadyReadStandardError();
+    void errorOccured(QString text);
 
 private:
     bool programExist() const;

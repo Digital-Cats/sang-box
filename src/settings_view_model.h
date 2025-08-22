@@ -33,6 +33,7 @@ signals:
     void isAutoRunChanged();
     void coreVersionChanged();
     void latestCoreVersionChanged();
+    void errorOccured(QString text);
 
 private:
     bool isAutoRun() const;

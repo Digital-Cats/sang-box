@@ -7,6 +7,10 @@ SettingsViewModel::SettingsViewModel(QObject *parent)
 {
     connect(m_coreUpdater.get(), &CoreUpdater::finished,
             this, &SettingsViewModel::latestCoreVersionChanged);
+    connect(m_coreUpdater.get(), &CoreUpdater::errorOccurredText,
+            this, [this](QString text){
+        emit errorOccurred(QObject::tr("Core update failed! %1").arg(text));
+    });
 }
 
 void SettingsViewModel::setCoreVersion(QString version)
