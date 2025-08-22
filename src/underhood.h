@@ -21,11 +21,11 @@ public:
 
 #ifndef NDEBUG
     void loadSrcQml();
+#endif
 
 public slots:
     void invokedReloadSrcQml();
     void reloadSrcQml();
-#endif
 
 signals:
     void engineIsLoaded();

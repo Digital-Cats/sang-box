@@ -16,10 +16,11 @@ public:
     QString openConfigFile();
     bool fileConfigExists() const;
 
+    static QString getConfigsFolder();
+
 private:
     // Use timestamp as saved file name
     QString generateFileName() const;
-    QString getConfigsFolder() const;
 
     const QString m_configFilePath;
 };
