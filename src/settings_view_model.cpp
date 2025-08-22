@@ -9,7 +9,7 @@ SettingsViewModel::SettingsViewModel(QObject *parent)
             this, &SettingsViewModel::latestCoreVersionChanged);
     connect(m_coreUpdater.get(), &CoreUpdater::errorOccurredText,
             this, [this](QString text){
-        emit errorOccurred(QObject::tr("Core update failed! %1").arg(text));
+        emit errorOccured(QObject::tr("Core update failed! %1").arg(text));
     });
 }
 
