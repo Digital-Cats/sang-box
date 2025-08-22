@@ -133,4 +133,20 @@ Rectangle {
             }
         }
     }
+
+    Connections {
+        target: mainWindow
+
+        function onErrorOccured(text) {
+            errorPopup.text = text
+            errorPopup.open()
+        }
+    }
+
+    ErrorPopup {
+        id: errorPopup
+
+        anchors.centerIn: Overlay.overlay
+        parent: Overlay.overlay
+    }
 }
