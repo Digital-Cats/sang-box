@@ -78,11 +78,6 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableMetaObject(config::staticMetaObject, "modules.config", 1, 0, "Config", "Config module");
 
     postEngineInit();
-#ifndef NDEBUG
-    underhood.loadSrcQml();
-#else
-    underhood.loadMainQml();
-#endif
 
     bool isAutorun = false;
     for (int i = 1; i < argc; ++i) {
@@ -93,9 +88,14 @@ int main(int argc, char *argv[])
     }
     if (isAutorun) {
         QTimer::singleShot(3000, mainWindow.get(), &MainWindow::startProxy);
-    } else {
-        //mainWindow.show();
+        underhood.hideWindowByDefault();
     }
+
+#ifndef NDEBUG
+    underhood.loadSrcQml();
+#else
+    underhood.loadMainQml();
+#endif
 
     return app.exec();
 }

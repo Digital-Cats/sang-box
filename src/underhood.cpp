@@ -20,6 +20,13 @@ Underhood::EnginePtr Underhood::getEngine()
     return m_engine;
 }
 
+void Underhood::hideWindowByDefault()
+{
+    m_engine->setInitialProperties({
+        { "visible", QVariant::fromValue(false) },
+    });
+}
+
 #ifndef NDEBUG
 void Underhood::loadSrcQml()
 {

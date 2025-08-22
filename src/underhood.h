@@ -18,6 +18,7 @@ public:
 
     void loadMainQml();
     EnginePtr getEngine();
+    void hideWindowByDefault();
 
 #ifndef NDEBUG
     void loadSrcQml();
