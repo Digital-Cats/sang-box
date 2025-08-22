@@ -27,6 +27,13 @@ MainWindow::MainWindow(QObject *parent)
             this, &MainWindow::runningStateChanged);
     connect(m_proxyManager.get(), &ProxyManager::proxyProcessReadyReadStandardError,
             this, &MainWindow::updateProxyOutput);
+
+    connect(m_configListModel.get(), &ConfigListModel::errorOccured,
+            this, &MainWindow::errorOccured);
+    connect(m_settings.get(), &SettingsViewModel::errorOccured,
+            this, &MainWindow::errorOccured);
+    connect(m_proxyManager.get(), &ProxyManager::errorOccured,
+            this, &MainWindow::errorOccured);
 }
 
 bool MainWindow::runnigState() const

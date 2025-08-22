@@ -38,6 +38,7 @@ signals:
     void settingsChanged();
     void runningStateChanged();
     void proxyOutputChanged();
+    void errorOccured(QString text);
 
 private:
     ConfigListModel* configListModel() const;
