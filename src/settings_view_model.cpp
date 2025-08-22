@@ -3,7 +3,11 @@
 SettingsViewModel::SettingsViewModel(QObject *parent)
     : QObject{parent}
     , m_settingsManager(std::make_unique<SettingsManager>(this))
-{}
+    , m_coreUpdater(std::make_unique<CoreUpdater>())
+{
+    connect(m_coreUpdater.get(), &CoreUpdater::finished,
+            this, &SettingsViewModel::latestCoreVersionChanged);
+}
 
 void SettingsViewModel::setCoreVersion(QString version)
 {
@@ -20,6 +24,11 @@ void SettingsViewModel::setupAutoRun(bool enabled)
     emit isAutoRunChanged();
 }
 
+void SettingsViewModel::requestLatestCoreVersion()
+{
+    m_coreUpdater->checkLatestVersion();
+}
+
 bool SettingsViewModel::isAutoRun() const
 {
     return m_settingsManager->autoRun();
@@ -34,3 +43,9 @@ QString SettingsViewModel::coreVersion() const
 {
     return m_coreVersion;
 }
+
+QString SettingsViewModel::latestCoreVersion() const
+{
+    return m_coreUpdater->getLatestVersion();
+}
+
