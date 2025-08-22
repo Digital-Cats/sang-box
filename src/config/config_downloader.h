@@ -25,7 +25,11 @@ public:
 signals:
     void finished();
     void errorOccurred(QNetworkReply::NetworkError code);
+    void errorOccurredText(QString text);
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+
+private:
+    void onErrorOccurred(QNetworkReply::NetworkError);
 
 private:
     QNetworkAccessManagerUPtr m_manager;

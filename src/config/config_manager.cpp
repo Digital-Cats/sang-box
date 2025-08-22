@@ -45,14 +45,7 @@ void ConfigManager::addConfig(ConfigType type, const QVariantMap &map)
     case config::ConfigType::Remote:
     {
         auto url = map.value("urlPath").toUrl();
-        auto configDownloader = std::make_unique<config::ConfigDownloader>(url);
-
-        // TODO: Improve it please
-        while (configDownloader->isRunning())
-        {
-            QCoreApplication::instance()->processEvents(QEventLoop::WaitForMoreEvents, 500);
-        }
-        auto content = configDownloader->getConfig();
+        auto content = getRemoteContent(url);
         if (content.length() == 0)
         {
             qDebug() << "empty content";
@@ -198,13 +191,7 @@ void ConfigManager::updateRemoteConfig(int index)
         auto config = m_configList.at(index);
         if (auto remoteConfig = std::dynamic_pointer_cast<RemoteConfig>(config);
             config->getType() == ConfigType::Remote && remoteConfig != nullptr) {
-            auto configDownloader = std::make_unique<config::ConfigDownloader>(remoteConfig->url());
-            // TODO: Improve it please x2
-            while (configDownloader->isRunning())
-            {
-                QCoreApplication::instance()->processEvents(QEventLoop::WaitForMoreEvents, 500);
-            }
-            auto content = configDownloader->getConfig();
+            auto content = getRemoteContent(remoteConfig->url());
             if (content.length() == 0)
             {
                 qDebug() << "empty content";
@@ -234,6 +221,19 @@ void ConfigManager::addRemoteConfig(const QString &filePath, const QUrl &url, co
     emit endAddConfig();
 }
 
+QString ConfigManager::getRemoteContent(QUrl url)
+{
+    auto configDownloader = std::make_unique<config::ConfigDownloader>(url);
+    connect(configDownloader.get(), &ConfigDownloader::errorOccurredText,
+            this, &ConfigManager::networkError);
+    // TODO: Improve it please
+    while (configDownloader->isRunning())
+    {
+        QCoreApplication::instance()->processEvents(QEventLoop::WaitForMoreEvents, 500);
+    }
+    return configDownloader->getConfig();
+}
+
 void ConfigManager::getConfigFromSettings()
 {
     QSettings settings(iniFile, QSettings::IniFormat);
@@ -244,7 +244,7 @@ void ConfigManager::getConfigFromSettings()
         if (config) {
             m_configList.append(config);
         } else {
-            emit configLoadError();
+            emit configsLoadError();
         }
     }
     settings.endArray();

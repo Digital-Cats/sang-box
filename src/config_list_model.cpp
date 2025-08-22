@@ -6,14 +6,21 @@ ConfigListModel::ConfigListModel(ConfigManagerPtr configManager)
     : QAbstractItemModel()
     , m_configManager(configManager)
 {
-    QObject::connect(m_configManager.get(), &config::ConfigManager::configRenamed,
+    connect(m_configManager.get(), &config::ConfigManager::configRenamed,
                      this, &ConfigListModel::processChanges);
-    QObject::connect(m_configManager.get(), &config::ConfigManager::configChanged,
+    connect(m_configManager.get(), &config::ConfigManager::configChanged,
                      this, &ConfigListModel::updateCurrentConfigData);
-    QObject::connect(m_configManager.get(), &config::ConfigManager::beginAddConfig,
+    connect(m_configManager.get(), &config::ConfigManager::beginAddConfig,
                      this, &ConfigListModel::onBeginAddConfig);
-    QObject::connect(m_configManager.get(), &config::ConfigManager::endAddConfig,
+    connect(m_configManager.get(), &config::ConfigManager::endAddConfig,
                      this, &ConfigListModel::onEndAddConfig);
+
+    connect(m_configManager.get(), &config::ConfigManager::networkError,
+                     this, &ConfigListModel::errorOccured);
+    connect(m_configManager.get(), &config::ConfigManager::configsLoadError,
+            this, [this](){
+        emit errorOccured(QObject::tr("Failed to load configs data from FS."));
+    });
 }
 
 int ConfigListModel::rowCount(const QModelIndex &parent) const

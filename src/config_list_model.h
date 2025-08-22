@@ -33,6 +33,9 @@ public slots:
     void importConfigData(config::ConfigType type, const QVariantMap &map);
     void updateRemoteConfig(int index);
 
+signals:
+    void errorOccured(QString text);
+
 private slots:
     void processChanges(int index);
     void onBeginAddConfig();

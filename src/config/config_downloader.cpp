@@ -16,6 +16,8 @@ ConfigDownloader::ConfigDownloader(const QUrl &url)
     QObject::connect(m_reply, &QNetworkReply::finished, this, &ConfigDownloader::finished);
     QObject::connect(m_reply, &QNetworkReply::errorOccurred,
                      this, &ConfigDownloader::errorOccurred);
+    QObject::connect(m_reply, &QNetworkReply::errorOccurred,
+                     this, &ConfigDownloader::onErrorOccurred);
     QObject::connect(m_reply, &QNetworkReply::downloadProgress, this, &ConfigDownloader::downloadProgress);
     connect(m_reply, &QNetworkReply::sslErrors,
             this, [](const QList<QSslError> &errors){ qDebug() << errors.empty(); });
@@ -42,6 +44,11 @@ QString ConfigDownloader::getConfig() const
         return {};
     QByteArray data = m_reply->readAll();
     return QString(data);
+}
+
+void ConfigDownloader::onErrorOccurred(QNetworkReply::NetworkError)
+{
+    emit errorOccurredText(m_reply->errorString());
 }
 
 }
