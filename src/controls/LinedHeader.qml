@@ -11,6 +11,7 @@ Control {
 
     property color lineColor: MD.Token.color.on_secondary_container
     property int lineThickness: 1
+    property real labelPaddings: 16
     property MD.t_typescale typescale: MD.Token.typescale.title_medium
 
     property alias labelColor: label.color
@@ -33,7 +34,7 @@ Control {
 
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        x: Math.max(99.5, label.width + 10 * 2)
+        x: label.width + root.labelPaddings * 2
 
         color: root.lineColor
         width: root.lineThickness
@@ -43,7 +44,7 @@ Control {
         id: label
 
         anchors.verticalCenter: verticalLine.verticalCenter
-        x: Math.max((99.5 - width) / 2, 10)
+        x: root.labelPaddings
 
         color: MD.Token.color.on_secondary_container
         typescale: root.typescale
