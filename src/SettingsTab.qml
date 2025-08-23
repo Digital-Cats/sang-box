@@ -30,10 +30,10 @@ BasicTab {
                 labelText: qsTr("Settings")
 
                 contentItem: Item {
+                    anchors.top: parent.header.bottom
+                    anchors.left: parent.left
+                    anchors.margins: 16
                     ColumnLayout {
-                        anchors.fill: parent
-                        anchors.margins: 16
-
                         spacing: 15
 
                         LabeledCheckbox {
