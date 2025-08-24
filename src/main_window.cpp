@@ -10,18 +10,19 @@ MainWindow::MainWindow(QObject *parent)
     , m_configManager(std::make_shared<config::ConfigManager>(this))
     , m_configListModel(std::make_shared<ConfigListModel>(m_configManager))
     , m_settings(std::make_shared<SettingsViewModel>(this))
+    , m_updater(std::make_shared<UpdaterViewModel>())
     , m_proxyManager(std::make_unique<ProxyManager>(this))
 {
     connect(m_configManager.get(), &config::ConfigManager::configChanged, this,
             &MainWindow::changeSelectedConfig);
     changeSelectedConfig();
 
-    m_settings->setCoreVersion(m_proxyManager->getCoreVersion());
+    m_updater->setCoreVersion(m_proxyManager->getCoreVersion());
 
     connect(m_proxyManager.get(), &ProxyManager::proxyProcessStateChanged,
             m_settings.get(), [&](int)
     {
-        m_settings->setCoreVersion(m_proxyManager->getCoreVersion());
+        m_updater->setCoreVersion(m_proxyManager->getCoreVersion());
     });
     connect(m_proxyManager.get(), &ProxyManager::proxyProcessStateChanged,
             this, &MainWindow::runningStateChanged);
@@ -30,7 +31,7 @@ MainWindow::MainWindow(QObject *parent)
 
     connect(m_configListModel.get(), &ConfigListModel::errorOccured,
             this, &MainWindow::errorOccured);
-    connect(m_settings.get(), &SettingsViewModel::errorOccured,
+    connect(m_updater.get(), &UpdaterViewModel::errorOccured,
             this, &MainWindow::errorOccured);
     connect(m_proxyManager.get(), &ProxyManager::errorOccured,
             this, &MainWindow::errorOccured);
@@ -59,6 +60,11 @@ ConfigListModel* MainWindow::configListModel() const
 SettingsViewModel* MainWindow::settings() const
 {
     return m_settings.get();
+}
+
+UpdaterViewModel* MainWindow::updater() const
+{
+    return m_updater.get();
 }
 
 QString MainWindow::proxyOutput() const

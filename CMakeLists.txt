@@ -59,6 +59,7 @@ qt_add_qml_module(sang-box
         src/controls/ProfileContextMenu.qml
         src/controls/WelcomeDialog.qml
         src/controls/ErrorPopup.qml
+        SOURCES src/updater_view_model.h src/updater_view_model.cpp
 )
 
 target_include_directories(sang-box PRIVATE
