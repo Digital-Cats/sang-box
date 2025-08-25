@@ -44,16 +44,7 @@ void ConfigManager::addConfig(ConfigType type, const QVariantMap &map)
     }
     case config::ConfigType::Remote:
     {
-        auto url = map.value("urlPath").toUrl();
-        auto content = getRemoteContent(url);
-        if (content.length() == 0)
-        {
-            qDebug() << "empty content";
-            break;
-        }
-        auto configIO = std::make_unique<config::ConfigIO>();
-        configIO->saveConfigFile(content);
-        addRemoteConfig(configIO->getConfigFilePath(), url, map.value("profileName").toString());
+        requestRemoteContent(map.value("urlPath").toUrl(), map.value("profileName").toString());
         break;
     }
     default:
@@ -191,14 +182,23 @@ void ConfigManager::updateRemoteConfig(int index)
         auto config = m_configList.at(index);
         if (auto remoteConfig = std::dynamic_pointer_cast<RemoteConfig>(config);
             config->getType() == ConfigType::Remote && remoteConfig != nullptr) {
-            auto content = getRemoteContent(remoteConfig->url());
-            if (content.length() == 0)
-            {
-                qDebug() << "empty content";
-                return;
-            }
-            auto configIO = std::make_unique<config::ConfigIO>(remoteConfig->filePath());
-            configIO->saveConfigFile(content);
+            emit beginUpdateConfig(index);
+            QUrl url = remoteConfig->url();
+            auto configDownloader = std::make_shared<ConfigDownloader>(url);
+            connect(configDownloader.get(), &ConfigDownloader::errorOccurredText,
+                    this, &ConfigManager::networkError);
+            connect(configDownloader.get(), &ConfigDownloader::finished,
+                    this, [configDownloader, this, url, index, filePath = remoteConfig->filePath()](){
+                auto content = configDownloader->getConfig();
+                if (content.length() == 0)
+                {
+                    qDebug() << "empty content";
+                    return;
+                }
+                auto configIO = std::make_unique<ConfigIO>(filePath);
+                configIO->saveConfigFile(content);
+                emit endUpdateConfig(index);
+            });
         }
     }
 }
@@ -221,17 +221,25 @@ void ConfigManager::addRemoteConfig(const QString &filePath, const QUrl &url, co
     emit endAddConfig();
 }
 
-QString ConfigManager::getRemoteContent(QUrl url)
+void ConfigManager::requestRemoteContent(QUrl url, QString name)
 {
-    auto configDownloader = std::make_unique<config::ConfigDownloader>(url);
+    emit beginDownloadNewConfig();
+    auto configDownloader = std::make_shared<ConfigDownloader>(url);
     connect(configDownloader.get(), &ConfigDownloader::errorOccurredText,
             this, &ConfigManager::networkError);
-    // TODO: Improve it please
-    while (configDownloader->isRunning())
-    {
-        QCoreApplication::instance()->processEvents(QEventLoop::WaitForMoreEvents, 500);
-    }
-    return configDownloader->getConfig();
+    connect(configDownloader.get(), &ConfigDownloader::finished,
+            this, [configDownloader, this, url, name](){
+        auto content = configDownloader->getConfig();
+        if (content.length() == 0)
+        {
+            qDebug() << "empty content";
+            return;
+        }
+        auto configIO = std::make_unique<ConfigIO>();
+        configIO->saveConfigFile(content);
+        addRemoteConfig(configIO->getConfigFilePath(), url, name);
+        emit endDownloadNewConfig();
+    });
 }
 
 void ConfigManager::getConfigFromSettings()

@@ -39,12 +39,16 @@ signals:
     void beginAddConfig();
     void endAddConfig();
     void configsLoadError();
+    void beginDownloadNewConfig();
+    void endDownloadNewConfig();
+    void beginUpdateConfig(int index);
+    void endUpdateConfig(int index);
     void networkError(QString text);
 
 private:
     void addLocalConfig(const QString &filePath, const QString &name);
     void addRemoteConfig(const QString &filePath, const QUrl &url, const QString &name);
-    QString getRemoteContent(QUrl url);
+    void requestRemoteContent(QUrl url, QString name);
 
 private:
     // Read config list from registry
