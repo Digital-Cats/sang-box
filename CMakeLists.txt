@@ -28,6 +28,7 @@ set(sang-box_sources
     src/main_window.cpp
     src/settings_view_model.cpp
     src/underhood.cpp
+    src/updater_view_model.cpp
 )
 
 qt_add_executable(sang-box
@@ -59,7 +60,7 @@ qt_add_qml_module(sang-box
         src/controls/ProfileContextMenu.qml
         src/controls/WelcomeDialog.qml
         src/controls/ErrorPopup.qml
-        SOURCES src/updater_view_model.h src/updater_view_model.cpp
+        src/controls/VersionLabel.qml
 )
 
 target_include_directories(sang-box PRIVATE
