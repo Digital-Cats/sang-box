@@ -61,6 +61,7 @@ qt_add_qml_module(sang-box
         src/controls/WelcomeDialog.qml
         src/controls/ErrorPopup.qml
         src/controls/VersionLabel.qml
+        src/AboutTab.qml
 )
 
 target_include_directories(sang-box PRIVATE

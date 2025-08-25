@@ -36,6 +36,16 @@ Rectangle {
         visible: root.currentTabState === MainWindowView.TabState.Settings
     }
 
+    // Additional tab About
+    AboutTab {
+        anchors.top: parent.top
+        anchors.left: verticalMenu.right
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        visible: root.currentTabState === MainWindowView.TabState.About
+    }
+
+
     ColumnLayout {
         id: verticalMenu
 
