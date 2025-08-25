@@ -14,27 +14,40 @@ BasicTab {
         GridLayout {
             id: gridLayout
             anchors.fill: parent
-            columns: 2
+            columns: 3
             rows: 2
-            rowSpacing: 23
-            columnSpacing: 23
+            rowSpacing: 20
+            columnSpacing: 4
 
             ProfilesView {
                 id: profilesMenu
 
                 Layout.row: 0
                 Layout.column: 0
+                Layout.preferredWidth: 280
+                Layout.preferredHeight: 320
 
                 model: mainWindow.configListModel
             }
 
             ControlMenu {
-                id: statsMenu
+                id: selectorMenu
                 visible: false
-
-                Layout.alignment: Qt.AlignRight
                 Layout.row: 0
                 Layout.column: 1
+                Layout.preferredWidth: 252
+                Layout.preferredHeight: 320
+
+                labelText: qsTr("Selector")
+            }
+
+            ControlMenu {
+                id: statsMenu
+                visible: false
+                Layout.row: 0
+                Layout.column: 2
+                Layout.preferredWidth: 200
+                Layout.preferredHeight: 320
 
                 labelText: qsTr("Stats")
             }
@@ -44,8 +57,9 @@ BasicTab {
 
                 Layout.row: 1
                 Layout.column: 0
-                Layout.columnSpan: 2
+                Layout.columnSpan: 3
                 Layout.fillWidth: true
+                Layout.preferredHeight: 350
 
                 labelText: qsTr("Log")
 

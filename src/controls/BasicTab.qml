@@ -7,16 +7,16 @@ Control {
     id: root
 
     property color backgroundColor: MD.Token.color.surface_container
-    property int topLeftRadius: 32
+    property int topLeftRadius: 0
 
-    leftPadding: 52
-    rightPadding: 52
-    topPadding: 52
+    leftPadding: 32
+    rightPadding: 32
+    topPadding: 30
     bottomPadding: 30
 
     background: Rectangle {
         anchors.fill: parent
         topLeftRadius: root.topLeftRadius
-        color: root.backgroundColor
+        color: "transparent"
     }
 }

@@ -18,14 +18,17 @@ BasicTab {
             anchors.fill: parent
             columns: 2
             rows: 2
-            rowSpacing: 23
-            columnSpacing: 23
+            rowSpacing: 16
+            columnSpacing: 4
 
             ControlMenu {
                 id: settingsMenu
 
                 Layout.row: 0
                 Layout.column: 0
+                Layout.alignment: Qt.AlignLeft
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
                 labelText: qsTr("Settings")
 
@@ -69,6 +72,9 @@ BasicTab {
 
                 Layout.row: 0
                 Layout.column: 1
+                Layout.alignment: Qt.AlignRight
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
                 labelText: qsTr("Updater")
 
@@ -164,42 +170,26 @@ BasicTab {
 
             ControlMenu {
                 id: routingMenu
-                visible: false
+                visible: true
 
                 Layout.row: 1
                 Layout.column: 0
+                Layout.alignment: Qt.AlignLeft
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
-                labelText: qsTr("Domain routing")
-
-                header.contentItem: Item {
-                    RowLayout {
-                        anchors.verticalCenter: parent.verticalCenter
-                        spacing: 16
-
-                        MDSwitch {
-                            id: blackListSwitch
-                            Layout.alignment: Qt.AlignVCenter
-                            Layout.leftMargin: 42
-                            targetWidth: 39
-                        }
-
-                        MD.Label {
-                            Layout.alignment: Qt.AlignVCenter
-                            text: qsTr("Blacklist")
-                            color: MD.Token.color.on_secondary_container
-                            typescale: MD.Token.typescale.title_medium
-                        }
-                    }
-                }
+                labelText: qsTr("Routing")
             }
 
             ControlMenu {
                 id: proxiedAppsMenu
-                visible: false
+                visible: true
 
-                Layout.alignment: Qt.AlignRight
                 Layout.row: 1
                 Layout.column: 1
+                Layout.alignment: Qt.AlignRight
+                Layout.fillWidth: true
+                Layout.fillHeight: true
 
                 labelText: qsTr("Proxied apps")
             }

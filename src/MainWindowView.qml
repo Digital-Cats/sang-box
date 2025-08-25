@@ -24,7 +24,6 @@ Rectangle {
         anchors.left: verticalMenu.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.topMargin: 45
         visible: root.currentTabState === MainWindowView.TabState.Dashboard
     }
 
@@ -34,7 +33,6 @@ Rectangle {
         anchors.left: verticalMenu.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.topMargin: 45
         visible: root.currentTabState === MainWindowView.TabState.Settings
     }
 
@@ -50,7 +48,7 @@ Rectangle {
             Layout.preferredHeight: 128
             Layout.preferredWidth: 128
             Layout.topMargin: 30
-            Layout.leftMargin: 26
+            Layout.leftMargin: 42
 
             MD.IconSvg {
                 id: sang_logo
@@ -84,7 +82,7 @@ Rectangle {
 
         MenuButton {
             Layout.preferredHeight: 52
-            Layout.preferredWidth: 170
+            Layout.preferredWidth: 196
             Layout.topMargin: 46
             checked: root.currentTabState === MainWindowView.TabState.Dashboard
             icon.name: MD.Token.icon.dashboard
@@ -95,7 +93,7 @@ Rectangle {
 
         MenuButton {
             Layout.preferredHeight: 52
-            Layout.preferredWidth: 170
+            Layout.preferredWidth: 196
             Layout.topMargin: 20
             checked: root.currentTabState === MainWindowView.TabState.Settings
             icon.name: MD.Token.icon.settings
@@ -106,7 +104,7 @@ Rectangle {
 
         MenuButton {
             Layout.preferredHeight: 52
-            Layout.preferredWidth: 170
+            Layout.preferredWidth: 196
             Layout.topMargin: 20
             checked: root.currentTabState === MainWindowView.TabState.About
             icon.name: MD.Token.icon.waving_hand
