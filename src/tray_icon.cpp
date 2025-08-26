@@ -45,8 +45,8 @@ void TrayIcon::setMenuEnabled(bool proxy_enabled)
 void TrayIcon::setIconState(bool proxy_enabled)
 {
     setIcon(proxy_enabled ?
-                QIcon(":/images/app_enable_proxy.ico") :
-                QIcon(":/images/app.ico"));
+                QIcon(":/images/tray_enabled_key.png") :
+                QIcon(":/images/tray_disabled_key.png"));
 }
 
 void TrayIcon::createAction()
@@ -79,7 +79,7 @@ void TrayIcon::createTrayIcon()
     m_trayIconMenu->addAction(m_quitAction);
 
     m_trayIcon = new QSystemTrayIcon(this);
-    QIcon icon(":/images/app.ico");
+    QIcon icon(":/images/tray_disabled_key.png");
     m_trayIcon->setIcon(icon);
     m_trayIcon->setToolTip("sang-box");
     m_trayIcon->setContextMenu(m_trayIconMenu);
