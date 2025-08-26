@@ -98,8 +98,6 @@ void MainWindow::updateProxyOutput()
     QString outputText = QString::fromUtf8(outputData);
     if (outputText.isEmpty())
         return;
-    HtmlColorText::appendHtmlColorText(outputText);
-
     QRegularExpression re("\\n$");
     QRegularExpressionMatch match = re.match(outputText);
     if (match.hasMatch())
@@ -107,6 +105,12 @@ void MainWindow::updateProxyOutput()
         const auto endPos = match.capturedStart(0);
         outputText = outputText.left(endPos);
     }
+    auto splittedText = outputText.split('\n');
+    for (QString& text : splittedText)
+    {
+        HtmlColorText::appendHtmlColorText(text);
+    }
+    outputText = splittedText.join("<br>");
     if (!m_proxyOutput.isEmpty())
         m_proxyOutput += "<br>";
     m_proxyOutput += outputText;
