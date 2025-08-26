@@ -89,7 +89,6 @@ set(sang-box_resources
     "resources/fonts/LexendDeca-Regular.ttf"
     "resources/fonts/NotoSans-VariableFont_wdth,wght.ttf"
     "resources/images/app.ico"
-    "resources/images/app_enable_proxy.ico"
     "resources/images/tray_disabled_key.png"
     "resources/images/tray_enabled_key.png"
     "resources/images/qt_logo.png"
