@@ -21,6 +21,10 @@ ConfigListModel::ConfigListModel(ConfigManagerPtr configManager)
             this, [this](){
         emit errorOccured(QObject::tr("Failed to load configs data from FS."));
     });
+    connect(m_configManager.get(), &config::ConfigManager::emptyConfigDownloaded,
+            this, [this](){
+        emit errorOccured(QObject::tr("Downloaded config is empty. Config is not added/updated."));
+    });
 }
 
 int ConfigListModel::rowCount(const QModelIndex &parent) const

@@ -38,12 +38,13 @@ signals:
     void configRenamed(int index);
     void beginAddConfig();
     void endAddConfig();
-    void configsLoadError();
     void beginDownloadNewConfig();
     void endDownloadNewConfig();
     void beginUpdateConfig(int index);
     void endUpdateConfig(int index);
+    void configsLoadError();
     void networkError(QString text);
+    void emptyConfigDownloaded();
 
 private:
     void addLocalConfig(const QString &filePath, const QString &name);

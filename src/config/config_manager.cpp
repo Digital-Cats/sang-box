@@ -192,7 +192,7 @@ void ConfigManager::updateRemoteConfig(int index)
                 auto content = configDownloader->getConfig();
                 if (content.length() == 0)
                 {
-                    qDebug() << "empty content";
+                    emit emptyConfigDownloaded();
                     return;
                 }
                 auto configIO = std::make_unique<ConfigIO>(filePath);
@@ -232,7 +232,7 @@ void ConfigManager::requestRemoteContent(QUrl url, QString name)
         auto content = configDownloader->getConfig();
         if (content.length() == 0)
         {
-            qDebug() << "empty content";
+            emit emptyConfigDownloaded();
             return;
         }
         auto configIO = std::make_unique<ConfigIO>();
