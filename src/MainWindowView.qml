@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import Qcm.Material as MD
 
 import "controls"
+import "tabs"
 
 Rectangle {
     id: root

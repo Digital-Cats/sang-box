@@ -43,12 +43,20 @@ qt_add_qml_module(sang-box
     QML_FILES
         src/Main.qml
         src/MainWindowView.qml
-        src/ProfilesView.qml
-        src/MainTab.qml
-        src/SettingsTab.qml
+        src/tabs/MainTab.qml
+        src/tabs/SettingsTab.qml
+        src/tabs/AboutTab.qml
+        src/cards/ProfilesCard.qml
+        src/cards/LogsCard.qml
+        src/cards/SelectorCard.qml
+        src/cards/StatsCard.qml
+        src/cards/SettingsCard.qml
+        src/cards/UpdaterCard.qml
+        src/cards/RoutingCard.qml
+        src/cards/ProxiedAppsCard.qml
         src/controls/AddNewProfileButton.qml
         src/controls/BasicTab.qml
-        src/controls/ControlMenu.qml
+        src/controls/ControlCard.qml
         src/controls/DeleteProfileDialog.qml
         src/controls/LabeledCheckbox.qml
         src/controls/LinedHeader.qml
@@ -61,7 +69,6 @@ qt_add_qml_module(sang-box
         src/controls/WelcomeDialog.qml
         src/controls/ErrorPopup.qml
         src/controls/VersionLabel.qml
-        src/AboutTab.qml
 )
 
 target_include_directories(sang-box PRIVATE

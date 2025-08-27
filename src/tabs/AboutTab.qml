@@ -4,13 +4,13 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qcm.Material as MD
 
-import "controls"
+import "../controls"
 
 BasicTab {
     id: root
 
     contentItem: Item {
-        ControlMenu {
+        ControlCard {
             id: aboutMenu
             anchors.fill: parent
             labelText: qsTr("About sang-box")
