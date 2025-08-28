@@ -17,27 +17,42 @@ class CoreUpdater : public QObject
 public:
     explicit CoreUpdater();
 
-    void checkLatestVersion();
+    void fetchLatest();
 
-    bool isFinished() const;
-    bool isRunning() const;
+    void downloadLatest(QString savePath);
 
-    QNetworkReply::NetworkError error() const;
-
-    QString getLatestVersion() const;
+    QString latestVersion() const;
+    QString assetName() const;
+    QUrl assetUrl() const;
 
 signals:
-    void finished();
-    void errorOccurred(QNetworkReply::NetworkError code);
-    void errorOccurredText(QString text);
+    void fetchFinished();
+    void fetchError(QString text);
+
+    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void downloadFinished(QString zipPath);
+    void downloadError(QString text);
 
 private:
-    void onErrorOccurred(QNetworkReply::NetworkError);
+    void onFetchFinished();
+    void onFetchError(QNetworkReply::NetworkError);
+
+    void onDownloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void onDownloadFinished();
+    void onDownloadError(QNetworkReply::NetworkError);
 
 private:
     QNetworkAccessManagerUPtr m_manager;
-    QNetworkRequest m_request;
-    QNetworkReply *m_reply;
+
+    const QByteArray m_userAgent;
+    const QUrl m_latestUrl;
+    QNetworkReply *m_fetchReply;
+    QNetworkReply *m_dlReply;
+
+    QString m_latestVersion;
+    QUrl m_assetUrl;
+    QString m_assetName;
+    QString m_savePath;
 };
 
 #endif // CORE_UPDATER_H

@@ -72,28 +72,53 @@ ControlCard {
             RowLayout {
                 Layout.alignment: Qt.AlignBottom | Qt.AlignRight
 
-                // Item {
-                //     Layout.fillWidth: true
-                // }
+                MD.BusyButton {
+                    id: fetchBtn
+                    checkable: true
+                    busy: false
+                    icon.name: MD.Token.icon.refresh
+                    text: qsTr("Fetch")
+                    visible: !mainWindow.updater.updateAvailable
+                    Layout.rightMargin: 16
+
+                    ToolTip.visible: hovered
+                    ToolTip.delay: Application.styleHints.mousePressAndHoldInterval
+                    ToolTip.text: qsTr("Check updates for core and app")
+
+                    onClicked: {
+                        fetchBtn.busy = true
+                        mainWindow.updater.requestLatestCoreVersion()
+                    }
+                }
 
                 MD.BusyButton {
-                    id: updateButton
+                    id: updateBtn
                     checkable: true
                     busy: false
                     icon.name: MD.Token.icon.download
-                    text: 'Update'
+                    text: qsTr("Update")
+                    enabled: !mainWindow.runnigState
+                    visible: mainWindow.updater.updateAvailable
                     Layout.rightMargin: 16
 
-                    onClicked: {
-                        updateButton.busy = true;
-                        mainWindow.updater.requestLatestCoreVersion()
-                    }
+                    ToolTip.visible: hovered && !enabled
+                    ToolTip.text: qsTr("Disable proxy to update")
 
-                    Connections {
-                        target: mainWindow.updater
-                        function onLatestCoreVersionChanged() {
-                            updateButton.busy = false;
-                        }
+                    onClicked: {
+                        updateBtn.busy = true
+                        mainWindow.updater.updateCore()
+                    }
+                }
+
+                Connections {
+                    target: mainWindow.updater
+                    function onLatestCoreVersionChanged() {
+                        fetchBtn.busy = false
+                    }
+                    function onUpdateAvailableChanged()
+                    {
+                        fetchBtn.busy = false
+                        updateBtn.busy = false
                     }
                 }
             }

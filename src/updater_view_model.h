@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QString>
 #include <QVersionNumber>
+#include <QCoreApplication>
+#include <QDir>
+#include <QProcess>
 
 #include <memory>
 
@@ -16,7 +19,8 @@ class UpdaterViewModel : public QObject
     Q_PROPERTY(QString coreVersion READ coreVersion NOTIFY coreVersionChanged)
     Q_PROPERTY(QString latestCoreVersion READ latestCoreVersion NOTIFY latestCoreVersionChanged)
     Q_PROPERTY(bool isCoreNewest READ isCoreNewest NOTIFY isCoreNewestChanged)
-
+    Q_PROPERTY(bool updateAvailable READ updateAvailable NOTIFY updateAvailableChanged)
+    Q_PROPERTY(bool busy READ busy NOTIFY busyChanged)
     using CoreUpdaterUPtr = std::unique_ptr<CoreUpdater>;
 
 public:
@@ -26,27 +30,37 @@ public:
 
 public slots:
     void requestLatestCoreVersion();
+    void updateCore();
 
 signals:
     void coreVersionChanged();
     void latestCoreVersionChanged();
     void isCoreNewestChanged();
-
+    void updateAvailableChanged();
     void errorOccured(QString text);
+    void busyChanged();
 
 private slots:
-    void onCoreCheckFinished();
+    void onCoreFetchFinished();
+    void onCoreDownloadFinished(QString zipPath);
 
 private:
     QString appVersion() const;
     QString coreVersion() const;
     QString latestCoreVersion() const;
     bool isCoreNewest() const;
+    bool updateAvailable();
+    void setBusy(bool busy);
+    bool busy() const;
+
+    bool extractZip(QString zipPath, QString distPath);
 
 private:
     CoreUpdaterUPtr m_coreUpdater;
     QString m_coreVersion;
-    bool m_isCoreNewest = true;
+    QString m_latestCoreVersion;
+    bool m_isCoreNewest;
+    bool m_busy;
 };
 
 #endif // UPDATER_VIEW_MODEL_H

@@ -134,6 +134,7 @@ Rectangle {
             Layout.bottomMargin: 131
             Layout.alignment: Qt.AlignHCenter
             checked: mainWindow.runnigState
+            enabled: !mainWindow.updater.busy
 
             onClicked: {
                 mainWindow.runnigState ?
