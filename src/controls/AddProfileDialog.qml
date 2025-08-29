@@ -122,8 +122,8 @@ MD.Dialog {
                     spacing: 0
 
                     MD.TextField {
+                        id: updateTimeField
                         implicitHeight: 35
-                        implicitWidth: 129
                         type: MD.Enum.TextFieldOutlined
                         placeholderText: qsTr("Update (min)")
                         text: "60"
@@ -187,6 +187,15 @@ MD.Dialog {
             text: qsTr("Save")
             DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
         }
+    }
+
+    function resetForm() {
+        profileNameField.text = "";
+        urlTextField.text = "";
+        locationField.text = "";
+        updateTimeField.text = "60";
+        isRefreshEnable.checked = true;
+        profileTypeComboBox.currentIndex = 0;
     }
 
     FileDialog {

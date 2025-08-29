@@ -98,7 +98,9 @@ ControlCard {
 
             onAccepted: {
                 root.model.importConfigData(currentConfigType, generateDataForCurrentType())
+                addProfileDialog.resetForm()
             }
+            onRejected: addProfileDialog.resetForm()
         }
 
         AddNewProfileButton {
