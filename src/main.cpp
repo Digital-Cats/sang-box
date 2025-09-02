@@ -1,6 +1,5 @@
 #include "main_window.h"
 #include "tray_icon.h"
-#include "config/config.h"
 #include "underhood.h"
 
 #include <QApplication>
