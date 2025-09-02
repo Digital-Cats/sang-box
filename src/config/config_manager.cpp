@@ -50,6 +50,10 @@ void ConfigManager::addConfig(ConfigType type, const QVariantMap &map)
     default:
         break;
     }
+
+    if (m_configList.size() == 1) {
+        switchConfig(0);
+    }
 }
 
 void ConfigManager::removeConfig(int index)
