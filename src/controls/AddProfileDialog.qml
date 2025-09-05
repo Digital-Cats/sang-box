@@ -198,8 +198,7 @@ MD.Dialog {
         profileTypeComboBox.currentIndex = 0;
     }
 
-    onAccepted: root.resetForm()
-    onRejected: root.resetForm()
+    onAboutToHide: root.resetForm()
 
     FileDialog {
         id: fileDialog
