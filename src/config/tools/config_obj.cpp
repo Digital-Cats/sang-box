@@ -17,6 +17,7 @@ void ConfigObj::readFile(std::string jsonPath)
     std::string buffer(size, '\0');
     std::ifstream in(m_jsonPath);
     in.read(&buffer[0], size);
+    in.close();
 
     m_rootConfig = std::make_unique<root_config_t>();
     auto ec = glz::read<glz::opts{.error_on_unknown_keys = false}>(m_rootConfig, buffer);
@@ -51,11 +52,14 @@ void ConfigObj::addClashApi()
 void ConfigObj::writeDataToFile()
 {
     std::string buffer;
-    std::filesystem::remove(m_jsonPath);
-    auto ec = glz::write_file_json(m_rootConfig, m_jsonPath, buffer);
+    auto ec = glz::write_json(m_rootConfig, buffer);
     if (ec) {
         emit errorOccured(QString::fromStdString(glz::format_error(ec, buffer)));
+        return;
     }
+    std::ofstream out(m_jsonPath);
+    out << buffer;
+    out.close();
 }
 
 }
