@@ -22,6 +22,8 @@ struct root_config_t
     std::map<glz::sv, glz::raw_json> extra;
 };
 
+using RootConfigUPtr = std::unique_ptr<root_config_t>;
+
 }
 
 

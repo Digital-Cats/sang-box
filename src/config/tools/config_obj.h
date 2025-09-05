@@ -26,7 +26,7 @@ private:
 
 private:
     std::string m_jsonPath;
-    root_config_t m_rootConfig;
+    RootConfigUPtr m_rootConfig;
 };
 
 }

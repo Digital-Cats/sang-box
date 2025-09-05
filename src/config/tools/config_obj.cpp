@@ -1,23 +1,26 @@
 #include "config_obj.h"
 
-#include <QDebug>
-
 #include <glaze/glaze.hpp>
 
 namespace config {
 
 ConfigObj::ConfigObj()
     : QObject()
-    , m_rootConfig()
+    , m_rootConfig(nullptr)
 {}
 
 void ConfigObj::readFile(std::string jsonPath)
 {
     m_jsonPath = jsonPath;
-    std::string buffer;
-    auto ec = glz::read_file_json<glz::opts{.error_on_unknown_keys = false}>(m_rootConfig, m_jsonPath, buffer);
+
+    auto size = std::filesystem::file_size(m_jsonPath);
+    std::string buffer(size, '\0');
+    std::ifstream in(m_jsonPath);
+    in.read(&buffer[0], size);
+
+    m_rootConfig = std::make_unique<root_config_t>();
+    auto ec = glz::read<glz::opts{.error_on_unknown_keys = false}>(m_rootConfig, buffer);
     if (ec) {
-        qDebug() << glz::format_error(ec, buffer);
         emit errorOccured(QString::fromStdString(glz::format_error(ec, buffer)));
     }
 }
@@ -29,11 +32,11 @@ void ConfigObj::readFile(QString jsonPath)
 
 void ConfigObj::addClashApi()
 {
-    if (m_rootConfig.experimental == nullptr) {
-        m_rootConfig.experimental = std::make_unique<experimental_t>();
+    if (m_rootConfig->experimental == nullptr) {
+        m_rootConfig->experimental = std::make_unique<experimental_t>();
     }
-    if (m_rootConfig.experimental->clash_api == nullptr) {
-        m_rootConfig.experimental->clash_api = std::make_unique<clash_api_t>();
+    if (m_rootConfig->experimental->clash_api == nullptr) {
+        m_rootConfig->experimental->clash_api = std::make_unique<clash_api_t>();
     }
 
     /*
@@ -41,16 +44,16 @@ void ConfigObj::addClashApi()
      * 1) check port, which is in a config, it should be free
      * 2) if no port or current port is busy, find a new one and set it
      */
-    m_rootConfig.experimental->clash_api->external_controller = "127.0.0.1:10814";
+    m_rootConfig->experimental->clash_api->external_controller = "127.0.0.1:10814";
     writeDataToFile();
 }
 
 void ConfigObj::writeDataToFile()
 {
     std::string buffer;
+    std::filesystem::remove(m_jsonPath);
     auto ec = glz::write_file_json(m_rootConfig, m_jsonPath, buffer);
     if (ec) {
-        qDebug() << glz::format_error(ec, buffer);
         emit errorOccured(QString::fromStdString(glz::format_error(ec, buffer)));
     }
 }
