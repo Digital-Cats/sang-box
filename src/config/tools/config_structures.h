@@ -13,7 +13,7 @@ struct route_t;
 struct root_config_t;
 
 using RootConfigUPtr = std::unique_ptr<root_config_t>;
-using VectorStrUptr = std::unique_ptr<std::vector<std::string>>;
+using VectorStrUPtr = std::unique_ptr<std::vector<std::string>>;
 using VectorRulesUPtr = std::unique_ptr<std::vector<rule_t>>;
 
 
@@ -29,9 +29,9 @@ struct experimental_t {
 };
 
 struct rule_t {
-    VectorStrUptr domain = nullptr;
-    VectorStrUptr domain_suffix = nullptr;
-    VectorStrUptr process_name = nullptr;
+    VectorStrUPtr domain = nullptr;
+    VectorStrUPtr domain_suffix = nullptr;
+    VectorStrUPtr process_name = nullptr;
     std::string outbound;
     std::map<glz::sv, glz::raw_json> extra;
 };
