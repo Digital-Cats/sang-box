@@ -12,17 +12,11 @@ ConfigObj::ConfigObj()
 void ConfigObj::readFile(std::string jsonPath)
 {
     m_jsonPath = jsonPath;
-
-    auto size = std::filesystem::file_size(m_jsonPath);
-    std::string buffer(size, '\0');
-    std::ifstream in(m_jsonPath);
-    in.read(&buffer[0], size);
-    in.close();
-
+    m_jsonBuffer = {};
     m_rootConfig = std::make_unique<root_config_t>();
-    auto ec = glz::read<glz::opts{.error_on_unknown_keys = false}>(m_rootConfig, buffer);
+    auto ec = glz::read_file_json<glz::opts{.error_on_unknown_keys = false, .raw_string = true}>(m_rootConfig, m_jsonPath, m_jsonBuffer);
     if (ec) {
-        emit errorOccured(QString::fromStdString(glz::format_error(ec, buffer)));
+        emit errorOccured(QString::fromStdString(glz::format_error(ec, m_jsonBuffer)));
     }
 }
 
@@ -51,15 +45,12 @@ void ConfigObj::addClashApi()
 
 void ConfigObj::writeDataToFile()
 {
-    std::string buffer;
-    auto ec = glz::write_json(m_rootConfig, buffer);
+    std::string outBuffer{};
+    auto ec = glz::write_file_json<glz::opts{.prettify = true, .raw_string = true}>(m_rootConfig, m_jsonPath, outBuffer);
     if (ec) {
-        emit errorOccured(QString::fromStdString(glz::format_error(ec, buffer)));
+        emit errorOccured(QString::fromStdString(glz::format_error(ec, outBuffer)));
         return;
     }
-    std::ofstream out(m_jsonPath);
-    out << buffer;
-    out.close();
 }
 
 }

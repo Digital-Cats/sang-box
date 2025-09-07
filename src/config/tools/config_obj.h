@@ -26,6 +26,7 @@ private:
 
 private:
     std::string m_jsonPath;
+    std::string m_jsonBuffer;
     RootConfigUPtr m_rootConfig;
 };
 
