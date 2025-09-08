@@ -3,6 +3,7 @@
 #include <glaze/glaze.hpp>
 
 #include <memory>
+#include <set>
 
 namespace config {
 
@@ -37,9 +38,12 @@ struct route_t;
 struct root_config_t;
 
 using RootConfigUPtr = std::unique_ptr<root_config_t>;
-using VectorStrUPtr = std::unique_ptr<std::vector<std::string>>;
-using VectorRulesUPtr = std::unique_ptr<std::vector<rule_t>>;
+using SetStrPtr = std::shared_ptr<std::set<std::string>>;
 using StringUPtr = std::unique_ptr<std::string>;
+using OutboundPtr = std::shared_ptr<outbound_t>;
+using RulePtr = std::shared_ptr<rule_t>;
+using VectorOutbounds = std::vector<OutboundPtr>;
+using VectorRules = std::vector<RulePtr>;
 using ExtraMap = std::map<glz::sv, glz::raw_json>;
 
 
@@ -61,15 +65,15 @@ struct outbound_t {
 };
 
 struct rule_t {
-    VectorStrUPtr domain = nullptr;
-    VectorStrUPtr domain_suffix = nullptr;
-    VectorStrUPtr process_name = nullptr;
+    SetStrPtr domain = nullptr;
+    SetStrPtr domain_suffix = nullptr;
+    SetStrPtr process_name = nullptr;
     StringUPtr outbound;
     ExtraMap extra;
 };
 
 struct route_t {
-    VectorRulesUPtr rules = nullptr;
+    VectorRules rules;
     ExtraMap extra;
 };
 
@@ -77,7 +81,7 @@ struct root_config_t
 {
     std::unique_ptr<experimental_t> experimental = nullptr;
     route_t route;
-    std::vector<outbound_t> outbounds;
+    VectorOutbounds outbounds;
     ExtraMap extra;
 };
 

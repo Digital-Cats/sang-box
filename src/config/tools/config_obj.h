@@ -23,11 +23,21 @@ signals:
 
 private:
     void writeDataToFile();
+    void findOrCreateCustomizableRules();
+    void reset();
+    static void createEmptyRule(RulePtr &rule, const std::string &tag);
 
 private:
     std::string m_jsonPath;
     std::string m_jsonBuffer;
     RootConfigUPtr m_rootConfig;
+
+    OutboundPtr m_selectorOutbound;
+    OutboundPtr m_directOutbound;
+
+    RulePtr m_selectorRule;
+    RulePtr m_directRule;
+    RulePtr m_selectorProcessRule;
 };
 
 }
