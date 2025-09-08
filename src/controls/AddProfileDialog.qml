@@ -30,10 +30,10 @@ MD.Dialog {
     }
 
     mdState.backgroundColor: MD.Token.color.secondary_container
-    horizontalPadding: 17
+    horizontalPadding: 16
 
     header: Item {
-        height: 40
+        height: 30
 
         LinedHeader {
             id: header
@@ -51,12 +51,12 @@ MD.Dialog {
     contentItem: Item {
         ColumnLayout {
             anchors.fill: parent
-            spacing: 15
+            spacing: 8
 
             MD.TextField {
                 id: profileNameField
                 Layout.fillWidth: true
-                implicitHeight: 35
+                implicitHeight: 48
                 type: MD.Enum.TextFieldOutlined
                 placeholderText: qsTr("Name")
             }
@@ -66,7 +66,7 @@ MD.Dialog {
                 Layout.fillWidth: true
                 textRole: "text"
                 valueRole: "value"
-                implicitHeight: 35
+                implicitHeight: 48
                 model: [
                     { value: Config.Local, text: qsTr("Local") },
                     { value: Config.Remote, text: qsTr("Remote") }
@@ -75,7 +75,7 @@ MD.Dialog {
 
             ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 15
+                spacing: 8
                 visible: root.currentConfigType === Config.Local
 
                 RowLayout {
@@ -83,7 +83,7 @@ MD.Dialog {
                         id: locationField
 
                         Layout.fillWidth: true
-                        implicitHeight: 35
+                        implicitHeight: 48
                         type: MD.Enum.TextFieldOutlined
                         placeholderText: qsTr("Location")
                     }
@@ -98,21 +98,25 @@ MD.Dialog {
                     }
 
                     Item {
-                        Layout.fillHeight: true
+                        Layout.fillWidth: true
                     }
+                }
+
+                Item {
+                    Layout.fillHeight: true
                 }
             }
 
             ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 15
+                spacing: 8
                 visible: root.currentConfigType === Config.Remote
 
                 MD.TextField {
                     id: urlTextField
 
                     Layout.fillWidth: true
-                    implicitHeight: 35
+                    implicitHeight: 48
                     type: MD.Enum.TextFieldOutlined
                     placeholderText: qsTr("URL")
                 }
@@ -123,7 +127,7 @@ MD.Dialog {
 
                     MD.TextField {
                         id: updateTimeField
-                        implicitHeight: 35
+                        implicitHeight: 36
                         type: MD.Enum.TextFieldOutlined
                         placeholderText: qsTr("Update (min)")
                         text: "60"
@@ -168,7 +172,7 @@ MD.Dialog {
 
     background: MD.ElevationRectangle {
         implicitWidth: 300
-        implicitHeight: 300
+        implicitHeight: 324
 
         radius: MD.Token.shape.corner.medium
         color: mdState.backgroundColor
