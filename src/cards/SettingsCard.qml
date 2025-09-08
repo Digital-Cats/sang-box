@@ -15,7 +15,11 @@ ControlCard {
     contentItem: Item {
         anchors.top: parent.header.bottom
         anchors.left: parent.left
-        anchors.margins: 16
+
+        anchors.leftMargin: 16
+        anchors.rightMargin: 16
+        anchors.topMargin: 5
+
         ColumnLayout {
             spacing: 15
 

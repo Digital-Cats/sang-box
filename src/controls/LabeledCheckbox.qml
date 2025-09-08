@@ -12,11 +12,8 @@ RowLayout {
     property alias checked: checkBox.checked
     signal clicked
 
-    CheckBox {
+    MD.CheckBox {
         id: checkBox
-
-        implicitHeight: 24
-        implicitWidth: 24
 
         Material.theme: Material.Dark
         Material.accent: MD.Token.color.primary_container
@@ -28,12 +25,11 @@ RowLayout {
     }
 
 
-    Label {
+    MD.Label {
         id: label
 
         color: MD.Token.color.on_secondary_container
-        font.pixelSize: 16
-        Layout.leftMargin: 5
-        font.weight: 600
+        Layout.leftMargin: 4
+        typescale: MD.Token.typescale.body_large
     }
 }
