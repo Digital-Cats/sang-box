@@ -102,8 +102,7 @@ set_target_properties(sang-box PROPERTIES
 )
 
 set(sang-box_resources
-    "resources/fonts/LexendDeca-Regular.ttf"
-    "resources/fonts/NotoSans-VariableFont_wdth,wght.ttf"
+    "resources/fonts/NotoSans.ttf"
     "resources/images/sang.ico"
     "resources/images/tray_disabled_key.png"
     "resources/images/tray_enabled_key.png"
