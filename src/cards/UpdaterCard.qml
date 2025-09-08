@@ -51,17 +51,31 @@ ControlCard {
                 VersionLabel {
                     id: coreVersionLabel
                     text: mainWindow.updater.coreVersion
-                    newest: mainWindow.updater.isCoreNewest
+                    newest: !mainWindow.updater.isCoreNewest
                     font.pixelSize: 16
                     Layout.leftMargin: 130 - root.contentItem.anchors.leftMargin - coreLabel.width
+                }
+            }
 
-                    Connections {
-                        target: mainWindow.updater
-                        function onIsCoreNewestChanged()
-                        {
-                            coreVersionLabel.newest = mainWindow.updater.isCoreNewest;
-                        }
-                    }
+            Label {
+                id: hasUpdateLabel
+                visible: false
+                text: qsTr("Updates avalaible!")
+                font.pixelSize: 16
+                color: MD.Token.color.on_secondary_container
+            }
+
+            Connections {
+                target: mainWindow.updater
+
+                function onIsCoreNewestChanged()
+                {
+                    coreVersionLabel.newest = mainWindow.updater.isCoreNewest;
+                }
+
+                function onUpdateAvailableChanged()
+                {
+                    hasUpdateLabel.visible = !mainWindow.updater.isCoreNewest;
                 }
             }
 
