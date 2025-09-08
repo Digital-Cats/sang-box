@@ -65,36 +65,18 @@ Rectangle {
                 id: sang_logo
                 anchors.top: parent.top
                 anchors.left: parent.left
-                anchors.topMargin: 19
-                anchors.leftMargin: 15
                 source: "qrc:/images/sang_logo.svg"
-                height: 55
-                width: 101
+                height: 128
+                width: 128
                 sourceSize.height: height
                 sourceSize.width: width
-            }
-
-            FontLoader {
-                id: lexendDeca
-                source: "qrc:/fonts/LexendDeca-Regular.ttf"
-            }
-
-            MD.Label {
-                anchors.top: sang_logo.bottom
-                anchors.left: parent.left
-                anchors.topMargin: 6
-                anchors.leftMargin: 13
-                typescale: MD.Token.typescale.title_large
-                text: "sang-box"
-                color: MD.Token.color.on_surface
-                font: lexendDeca.font
             }
         }
 
         MenuButton {
             Layout.preferredHeight: 52
             Layout.preferredWidth: 196
-            Layout.topMargin: 46
+            Layout.topMargin: 30
             checked: root.currentTabState === MainWindowView.TabState.Dashboard
             icon.name: MD.Token.icon.dashboard
             text: qsTr("Dashboard")
