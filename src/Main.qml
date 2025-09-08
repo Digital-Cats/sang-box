@@ -20,7 +20,7 @@ ApplicationWindow {
 
     FontLoader {
         id: notoSans
-        source: "qrc:/fonts/NotoSans-VariableFont_wdth,wght.ttf"
+        source: "qrc:/fonts/NotoSans.ttf"
     }
 
     font.family: notoSans.name
