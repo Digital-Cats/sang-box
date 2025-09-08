@@ -51,7 +51,7 @@ ControlCard {
                 VersionLabel {
                     id: coreVersionLabel
                     text: mainWindow.updater.coreVersion
-                    newest: !mainWindow.updater.isCoreNewest
+                    newest: mainWindow.updater.isCoreNewest
                     font.pixelSize: 16
                     Layout.leftMargin: 130 - root.contentItem.anchors.leftMargin - coreLabel.width
                 }

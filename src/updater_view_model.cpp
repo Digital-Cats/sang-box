@@ -3,7 +3,7 @@
 UpdaterViewModel::UpdaterViewModel()
     : QObject()
     , m_coreUpdater(std::make_unique<CoreUpdater>())
-    , m_isCoreNewest(true)
+    , m_isCoreNewest(false)
     , m_busy(false)
 {
     connect(m_coreUpdater.get(), &CoreUpdater::fetchFinished,
