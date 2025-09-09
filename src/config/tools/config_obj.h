@@ -17,6 +17,11 @@ public:
 
     void addClashApi();
 
+    void insertProcess(const std::string &process);
+    // TODO: Try to use expected
+    std::string getProcess(size_t index) const;
+    void eraseProcess(size_t index);
+
 signals:
     void configUpdated();
     void errorOccured(QString text);

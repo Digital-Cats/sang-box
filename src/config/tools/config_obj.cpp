@@ -49,6 +49,28 @@ void ConfigObj::addClashApi()
     writeDataToFile();
 }
 
+void ConfigObj::insertProcess(const std::string &process)
+{
+    if (!m_selectorProcessRule)
+        return;
+    m_selectorProcessRule->process_name->push_back(process);
+}
+
+std::string ConfigObj::getProcess(size_t index) const
+{
+    if (!m_selectorProcessRule)
+        return {};
+    return m_selectorProcessRule->process_name->at(index);
+}
+
+void ConfigObj::eraseProcess(size_t index)
+{
+    if (!m_selectorProcessRule)
+        return;
+    auto processesNames = m_selectorProcessRule->process_name;
+    processesNames->erase(processesNames->begin() + index);
+}
+
 void ConfigObj::writeDataToFile()
 {
     std::string outBuffer{};
@@ -73,7 +95,20 @@ void ConfigObj::findOrCreateCustomizableRules()
         }
     }
 
+    if (!m_directOutbound) {
+        emit errorOccured("No direct outbound!");
+        return;
+    }
+
+    if (!m_selectorOutbound) {
+        emit errorOccured("No selector outbound!");
+        return;
+    }
+
     for (auto &rule : m_rootConfig->route.rules) {
+        if (!rule->outbound)
+            continue;
+
         if (*rule->outbound == m_selectorOutbound->tag && !rule->process_name) {
             m_selectorRule = rule;
         } else if (*rule->outbound == m_selectorOutbound->tag && rule->process_name) {
