@@ -3,7 +3,6 @@
 #include <glaze/glaze.hpp>
 
 #include <memory>
-#include <set>
 
 namespace config {
 
@@ -37,6 +36,8 @@ struct rule_t;
 struct route_t;
 struct root_config_t;
 
+// Basic types
+
 using RootConfigUPtr = std::unique_ptr<root_config_t>;
 using OutboundType = outbound_type_t;
 using VectorStrPtr = std::shared_ptr<std::vector<std::string>>;
@@ -47,7 +48,7 @@ using VectorOutbounds = std::vector<OutboundPtr>;
 using VectorRules = std::vector<RulePtr>;
 using ExtraMap = std::map<glz::sv, glz::raw_json>;
 
-
+// Sing-box config structure
 
 struct clash_api_t {
     std::string external_controller;
@@ -88,7 +89,7 @@ struct root_config_t
 
 }
 
-
+// Structures registration for JSON lib
 
 template <>
 struct glz::meta<config::outbound_type_t> {
