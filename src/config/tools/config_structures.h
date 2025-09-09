@@ -38,7 +38,8 @@ struct route_t;
 struct root_config_t;
 
 using RootConfigUPtr = std::unique_ptr<root_config_t>;
-using SetStrPtr = std::shared_ptr<std::set<std::string>>;
+using OutboundType = outbound_type_t;
+using VectorStrPtr = std::shared_ptr<std::vector<std::string>>;
 using StringUPtr = std::unique_ptr<std::string>;
 using OutboundPtr = std::shared_ptr<outbound_t>;
 using RulePtr = std::shared_ptr<rule_t>;
@@ -65,9 +66,9 @@ struct outbound_t {
 };
 
 struct rule_t {
-    SetStrPtr domain = nullptr;
-    SetStrPtr domain_suffix = nullptr;
-    SetStrPtr process_name = nullptr;
+    VectorStrPtr domain = nullptr;
+    VectorStrPtr domain_suffix = nullptr;
+    VectorStrPtr process_name = nullptr;
     StringUPtr outbound;
     ExtraMap extra;
 };
