@@ -113,7 +113,7 @@ Rectangle {
         PlayButton {
             Layout.preferredWidth: 96
             Layout.preferredHeight: 96
-            Layout.bottomMargin: 131
+            Layout.bottomMargin: 128
             Layout.alignment: Qt.AlignHCenter
             checked: mainWindow.runnigState
             enabled: !mainWindow.updater.busy
