@@ -77,6 +77,10 @@ qt_add_qml_module(sang-box
         src/controls/WelcomeDialog.qml
         src/controls/ErrorPopup.qml
         src/controls/VersionLabel.qml
+        src/controls/RichLinkText.qml
+        src/controls/RichLinkIconText.qml
+        src/controls/RichLinkAvatarText.qml
+        src/controls/RichLinkImageText.qml
 )
 
 target_include_directories(sang-box PRIVATE
