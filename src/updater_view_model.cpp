@@ -42,6 +42,26 @@ QString UpdaterViewModel::appVersion() const
     return QLatin1String(PROJECT_VERSION);
 }
 
+QString UpdaterViewModel::qtVersion() const
+{
+    return QString::fromLatin1(qVersion());
+}
+
+QString UpdaterViewModel::buildTime() const
+{
+    return QStringLiteral(BUILD_TIME);
+}
+
+QString UpdaterViewModel::compilerVersion() const
+{
+    return QStringLiteral(COMPILER_VERSION);
+}
+
+QString UpdaterViewModel::compilerId() const
+{
+    return QStringLiteral(COMPILER_ID);
+}
+
 QString UpdaterViewModel::coreVersion() const
 {
     return m_coreVersion;

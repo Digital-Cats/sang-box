@@ -7,6 +7,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QProcess>
+#include <QtGlobal>
 
 #include <memory>
 
@@ -16,6 +17,10 @@ class UpdaterViewModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString appVersion READ appVersion CONSTANT)
+    Q_PROPERTY(QString qtVersion READ qtVersion CONSTANT)
+    Q_PROPERTY(QString buildTime READ buildTime CONSTANT)
+    Q_PROPERTY(QString compilerVersion READ compilerVersion CONSTANT)
+    Q_PROPERTY(QString compilerId READ compilerId CONSTANT)
     Q_PROPERTY(QString coreVersion READ coreVersion NOTIFY coreVersionChanged)
     Q_PROPERTY(QString latestCoreVersion READ latestCoreVersion NOTIFY latestCoreVersionChanged)
     Q_PROPERTY(bool isCoreNewest READ isCoreNewest NOTIFY isCoreNewestChanged)
@@ -46,6 +51,10 @@ private slots:
 
 private:
     QString appVersion() const;
+    QString qtVersion() const;
+    QString buildTime() const;
+    QString compilerVersion() const;
+    QString compilerId() const;
     QString coreVersion() const;
     QString latestCoreVersion() const;
     bool isCoreNewest() const;
