@@ -79,11 +79,15 @@ bool UpdaterViewModel::isCoreNewest() const
 
 void UpdaterViewModel::onCoreFetchFinished()
 {
+    const bool prevUpdateAvailable = updateAvailable();
+
     m_latestCoreVersion = m_coreUpdater->latestVersion();
+
     emit latestCoreVersionChanged();
 
     const auto currentVersion = QVersionNumber::fromString(m_coreVersion);
     const auto latestVersion = QVersionNumber::fromString(m_coreUpdater->latestVersion());
+
     const bool isCoreNewest = (!currentVersion.isNull() && !latestVersion.isNull() &&
                                QVersionNumber::compare(currentVersion, latestVersion) >= 0);
 
@@ -92,7 +96,13 @@ void UpdaterViewModel::onCoreFetchFinished()
         emit isCoreNewestChanged();
         emit updateAvailableChanged();
     }
+
+    const bool newUpdateAvailable = updateAvailable();
+    if (prevUpdateAvailable != newUpdateAvailable) {
+        emit updateAvailableChanged();
+    }
 }
+
 
 void UpdaterViewModel::updateCore()
 {
