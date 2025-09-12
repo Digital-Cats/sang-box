@@ -84,9 +84,9 @@ void ConfigObj::writeDataToFile()
 void ConfigObj::findOrCreateCustomizableRules()
 {
     for (auto &outbound : m_rootConfig->outbounds) {
-        if (outbound->type == outbound_type_t::selector) {
+        if (outbound->type == OutboundType::selector) {
             m_selectorOutbound = outbound;
-        } else if (outbound->type == outbound_type_t::direct) {
+        } else if (outbound->type == OutboundType::direct) {
             m_directOutbound = outbound;
         }
 
