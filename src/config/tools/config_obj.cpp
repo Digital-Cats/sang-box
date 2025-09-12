@@ -51,24 +51,65 @@ void ConfigObj::addClashApi()
 
 void ConfigObj::insertProcess(const std::string &process)
 {
-    if (!m_selectorProcessRule)
-        return;
-    m_selectorProcessRule->process_name->push_back(process);
+    if (m_selectorProcessRule)
+        m_selectorProcessRule->insertProcess(process);
 }
 
 std::string ConfigObj::getProcess(size_t index) const
 {
-    if (!m_selectorProcessRule)
-        return {};
-    return m_selectorProcessRule->process_name->at(index);
+    if (m_selectorProcessRule)
+        return m_selectorProcessRule->getProcess(index);
+    return {};
 }
 
 void ConfigObj::eraseProcess(size_t index)
 {
-    if (!m_selectorProcessRule)
-        return;
-    auto processesNames = m_selectorProcessRule->process_name;
-    processesNames->erase(processesNames->begin() + index);
+    if (m_selectorProcessRule)
+        m_selectorProcessRule->eraseProcess(index);
+}
+
+void ConfigObj::insertDomain(const std::string &domain, OutboundType outboundType)
+{
+    RulePtr rule = getRule(outboundType);
+    if (rule)
+        rule->insertDomain(domain);
+}
+
+std::string ConfigObj::getDomain(size_t index, OutboundType outboundType) const
+{
+    RulePtr rule = getRule(outboundType);
+    if (rule)
+        return rule->getDomain(index);
+    return {};
+}
+
+void ConfigObj::eraseDomain(size_t index, OutboundType outboundType)
+{
+    RulePtr rule = getRule(outboundType);
+    if (rule)
+        rule->eraseDomain(index);
+}
+
+void ConfigObj::insertDomainSuffix(const std::string &domainSuffix, OutboundType outboundType)
+{
+    RulePtr rule = getRule(outboundType);
+    if (rule)
+        rule->insertDomainSuffix(domainSuffix);
+}
+
+std::string ConfigObj::getDomainSuffix(size_t index, OutboundType outboundType) const
+{
+    RulePtr rule = getRule(outboundType);
+    if (rule)
+        return rule->getDomainSuffix(index);
+    return {};
+}
+
+void ConfigObj::eraseDomainSuffix(size_t index, OutboundType outboundType)
+{
+    RulePtr rule = getRule(outboundType);
+    if (rule)
+        rule->eraseDomainSuffix(index);
 }
 
 void ConfigObj::writeDataToFile()
@@ -156,6 +197,22 @@ void ConfigObj::createEmptyRule(RulePtr &rule, const std::string &tag)
 {
     rule = std::make_shared<rule_t>();
     rule->outbound = std::make_unique<std::string>(tag);
+}
+
+RulePtr ConfigObj::getRule(OutboundType outboundType) const
+{
+    RulePtr rule = nullptr;
+    switch (outboundType) {
+    case OutboundType::selector:
+        rule = m_selectorRule;
+        break;
+    case OutboundType::direct:
+        rule = m_directRule;
+        break;
+    default:
+        break;
+    }
+    return rule;
 }
 
 }

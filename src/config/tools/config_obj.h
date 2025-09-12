@@ -18,9 +18,16 @@ public:
     void addClashApi();
 
     void insertProcess(const std::string &process);
-    // TODO: Try to use expected
     std::string getProcess(size_t index) const;
     void eraseProcess(size_t index);
+
+    void insertDomain(const std::string &domain, OutboundType outboundType);
+    std::string getDomain(size_t index, OutboundType outboundType) const;
+    void eraseDomain(size_t index, OutboundType outboundType);
+
+    void insertDomainSuffix(const std::string &domainSuffix, OutboundType outboundType);
+    std::string getDomainSuffix(size_t index, OutboundType outboundType) const;
+    void eraseDomainSuffix(size_t index, OutboundType outboundType);
 
 signals:
     void configUpdated();
@@ -31,6 +38,7 @@ private:
     void findOrCreateCustomizableRules();
     void reset();
     static void createEmptyRule(RulePtr &rule, const std::string &tag);
+    RulePtr getRule(OutboundType outboundType) const;
 
 private:
     std::string m_jsonPath;
