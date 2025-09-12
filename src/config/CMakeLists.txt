@@ -8,6 +8,7 @@ qt_add_library(config STATIC
     config_downloader.cpp
     tools/config_obj.cpp
     tools/config_structures.h
+    tools/config_structures.cpp
 )
 target_link_libraries(config PRIVATE
     Qt6::Core

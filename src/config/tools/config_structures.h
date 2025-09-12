@@ -72,6 +72,22 @@ struct rule_t {
     VectorStrPtr process_name = nullptr;
     StringUPtr outbound;
     ExtraMap extra;
+
+    void insertStr(VectorStrPtr vectorStrPtr, const std::string &str);
+    std::string getStr(VectorStrPtr vectorStrPtr, size_t index) const;
+    void eraseStr(VectorStrPtr vectorStrPtr, size_t index);
+
+    void insertDomain(const std::string &domainStr);
+    std::string getDomain(size_t index) const;
+    void eraseDomain(size_t index);
+
+    void insertDomainSuffix(const std::string &domainSuffixStr);
+    std::string getDomainSuffix(size_t index) const;
+    void eraseDomainSuffix(size_t index);
+
+    void insertProcess(const std::string &processNameStr);
+    std::string getProcess(size_t index) const;
+    void eraseProcess(size_t index);
 };
 
 struct route_t {
