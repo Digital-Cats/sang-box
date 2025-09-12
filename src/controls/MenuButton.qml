@@ -8,8 +8,8 @@ T.Button {
 
     property alias mdState: m_sh.state
 
-    icon.width: 18
-    icon.height: 18
+    icon.width: 24
+    icon.height: 24
 
     contentItem: Item {
         anchors.centerIn: parent
@@ -41,7 +41,7 @@ T.Button {
                 font.capitalization: Font.Capitalize
                 text: control.text
                 prominent: control.checked
-                color: control.mdState.textColor
+                color: control.mdState.supportTextColor
             }
         }
     }

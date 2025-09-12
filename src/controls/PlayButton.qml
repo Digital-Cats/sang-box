@@ -2,20 +2,17 @@ import QtQuick
 
 import Qcm.Material as MD
 
-MD.StandardIconButton {
+MD.FAB {
     id: control
-
-    implicitBackgroundSize: 96
-    backgroundRadius: 28
+    type: MD.Enum.FABLarge
 
     icon.name: control.checked ?
                    MD.Token.icon.pause :
                    MD.Token.icon.play_arrow
     icon.width: 36
     icon.height: 36
-    iconFill: true
 
-    mdState: MD.StateStandardIconButton {
+    mdState: MD.StateFAB {
         backgroundColor: control.checked ?
                              MD.Token.color.primary_container :
                              MD.Token.color.surface_container_high
