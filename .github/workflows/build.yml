@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install pkg-config
-      run: choco install pkgconfiglite
+      run: choco install pkgconfiglite 7zip.portable -y
 
     - name: Install Qt and build tools
       uses: jurplel/install-qt-action@v4
@@ -49,13 +49,19 @@ jobs:
         windeployqt sang-box.exe --qmldir ..
     
     - name: Create sang-box.zip
-      run: zip -r sang-box.zip rel
+      run: 7z a -tzip sang-box-${{ github.ref_name }}.zip rel
     
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: sang-box-${{ github.ref_name }}
+        path: sang-box-${{ github.ref_name }}.zip
+
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       if: github.ref_type == 'tag'
       with:
         files: |
-          sang-box.zip
+          sang-box-${{ github.ref_name }}.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
