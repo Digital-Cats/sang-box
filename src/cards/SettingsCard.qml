@@ -16,12 +16,12 @@ ControlCard {
         anchors.top: parent.header.bottom
         anchors.left: parent.left
 
-        anchors.leftMargin: 16
+        anchors.leftMargin: 8
         anchors.rightMargin: 16
-        anchors.topMargin: 5
+        anchors.topMargin: 4
 
         ColumnLayout {
-            spacing: 15
+            spacing: 16
 
             LabeledCheckbox {
                 id: startOnBootCheck
