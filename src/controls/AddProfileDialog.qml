@@ -121,49 +121,28 @@ MD.Dialog {
                     placeholderText: qsTr("URL")
                 }
 
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 0
+                MD.TextField {
+                    id: updateTimeField
 
-                    MD.TextField {
-                        id: updateTimeField
-                        implicitHeight: 36
-                        type: MD.Enum.TextFieldOutlined
-                        placeholderText: qsTr("Update (min)")
-                        text: "60"
-                        enabled: isRefreshEnable.checked
-                        // typescale: MD.Token.typescale.body_small
+                    implicitHeight: 40
+                    type: MD.Enum.TextFieldOutlined
+                    placeholderText: qsTr("Update (min) ")
+                    text: "60"
+                    // typescale: MD.Token.typescale.body_small
 
-                        onTextChanged: {
-                            if (text.length === 0) {
-                                text = "0";
-                            }
-                        }
+                    ToolTip.visible: hovered
+                    ToolTip.delay: Application.styleHints.mousePressAndHoldInterval
+                    ToolTip.text: qsTr("Value '0' disables auto-refresh")
 
-                        validator: IntValidator {
-                            bottom: 0
-                            top: 100
+                    onTextChanged: {
+                        if (text.length === 0) {
+                            text = "0";
                         }
                     }
 
-                    MDSwitch {
-                        id: isRefreshEnable
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 11
-                        checked: true
-                        targetWidth: 39
-                    }
-
-                    MD.Label {
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 14
-                        text: qsTr("Enable")
-                        typescale: MD.Token.typescale.title_medium
-                        color: MD.Token.color.on_secondary_container
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
+                    validator: IntValidator {
+                        bottom: 0
+                        top: 9999
                     }
                 }
             }
@@ -198,7 +177,6 @@ MD.Dialog {
         urlTextField.text = "";
         locationField.text = "";
         updateTimeField.text = "60";
-        isRefreshEnable.checked = true;
         profileTypeComboBox.currentIndex = 0;
     }
 
