@@ -19,7 +19,7 @@ BasicTab {
             anchors.fill: parent
             columns: 2
             rows: 2
-            rowSpacing: 16
+            rowSpacing: 20
             columnSpacing: 4
 
             SettingsCard {
@@ -29,7 +29,7 @@ BasicTab {
                 Layout.column: 0
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: 320
             }
 
             UpdaterCard {
@@ -39,7 +39,7 @@ BasicTab {
                 Layout.column: 1
                 Layout.alignment: Qt.AlignRight
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: 320
             }
 
             RoutingCard {
@@ -50,7 +50,7 @@ BasicTab {
                 Layout.column: 0
                 Layout.alignment: Qt.AlignLeft
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: 350
             }
 
             ProxiedAppsCard {
@@ -61,7 +61,7 @@ BasicTab {
                 Layout.column: 1
                 Layout.alignment: Qt.AlignRight
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: 350
             }
         }
     }
