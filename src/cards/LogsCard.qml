@@ -10,23 +10,21 @@ import "../controls"
 ControlCard {
     labelText: qsTr("Log")
 
-    headerHeight: 38
     header.contentItem: Item {
         RowLayout {
             anchors.verticalCenter: parent.verticalCenter
-            spacing: 8
 
             MDSwitch {
                 id: autoScrollSwitch
                 Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 16
-                targetWidth: 52
+                Layout.leftMargin: 8
+                targetWidth: 39
             }
 
             MD.Label {
                 Layout.alignment: Qt.AlignVCenter
-
-                text: qsTr("Auto Scroll")
+                Layout.leftMargin: 16
+                text: qsTr("Auto scroll")
                 color: MD.Token.color.on_secondary_container
                 typescale: MD.Token.typescale.title_medium
             }
