@@ -28,8 +28,18 @@ UpdaterViewModel::UpdaterViewModel()
 
 void UpdaterViewModel::setCoreVersion(QString version)
 {
+    const bool oldIsCoreInstalled = isCoreInstalled();
     m_coreVersion = version.isEmpty() ? QObject::tr("Not installed") : version;
     emit coreVersionChanged();
+
+    if (oldIsCoreInstalled != isCoreInstalled()) {
+        emit isCoreInstalledChanged();
+    }
+}
+
+bool UpdaterViewModel::isCoreInstalled() const
+{
+    return m_coreVersion != QObject::tr("Not installed");
 }
 
 void UpdaterViewModel::requestLatestCoreVersion()
@@ -91,10 +101,12 @@ void UpdaterViewModel::onCoreFetchFinished()
     const bool isCoreNewest = (!currentVersion.isNull() && !latestVersion.isNull() &&
                                QVersionNumber::compare(currentVersion, latestVersion) >= 0);
 
+    qDebug() << m_isCoreNewest;
+    qDebug() << isCoreNewest;
+
     if (m_isCoreNewest != isCoreNewest) {
         m_isCoreNewest = isCoreNewest;
         emit isCoreNewestChanged();
-        emit updateAvailableChanged();
     }
 
     const bool newUpdateAvailable = updateAvailable();
@@ -136,8 +148,14 @@ void UpdaterViewModel::onCoreDownloadFinished(QString zipPath)
         return;
     }
 
+    const bool oldIsCoreInstalled = isCoreInstalled();
+
     m_coreVersion = m_latestCoreVersion;
     emit coreVersionChanged();
+
+    if (oldIsCoreInstalled != isCoreInstalled()) {
+        emit isCoreInstalledChanged();
+    }
 
     QFile::remove(zipPath);
     QDir(tmpDist).removeRecursively();

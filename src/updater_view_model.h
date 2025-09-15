@@ -26,6 +26,7 @@ class UpdaterViewModel : public QObject
     Q_PROPERTY(bool isCoreNewest READ isCoreNewest NOTIFY isCoreNewestChanged)
     Q_PROPERTY(bool updateAvailable READ updateAvailable NOTIFY updateAvailableChanged)
     Q_PROPERTY(bool busy READ busy NOTIFY busyChanged)
+    Q_PROPERTY(bool isCoreInstalled READ isCoreInstalled NOTIFY isCoreInstalledChanged)
     using CoreUpdaterUPtr = std::unique_ptr<CoreUpdater>;
 
 public:
@@ -44,6 +45,7 @@ signals:
     void updateAvailableChanged();
     void errorOccured(QString text);
     void busyChanged();
+    void isCoreInstalledChanged();
 
 private slots:
     void onCoreFetchFinished();
@@ -61,6 +63,7 @@ private:
     bool updateAvailable();
     void setBusy(bool busy);
     bool busy() const;
+    bool isCoreInstalled() const;
 
     bool extractZip(QString zipPath, QString distPath);
 

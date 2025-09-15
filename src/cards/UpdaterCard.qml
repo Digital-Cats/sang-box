@@ -16,7 +16,6 @@ ControlCard {
         anchors.top: parent.header.bottom
         anchors.left: parent.left
         anchors.bottom: parent.bottom
-        anchors.leftMargin: 16
         anchors.topMargin: 16
 
         ColumnLayout {
@@ -37,7 +36,7 @@ ControlCard {
                     text: mainWindow.updater.appVersion
                     font.pixelSize: 16
                     color: "#00AC00"
-                    Layout.leftMargin: 130 - root.contentItem.anchors.leftMargin - appVersionLabel.width
+                    Layout.leftMargin: 107 - root.contentItem.anchors.leftMargin - appVersionLabel.width
                 }
             }
 
@@ -51,9 +50,26 @@ ControlCard {
                 VersionLabel {
                     id: coreVersionLabel
                     text: mainWindow.updater.coreVersion
-                    newest: mainWindow.updater.isCoreNewest
+                    newest: mainWindow.updater.latestCoreVersion === ""
+                            ? mainWindow.updater.isCoreInstalled
+                            : (mainWindow.updater.isCoreInstalled && mainWindow.updater.isCoreNewest)
+
                     font.pixelSize: 16
-                    Layout.leftMargin: 130 - root.contentItem.anchors.leftMargin - coreLabel.width
+                    Layout.leftMargin: 110 - root.contentItem.anchors.leftMargin - coreLabel.width
+                }
+            }
+
+            Connections {
+                target: mainWindow.updater
+
+                function onLatestCoreVersionChanged() {
+                    fetchBtn.busy = false;
+                }
+
+                function onUpdateAvailableChanged() {
+                    hasUpdateLabel.visible = !mainWindow.updater.isCoreNewest;
+                    fetchBtn.busy = false;
+                    updateBtn.busy = false;
                 }
             }
 
@@ -63,20 +79,6 @@ ControlCard {
                 text: qsTr("Updates avalaible!")
                 font.pixelSize: 16
                 color: MD.Token.color.on_secondary_container
-            }
-
-            Connections {
-                target: mainWindow.updater
-
-                function onIsCoreNewestChanged()
-                {
-                    coreVersionLabel.newest = mainWindow.updater.isCoreNewest;
-                }
-
-                function onUpdateAvailableChanged()
-                {
-                    hasUpdateLabel.visible = !mainWindow.updater.isCoreNewest;
-                }
             }
 
             Item {
@@ -121,18 +123,6 @@ ControlCard {
                     onClicked: {
                         updateBtn.busy = true
                         mainWindow.updater.updateCore()
-                    }
-                }
-
-                Connections {
-                    target: mainWindow.updater
-                    function onLatestCoreVersionChanged() {
-                        fetchBtn.busy = false
-                    }
-                    function onUpdateAvailableChanged()
-                    {
-                        fetchBtn.busy = false
-                        updateBtn.busy = false
                     }
                 }
             }
