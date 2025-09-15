@@ -29,7 +29,7 @@ MD.Dialog {
                 Layout.fillWidth: true
                 typescale: MD.Token.typescale.title_medium
                 color: MD.Token.color.on_secondary_container
-                text: qsTr("This action cannot be undone!")
+                text: qsTr("This action cannot be undone.")
             }
         }
     }
