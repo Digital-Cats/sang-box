@@ -150,7 +150,7 @@ BasicTab {
                     }
 
                     RichLinkImageText {
-                        content: "build using %1 " +
+                        content: "built using %1 " +
                                  mainWindow.updater.qtVersion +
                                  " (MinGW " + mainWindow.updater.compilerVersion +
                                  ") on " + mainWindow.updater.buildTime
