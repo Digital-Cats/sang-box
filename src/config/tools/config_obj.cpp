@@ -18,9 +18,10 @@ void ConfigObj::readFile(std::string jsonPath)
 {
     reset();
     m_jsonPath = jsonPath;
-    auto ec = glz::read_file_json<glz::opts{.error_on_unknown_keys = false, .raw_string = true}>(m_rootConfig, m_jsonPath, m_jsonBuffer);
+    std::string jsonBuffer;
+    auto ec = glz::read_file_json<glz::opts{.error_on_unknown_keys = false, .raw_string = true}>(m_rootConfig, m_jsonPath, jsonBuffer);
     if (ec) {
-        emit errorOccured(QString::fromStdString(glz::format_error(ec, m_jsonBuffer)));
+        emit errorOccured(QString::fromStdString(glz::format_error(ec, jsonBuffer)));
         return;
     }
     findOrCreateCustomizableRules();
@@ -181,8 +182,6 @@ void ConfigObj::findOrCreateCustomizableRules()
 
 void ConfigObj::reset()
 {
-    m_jsonBuffer = {};
-
     m_selectorOutbound = nullptr;
     m_directOutbound = nullptr;
 

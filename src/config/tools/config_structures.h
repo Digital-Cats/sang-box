@@ -46,7 +46,7 @@ using OutboundPtr = std::shared_ptr<outbound_t>;
 using RulePtr = std::shared_ptr<rule_t>;
 using VectorOutbounds = std::vector<OutboundPtr>;
 using VectorRules = std::vector<RulePtr>;
-using ExtraMap = std::map<glz::sv, glz::raw_json>;
+using ExtraMap = std::map<std::string, glz::raw_json>;
 
 // Sing-box config structure
 
