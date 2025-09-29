@@ -1,5 +1,4 @@
-#ifndef CONFIG_TYPE_H
-#define CONFIG_TYPE_H
+#pragma once
 
 #include <QObject>
 
@@ -14,5 +13,3 @@ enum class ConfigType {
 Q_ENUM_NS(ConfigType)
 
 }
-
-#endif // CONFIG_TYPE_H

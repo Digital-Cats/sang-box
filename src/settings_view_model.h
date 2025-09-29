@@ -1,5 +1,4 @@
-#ifndef SETTINGS_NEW_H
-#define SETTINGS_NEW_H
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -30,5 +29,3 @@ private:
 private:
     SettingsManagerUPtr m_settingsManager;
 };
-
-#endif // SETTINGS_NEW_H

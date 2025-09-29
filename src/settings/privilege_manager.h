@@ -1,5 +1,4 @@
-#ifndef PRIVILEGE_MANAGER_H
-#define PRIVILEGE_MANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -15,5 +14,3 @@ public:
     bool runAsAdmin(const QString &programPath, const QString &parameters = "");
     void restartProgram();
 };
-
-#endif // PRIVILEGE_MANAGER_H

@@ -1,5 +1,4 @@
-#ifndef TRAY_ICON_H
-#define TRAY_ICON_H
+#pragma once
 
 #include <QObject>
 #include <QSystemTrayIcon>
@@ -51,5 +50,3 @@ private:
     QSystemTrayIcon *m_trayIcon;
     QMenu *m_trayIconMenu;
 };
-
-#endif // TRAY_ICON_H

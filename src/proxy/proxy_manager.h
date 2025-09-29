@@ -1,5 +1,4 @@
-#ifndef PROXY_MANAGER_H
-#define PROXY_MANAGER_H
+#pragma once
 
 #include <QObject>
 #include <QProcess>
@@ -35,5 +34,3 @@ private:
     QString m_configFilePath;
     QString m_program;
 };
-
-#endif // PROXY_MANAGER_H

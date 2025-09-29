@@ -1,5 +1,4 @@
-#ifndef CONFIG_MANAGER_H
-#define CONFIG_MANAGER_H
+#pragma once
 
 #include <QObject>
 #include "config_type.h"
@@ -62,5 +61,3 @@ private:
 };
 
 }
-
-#endif // CONFIG_MANAGER_H

@@ -1,5 +1,4 @@
-#ifndef CONFIG_DATA_HANDLER_H
-#define CONFIG_DATA_HANDLER_H
+#pragma once
 
 #include <QSettings>
 
@@ -22,5 +21,3 @@ protected:
 };
 
 }
-
-#endif // CONFIG_DATA_HANDLER_H

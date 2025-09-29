@@ -1,5 +1,4 @@
-#ifndef CONFIG_LIST_MODEL_H
-#define CONFIG_LIST_MODEL_H
+#pragma once
 
 #include <QAbstractItemModel>
 
@@ -47,5 +46,3 @@ private:
 
     ConfigManagerPtr m_configManager;
 };
-
-#endif // CONFIG_LIST_MODEL_H

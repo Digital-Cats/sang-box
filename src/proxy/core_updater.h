@@ -1,5 +1,4 @@
-#ifndef CORE_UPDATER_H
-#define CORE_UPDATER_H
+#pragma once
 
 #include <QObject>
 #include <QNetworkAccessManager>
@@ -54,5 +53,3 @@ private:
     QString m_assetName;
     QString m_savePath;
 };
-
-#endif // CORE_UPDATER_H

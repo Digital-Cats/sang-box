@@ -1,5 +1,4 @@
-#ifndef SETTINGS_MANAGER_H
-#define SETTINGS_MANAGER_H
+#pragma once
 
 #include <QObject>
 #include <QSettings>
@@ -23,5 +22,3 @@ private:
     QSettings m_iniSettings;
     QSettings m_nativeSettings;
 };
-
-#endif // SETTINGS_MANAGER_H

@@ -1,5 +1,4 @@
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
 #include "config_type.h"
 
@@ -30,5 +29,3 @@ private:
 };
 
 }
-
-#endif // CONFIG_H

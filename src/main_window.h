@@ -1,5 +1,4 @@
-#ifndef MAIN_WINDOW_NEW_H
-#define MAIN_WINDOW_NEW_H
+#pragma once
 
 #include <QObject>
 #include <QProcess>
@@ -62,5 +61,3 @@ private:
     ProxyManagerUPtr m_proxyManager;
     QString m_proxyOutput;
 };
-
-#endif // MAIN_WINDOW_NEW_H

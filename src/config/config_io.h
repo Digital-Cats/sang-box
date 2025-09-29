@@ -1,5 +1,4 @@
-#ifndef CONFIG_IO_H
-#define CONFIG_IO_H
+#pragma once
 
 #include <QString>
 
@@ -26,5 +25,3 @@ private:
 };
 
 }
-
-#endif // CONFIG_IO_H

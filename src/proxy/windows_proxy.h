@@ -1,5 +1,4 @@
-#ifndef WINDOWS_PROXY_H
-#define WINDOWS_PROXY_H
+#pragma once
 
 #include <QString>
 
@@ -10,5 +9,3 @@ public:
     static void clear();
     static bool isEnabled();
 };
-
-#endif // WINDOWS_PROXY_H

@@ -1,5 +1,4 @@
-#ifndef UPDATER_VIEW_MODEL_H
-#define UPDATER_VIEW_MODEL_H
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -74,5 +73,3 @@ private:
     bool m_isCoreNewest;
     bool m_busy;
 };
-
-#endif // UPDATER_VIEW_MODEL_H

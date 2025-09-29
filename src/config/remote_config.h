@@ -1,5 +1,4 @@
-#ifndef REMOTE_CONFIG_H
-#define REMOTE_CONFIG_H
+#pragma once
 
 #include <QUrl>
 
@@ -31,5 +30,3 @@ private:
 };
 
 }
-
-#endif // REMOTE_CONFIG_H
